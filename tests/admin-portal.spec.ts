@@ -26,7 +26,7 @@ test.describe('Aqualux Admin Portal E2E Tests', () => {
     await expect(page.getByRole('button', { name: /1\. Tempat & HTM Kolam/i }).first()).toBeVisible();
   });
 
-  test('should navigate between Sidebar tabs', async ({ page }) => {
+  test('should navigate between Sidebar tabs including Link-in-Bio', async ({ page }) => {
     await page.goto('/#admin');
     await page.getByPlaceholder('Masukkan password admin...').fill('aqualux123');
     await page.getByRole('button', { name: /Masuk ke Dashboard Admin/i }).click();
@@ -39,8 +39,12 @@ test.describe('Aqualux Admin Portal E2E Tests', () => {
     await page.getByRole('button', { name: /3\. Kontak WA Admin/i }).first().click();
     await expect(page.getByText(/Nomor WA Admin 1/i).first()).toBeVisible();
 
-    // Tab 4: Ganti Password
-    await page.getByRole('button', { name: /4\. Ganti Password/i }).first().click();
+    // Tab 4: Kelola Link-in-Bio
+    await page.getByRole('button', { name: /4\. Kelola Link-in-Bio/i }).first().click();
+    await expect(page.getByText(/Profil & Informasi Akun Bio/i).first()).toBeVisible();
+
+    // Tab 5: Ganti Password
+    await page.getByRole('button', { name: /5\. Ganti Password/i }).first().click();
     await expect(page.getByRole('button', { name: /Simpan Password Baru/i })).toBeVisible();
   });
 

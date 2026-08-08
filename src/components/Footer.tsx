@@ -12,7 +12,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenAdmin }) => {
   const { locations, adminContacts } = useAqualuxData();
 
   return (
-    <footer className="bg-slate-900 text-slate-400 pt-16 pb-24 md:pb-12 border-t border-slate-800">
+    <footer className="bg-slate-900 text-slate-400 pt-16 pb-16 md:pb-12 border-t border-slate-800">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         <motion.div
@@ -69,6 +69,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenAdmin }) => {
               <li><a href="#keunggulan" className="hover:text-blue-400 transition-colors">Keunggulan Pelatih</a></li>
               <li><a href="#testimoni" className="hover:text-blue-400 transition-colors">Testimoni Alumni</a></li>
               <li><a href="#faq" className="hover:text-blue-400 transition-colors">Pertanyaan Umum (FAQ)</a></li>
+              <li><a href="#links" className="hover:text-blue-400 transition-colors flex items-center gap-1"><span className="text-cyan-400 font-bold">●</span> Link in Bio (/links)</a></li>
               {onOpenAdmin && (
                 <li className="pt-2">
                   <button

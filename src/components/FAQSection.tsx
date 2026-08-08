@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { ChevronDown, HelpCircle, MessageCircle } from 'lucide-react';
 import { FAQ_DATA } from '../data/aqualuxData';
 import { buildGeneralWhatsAppUrl } from '../utils/whatsapp';
@@ -15,30 +15,34 @@ export const FAQSection: React.FC = () => {
   const waUrl = buildGeneralWhatsAppUrl("Halo Admin Aqualux, saya punya pertanyaan lain seputar kursus renang.");
 
   return (
-    <section id="faq" className="py-20 bg-slate-100 text-slate-900 border-t border-slate-300">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="faq" className="py-20 bg-slate-100 text-slate-900 border-t border-slate-300 relative overflow-hidden">
+      
+      {/* Background Ambient Glow */}
+      <div className="glow-cyan-ambient w-[400px] h-[400px] top-1/4 right-5" />
+
+      <motion.div 
+        className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10"
+        variants={staggerContainer(0.1)}
+        initial="hidden"
+        whileInView="visible"
+        viewport={viewportOnce}
+      >
         
         {/* Header */}
-        <div className="text-center max-w-3xl mx-auto mb-14">
-          <span className="text-xs font-extrabold uppercase tracking-wider text-blue-800 bg-blue-100 px-3.5 py-1.5 rounded-full mb-3 inline-block border border-blue-300">
-            Pertanyaan Umum (FAQ)
+        <motion.div variants={fadeUp} className="text-center max-w-3xl mx-auto mb-14">
+          <span className="text-xs font-mono font-bold uppercase tracking-wider text-blue-900 bg-blue-200 px-3.5 py-1.5 rounded-full mb-3 inline-block border border-blue-300">
+            PERTANYAAN UMUM (FAQ)
           </span>
-          <h2 className="text-3xl sm:text-4xl font-black text-slate-950 font-outfit tracking-tight">
+          <h2 className="text-3xl sm:text-4xl font-black text-slate-950 font-outfit tracking-tight text-balance">
             Pertanyaan yang Sering Diajukan
           </h2>
-          <p className="mt-3 text-base font-semibold text-slate-800">
+          <p className="mt-3 text-base font-medium text-slate-700">
             Informasi lengkap seputar sistem pembayaran tiket, jadwal, dan garansi bimbingan.
           </p>
-        </div>
+        </motion.div>
 
         {/* Accordion */}
-        <motion.div
-          className="space-y-3 text-left"
-          variants={staggerContainer(0.08)}
-          initial="hidden"
-          whileInView="visible"
-          viewport={viewportOnce}
-        >
+        <motion.div variants={staggerContainer(0.08)} className="space-y-3.5 text-left">
           {FAQ_DATA.map((item, idx) => {
             const isOpen = openIndex === idx;
 
@@ -46,12 +50,12 @@ export const FAQSection: React.FC = () => {
               <motion.div
                 key={idx}
                 variants={fadeUp}
-                className="bg-white rounded-2xl overflow-hidden border border-slate-300 shadow-sm transition-all"
+                className="card-clean-elevated rounded-2xl overflow-hidden"
               >
                 <button
                   type="button"
                   onClick={() => toggleAccordion(idx)}
-                  className="w-full p-4 sm:p-5 text-left flex items-center justify-between gap-4 font-black text-slate-950 font-outfit text-sm sm:text-base hover:text-blue-700 transition-colors"
+                  className="w-full p-4 sm:p-5 text-left flex items-center justify-between gap-4 font-black text-slate-950 font-outfit text-sm sm:text-base hover:text-blue-700 transition-colors btn-tactile"
                 >
                   <span className="flex items-center gap-3">
                     <HelpCircle className="w-5 h-5 text-blue-700 shrink-0" />
@@ -62,31 +66,21 @@ export const FAQSection: React.FC = () => {
                   }`} />
                 </button>
 
-                <AnimatePresence initial={false}>
-                  {isOpen && (
-                    <motion.div
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: 'auto', opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.3, ease: 'easeInOut' }}
-                      className="px-5 pb-5 text-xs sm:text-sm text-slate-900 leading-relaxed overflow-hidden"
-                    >
-                      <div className="border-t border-slate-200 pt-3">
-                        <p className="bg-slate-100 p-4 rounded-xl border border-slate-300 text-slate-900 font-medium">
-                          {item.answer}
-                        </p>
-                      </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
+                {isOpen && (
+                  <div className="px-5 pb-5 text-xs sm:text-sm text-slate-900 leading-relaxed border-t border-slate-200 pt-3">
+                    <p className="bg-slate-50 p-4 rounded-xl border border-slate-200 text-slate-800 font-medium leading-relaxed">
+                      {item.answer}
+                    </p>
+                  </div>
+                )}
               </motion.div>
             );
           })}
         </motion.div>
 
         {/* Footer Note */}
-        <div className="mt-10 text-center p-5 rounded-2xl bg-white border border-slate-300 shadow-sm">
-          <p className="text-xs sm:text-sm font-semibold text-slate-800 mb-2">Punya pertanyaan lain yang belum tercantum?</p>
+        <motion.div variants={fadeUp} className="mt-10 text-center p-5 rounded-2xl card-clean-elevated flex flex-col sm:flex-row items-center justify-between gap-3">
+          <p className="text-xs sm:text-sm font-semibold text-slate-800">Punya pertanyaan lain yang belum tercantum?</p>
           <a
             href={waUrl}
             target="_blank"
@@ -96,9 +90,9 @@ export const FAQSection: React.FC = () => {
             <MessageCircle className="w-4 h-4" />
             <span>Tanyakan Langsung ke Admin via WhatsApp &rarr;</span>
           </a>
-        </div>
+        </motion.div>
 
-      </div>
+      </motion.div>
     </section>
   );
 };

@@ -44,13 +44,16 @@ test.describe('Aqualux Landing Page E2E Tests', () => {
     const faqSection = page.locator('#faq');
     await expect(faqSection).toBeVisible();
 
-    // Click first FAQ item
-    const firstFaq = page.getByText(/Bagaimana cara pembayaran tiket masuk kolam renang/i);
-    await expect(firstFaq).toBeVisible();
-    await firstFaq.click();
-
-    // Verify answer text is visible
+    // First FAQ item is expanded by default
     await expect(page.getByText(/Biaya kursus dibayarkan langsung ke pihak Aqualux/i)).toBeVisible();
+
+    // Click first FAQ accordion button to collapse it
+    const firstFaqBtn = faqSection.getByRole('button', { name: /Bagaimana cara pembayaran tiket masuk kolam renang/i });
+    await expect(firstFaqBtn).toBeVisible();
+    await firstFaqBtn.click();
+
+    // Verify answer text is now hidden
+    await expect(page.getByText(/Biaya kursus dibayarkan langsung ke pihak Aqualux/i)).toBeHidden();
   });
 
 });

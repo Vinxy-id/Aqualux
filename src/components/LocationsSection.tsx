@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { MapPin, Clock, Calendar, ExternalLink, Ticket, Utensils, Navigation, MessageCircle } from 'lucide-react';
+import { MapPin, Clock, Calendar, ExternalLink, Ticket, Utensils, Navigation } from 'lucide-react';
 import { useAqualuxData } from '../context/AqualuxDataContext';
 import { LocationKey } from '../types';
 import { buildGeneralWhatsAppUrl } from '../utils/whatsapp';
@@ -13,30 +13,34 @@ export const LocationsSection: React.FC = () => {
   const waUrl = buildGeneralWhatsAppUrl();
 
   return (
-    <section id="lokasi" className="py-16 sm:py-20 bg-slate-50 text-slate-900 border-t border-slate-300">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="lokasi" className="py-16 sm:py-24 bg-slate-50 text-slate-900 border-t border-slate-300 relative overflow-hidden">
+      
+      {/* Ambient Glow */}
+      <div className="glow-cyan-ambient w-[450px] h-[450px] top-1/4 right-5" />
+
+      <motion.div 
+        className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10"
+        variants={staggerContainer(0.1)}
+        initial="hidden"
+        whileInView="visible"
+        viewport={viewportOnce}
+      >
         
         {/* Header */}
-        <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-14">
-          <span className="text-xs font-extrabold uppercase tracking-wider text-blue-800 bg-blue-100 px-3.5 py-1.5 rounded-full mb-3 inline-block border border-blue-300">
-            Lokasi Kolam Renang Bimbingan
+        <motion.div variants={fadeUp} className="text-center max-w-3xl mx-auto mb-10 sm:mb-14">
+          <span className="text-xs font-mono font-bold uppercase tracking-wider text-blue-900 bg-blue-100 px-3.5 py-1.5 rounded-full mb-3 inline-block border border-blue-300">
+            LOKASI KOLAM RENANG
           </span>
-          <h2 className="text-2xl sm:text-4xl font-black text-slate-950 font-outfit tracking-tight">
+          <h2 className="text-2xl sm:text-4xl font-black text-slate-950 font-outfit tracking-tight text-balance">
             Pilihan Kolam Renang Hotel di Malang
           </h2>
-          <p className="mt-3 text-sm sm:text-base font-semibold text-slate-800">
+          <p className="mt-3 text-sm sm:text-base font-medium text-slate-700">
             Latihan di kolam renang hotel bintang yang bersih, nyaman, dan terawat. Pilih lokasi yang paling dekat & nyaman untuk Anda.
           </p>
-        </div>
+        </motion.div>
 
-        {/* 3 Location Cards Grid - Clean Uniform Cards */}
-        <motion.div
-          className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 mb-10 sm:mb-14"
-          variants={staggerContainer(0.12)}
-          initial="hidden"
-          whileInView="visible"
-          viewport={viewportOnce}
-        >
+        {/* 3 Location Cards Grid */}
+        <motion.div variants={staggerContainer(0.12)} className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 mb-10 sm:mb-14">
           {Object.values(locations).map((loc) => {
             const isMapActive = activeMapKey === loc.key;
 
@@ -44,8 +48,7 @@ export const LocationsSection: React.FC = () => {
               <motion.div 
                 key={loc.key}
                 variants={fadeUp}
-                whileHover={{ y: -6 }}
-                className="bg-white rounded-3xl overflow-hidden border border-slate-300 shadow-md hover:shadow-xl hover:border-blue-400 transition-all duration-300 flex flex-col justify-between text-left group"
+                className="card-clean-elevated rounded-3xl overflow-hidden flex flex-col justify-between text-left group"
               >
                 <div>
                   {/* Image Container */}
@@ -59,7 +62,7 @@ export const LocationsSection: React.FC = () => {
                     
                     {/* Top Badge */}
                     {loc.badge && (
-                      <div className="absolute top-3 left-3 bg-slate-900/90 text-white text-[11px] font-extrabold px-3 py-1.5 rounded-full shadow-md backdrop-blur-md flex items-center gap-1.5 border border-white/20">
+                      <div className="absolute top-3 left-3 bg-slate-900/90 text-white text-[11px] font-mono font-bold px-3 py-1.5 rounded-full shadow-md backdrop-blur-md flex items-center gap-1.5 border border-white/20">
                         {loc.key === 'savana' && <Utensils className="w-3.5 h-3.5 text-amber-400" />}
                         <span>{loc.badge}</span>
                       </div>
@@ -75,36 +78,36 @@ export const LocationsSection: React.FC = () => {
 
                   {/* Card Body Content */}
                   <div className="p-5 sm:p-6 space-y-4">
-                    <p className="text-xs sm:text-sm font-semibold text-slate-700 leading-relaxed">
+                    <p className="text-xs sm:text-sm font-medium text-slate-700 leading-relaxed">
                       {loc.description}
                     </p>
 
                     {/* Specifications Box */}
-                    <div className="bg-slate-50 p-3.5 sm:p-4 rounded-2xl border border-slate-200/90 space-y-2.5 sm:space-y-3 text-xs sm:text-sm">
+                    <div className="bg-slate-50 p-3.5 sm:p-4 rounded-2xl border border-slate-200 space-y-2.5 sm:space-y-3 text-xs sm:text-sm">
                       <div className="flex items-center justify-between gap-2">
                         <span className="text-slate-700 font-bold flex items-center gap-1.5 shrink-0">
                           <Ticket className="w-4 h-4 text-blue-600 shrink-0" />
                           <span>Tiket Masuk:</span>
                         </span>
-                        <span className="font-black text-emerald-800 bg-emerald-100/90 px-2.5 py-0.5 sm:px-3 sm:py-1 rounded-xl border border-emerald-300 text-xs sm:text-sm text-right">
-                          Rp {loc.htm.toLocaleString('id-ID')} <span className="text-[10px] font-bold text-emerald-700">/sesi</span>
+                        <span className="font-mono font-bold text-emerald-800 bg-emerald-100/90 px-2.5 py-0.5 sm:px-3 sm:py-1 rounded-xl border border-emerald-300 text-xs sm:text-sm text-right">
+                          Rp {loc.htm.toLocaleString('id-ID')} <span className="text-[10px] text-emerald-700">/sesi</span>
                         </span>
                       </div>
 
-                      <div className="flex items-center justify-between border-t border-slate-200/70 pt-2 gap-2">
+                      <div className="flex items-center justify-between border-t border-slate-200 pt-2 gap-2">
                         <span className="text-slate-700 font-bold flex items-center gap-1.5 shrink-0">
                           <Calendar className="w-4 h-4 text-blue-600 shrink-0" />
                           <span>Hari Bimbingan:</span>
                         </span>
-                        <span className="font-extrabold text-slate-950 text-right">{loc.days}</span>
+                        <span className="font-semibold text-slate-950 text-right">{loc.days}</span>
                       </div>
 
-                      <div className="flex items-center justify-between border-t border-slate-200/70 pt-2 gap-2">
+                      <div className="flex items-center justify-between border-t border-slate-200 pt-2 gap-2">
                         <span className="text-slate-700 font-bold flex items-center gap-1.5 shrink-0">
                           <Clock className="w-4 h-4 text-blue-600 shrink-0" />
                           <span>Jam Sesi:</span>
                         </span>
-                        <span className="font-extrabold text-slate-950 text-right">{loc.hours}</span>
+                        <span className="font-mono font-semibold text-slate-950 text-right">{loc.hours}</span>
                       </div>
                     </div>
                   </div>
@@ -119,7 +122,7 @@ export const LocationsSection: React.FC = () => {
                       const mapElem = document.getElementById('map-preview-container');
                       if (mapElem) mapElem.scrollIntoView({ behavior: 'smooth' });
                     }}
-                    className={`w-full py-3.5 px-4 rounded-2xl font-extrabold text-xs transition-all flex items-center justify-center gap-2 shadow-sm min-h-[44px] ${
+                    className={`w-full py-3.5 px-4 rounded-2xl font-extrabold text-xs transition-all flex items-center justify-center gap-2 shadow-sm min-h-[44px] btn-tactile ${
                       isMapActive 
                         ? 'bg-blue-600 text-white hover:bg-blue-700 shadow-md shadow-blue-600/20' 
                         : 'bg-slate-900 text-white hover:bg-slate-800'
@@ -145,31 +148,19 @@ export const LocationsSection: React.FC = () => {
           })}
         </motion.div>
 
-        {/* Interactive Embedded Google Maps Section */}
-        <motion.div
-          id="map-preview-container"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={viewportOnce}
-          transition={{ duration: 0.6, ease: 'easeOut' }}
-          className="bg-white rounded-3xl p-5 sm:p-8 border border-slate-300 shadow-xl text-left"
-        >
+        {/* Embedded Google Maps Section */}
+        <motion.div variants={fadeUp} id="map-preview-container" className="card-clean-elevated rounded-3xl p-5 sm:p-8 text-left">
+          
           {/* Map Header & Tab Selector */}
           <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 mb-6">
             <div>
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-100 border border-blue-300 text-blue-900 text-xs font-black uppercase tracking-wider mb-1.5">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-100 border border-blue-300 text-blue-950 text-xs font-mono font-bold uppercase tracking-wider mb-1.5">
                 <Navigation className="w-3.5 h-3.5 text-blue-700" />
-                <span>Peta Interaktif Google Maps</span>
+                <span>PETA INTERAKTIF GOOGLE MAPS</span>
               </div>
-              <motion.h3
-                key={activeLocation.key}
-                initial={{ opacity: 0, x: -12 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.3 }}
-                className="text-lg sm:text-2xl font-black text-slate-950 font-outfit"
-              >
+              <h3 className="text-lg sm:text-2xl font-black text-slate-950 font-outfit">
                 Lokasi: {activeLocation.name}
-              </motion.h3>
+              </h3>
               {activeLocation.address && (
                 <p className="text-xs sm:text-sm font-semibold text-slate-700 mt-1 flex items-start sm:items-center gap-1.5">
                   <MapPin className="w-4 h-4 text-blue-700 shrink-0 mt-0.5 sm:mt-0" />
@@ -185,7 +176,7 @@ export const LocationsSection: React.FC = () => {
                   key={loc.key}
                   type="button"
                   onClick={() => setActiveMapKey(loc.key)}
-                  className={`px-3.5 py-2 rounded-full text-xs font-extrabold transition-all border flex-1 sm:flex-none text-center ${
+                  className={`px-3.5 py-2 rounded-full text-xs font-extrabold transition-all border flex-1 sm:flex-none text-center btn-tactile ${
                     activeMapKey === loc.key
                       ? 'bg-blue-600 text-white border-blue-700 shadow-sm'
                       : 'bg-slate-100 text-slate-900 border-slate-300 hover:border-blue-500'
@@ -197,7 +188,7 @@ export const LocationsSection: React.FC = () => {
             </div>
           </div>
 
-          {/* Embedded Google Map iFrame */}
+          {/* Embedded Map iFrame */}
           <div className="relative w-full h-72 sm:h-96 rounded-2xl overflow-hidden border border-slate-300 shadow-inner bg-slate-200">
             {activeLocation.embedMapUrl ? (
               <iframe
@@ -218,18 +209,18 @@ export const LocationsSection: React.FC = () => {
             )}
           </div>
 
-          {/* Map Footer Action Bar */}
+          {/* Map Footer Bar */}
           <div className="mt-5 flex flex-col sm:flex-row items-center justify-between gap-4 pt-4 border-t border-slate-200">
-            <div className="text-xs sm:text-sm font-semibold text-slate-800 flex items-center gap-2">
+            <div className="text-xs sm:text-sm font-medium text-slate-800 flex items-center gap-2">
               <Ticket className="w-4 h-4 text-emerald-600 shrink-0" />
-              <span>HTM Kolam: <strong>Rp {activeLocation.htm.toLocaleString('id-ID')} / kedatangan</strong> ({activeLocation.days})</span>
+              <span>HTM Kolam: <strong className="font-mono">Rp {activeLocation.htm.toLocaleString('id-ID')} / kedatangan</strong> ({activeLocation.days})</span>
             </div>
 
             <a
               href={activeLocation.mapUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-slate-900 hover:bg-slate-800 text-white font-extrabold text-xs shadow-md transition-all w-full sm:w-auto shrink-0 min-h-[44px]"
+              className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-slate-900 hover:bg-slate-800 text-white font-extrabold text-xs shadow-md transition-all w-full sm:w-auto shrink-0 min-h-[44px] btn-tactile"
             >
               <Navigation className="w-4 h-4 text-blue-400" />
               <span>Buka Petunjuk Arah di Google Maps App</span>
@@ -239,19 +230,7 @@ export const LocationsSection: React.FC = () => {
 
         </motion.div>
 
-        {/* Transparency Note */}
-        <div className="mt-8 p-4 rounded-2xl bg-blue-50 border border-blue-300 text-xs sm:text-sm text-slate-900 flex flex-col sm:flex-row items-center justify-between gap-3 text-left">
-          <div className="flex items-center gap-2.5">
-            <Ticket className="w-4 h-4 text-blue-700 shrink-0" />
-            <span><strong>Catatan Transparansi:</strong> Biaya les dibayar ke Aqualux. Tiket masuk kolam (HTM) dibayarkan langsung di loket hotel setiap datang latihan.</span>
-          </div>
-          <a href={waUrl} target="_blank" rel="noopener noreferrer" className="text-emerald-700 font-extrabold flex items-center gap-1 hover:underline shrink-0">
-            <MessageCircle className="w-4 h-4" />
-            <span>Tanya Admin WA &rarr;</span>
-          </a>
-        </div>
-
-      </div>
+      </motion.div>
     </section>
   );
 };

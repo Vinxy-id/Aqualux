@@ -11,27 +11,42 @@ import { TestimonialsSection } from './components/TestimonialsSection';
 import { UrgencyBanner } from './components/UrgencyBanner';
 import { FAQSection } from './components/FAQSection';
 import { Footer } from './components/Footer';
-import { StickyMobileBar } from './components/StickyMobileBar';
 import { AdminLogin } from './components/AdminLogin';
 import { AdminPage } from './components/AdminPage';
+import { LinkBioPage } from './components/LinkBioPage';
 
 function AppContent() {
   const { isAuthenticated } = useAuth();
-  const [route, setRoute] = useState<'landing' | 'admin'>(() => {
+  const [route, setRoute] = useState<'landing' | 'admin' | 'links'>(() => {
     const path = window.location.pathname;
     const hash = window.location.hash;
     if (path.includes('/admin') || hash === '#admin') {
       return 'admin';
     }
+    if (path.includes('/links') || path.includes('/link') || path.includes('/bio') || hash === '#links' || hash === '#link' || hash === '#bio') {
+      return 'links';
+    }
     return 'landing';
   });
 
   useEffect(() => {
+    // Reset scroll position to Hero section on page refresh
+    if ('scrollRestoration' in window.history) {
+      window.history.scrollRestoration = 'manual';
+    }
+
+    const hash = window.location.hash;
+    if (!hash || (hash !== '#admin' && hash !== '#links' && hash !== '#link' && hash !== '#bio')) {
+      window.scrollTo(0, 0);
+    }
+
     const handlePopState = () => {
       const path = window.location.pathname;
-      const hash = window.location.hash;
-      if (path.includes('/admin') || hash === '#admin') {
+      const currentHash = window.location.hash;
+      if (path.includes('/admin') || currentHash === '#admin') {
         setRoute('admin');
+      } else if (path.includes('/links') || path.includes('/link') || path.includes('/bio') || currentHash === '#links' || currentHash === '#link' || currentHash === '#bio') {
+        setRoute('links');
       } else {
         setRoute('landing');
       }
@@ -47,14 +62,20 @@ function AppContent() {
 
   const navigateToAdmin = () => {
     window.history.pushState({}, '', '/admin');
-    window.location.hash = 'admin';
     setRoute('admin');
+    window.scrollTo(0, 0);
+  };
+
+  const navigateToLinks = () => {
+    window.history.pushState({}, '', '/links');
+    setRoute('links');
+    window.scrollTo(0, 0);
   };
 
   const navigateToLanding = () => {
     window.history.pushState({}, '', '/');
-    window.location.hash = '';
     setRoute('landing');
+    window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
   };
 
   if (route === 'admin') {
@@ -62,6 +83,10 @@ function AppContent() {
       return <AdminLogin onBackToLanding={navigateToLanding} />;
     }
     return <AdminPage onBackToLanding={navigateToLanding} />;
+  }
+
+  if (route === 'links') {
+    return <LinkBioPage onBackToLanding={navigateToLanding} onOpenAdmin={navigateToAdmin} />;
   }
 
   return (
@@ -78,7 +103,6 @@ function AppContent() {
         <FAQSection />
       </main>
       <Footer onOpenAdmin={navigateToAdmin} />
-      <StickyMobileBar />
     </div>
   );
 }

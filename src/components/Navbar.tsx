@@ -23,19 +23,27 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenAdmin }) => {
   return (
     <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-200 bg-white border-b ${
       scrolled 
-        ? 'border-slate-300 py-3 shadow-md' 
-        : 'border-slate-200 py-3.5'
+        ? 'border-slate-300 py-2.5 shadow-md' 
+        : 'border-slate-200 py-3'
     }`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
           
-          {/* Official Logo Brand */}
-          <a href="#" className="flex items-center gap-3">
+          {/* Official Logo Brand + Text Title */}
+          <a href="#" className="flex items-center gap-2.5 group text-left">
             <img 
               src="/aqualux-logo.png" 
               alt="AQUALUX Private Swim" 
-              className="h-12 sm:h-14 w-auto object-contain"
+              className="h-10 sm:h-12 w-auto object-contain transition-transform group-hover:scale-105"
             />
+            <div className="flex flex-col">
+              <span className="font-black text-lg sm:text-xl font-outfit text-slate-950 tracking-tight leading-none group-hover:text-blue-700 transition-colors">
+                AQUALUX
+              </span>
+              <span className="text-[10px] sm:text-[11px] font-mono font-bold text-blue-700 tracking-wider uppercase leading-tight mt-0.5">
+                Private Swim
+              </span>
+            </div>
           </a>
 
           {/* Desktop Nav Pills */}
@@ -53,7 +61,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenAdmin }) => {
               href={waUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold text-xs shadow-md transition-all btn-hover-effect"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold text-xs shadow-md transition-all btn-hover-effect btn-tactile"
             >
               <PhoneIcon className="w-4 h-4 text-white" />
               <span>Chat Admin WA</span>
@@ -86,6 +94,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenAdmin }) => {
           <a href="#keunggulan" onClick={() => setMobileMenuOpen(false)} className="block py-2">Keunggulan Pelatih</a>
           <a href="#testimoni" onClick={() => setMobileMenuOpen(false)} className="block py-2">Testimoni Alumni</a>
           <a href="#faq" onClick={() => setMobileMenuOpen(false)} className="block py-2">FAQ</a>
+          <a href="#links" onClick={() => setMobileMenuOpen(false)} className="block py-2 text-blue-700">● Link in Bio (/links)</a>
 
           {onOpenAdmin && (
             <button

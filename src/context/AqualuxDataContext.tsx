@@ -5,21 +5,46 @@ import { LOCATIONS_DATA, COURSE_RATES } from '../data/aqualuxData';
 const LOCAL_STORAGE_LOCATIONS_KEY = 'aqualux_locations_data_v1';
 const LOCAL_STORAGE_RATES_KEY = 'aqualux_course_rates_v1';
 const LOCAL_STORAGE_CONTACTS_KEY = 'aqualux_admin_contacts_v1';
+const LOCAL_STORAGE_LINKBIO_PROFILE_KEY = 'aqualux_linkbio_profile_v1';
+const LOCAL_STORAGE_LINKBIO_ITEMS_KEY = 'aqualux_linkbio_items_v1';
 
 export interface AdminContacts {
   faqihPhone: string;
   abedPhone: string;
 }
 
+export interface LinkBioProfile {
+  handle: string;
+  bioText: string;
+  instagramUrl: string;
+}
+
+export interface LinkBioItem {
+  id: string;
+  title: string;
+  subtitle: string;
+  url: string;
+  badge: string;
+  iconName: string;
+  enabled: boolean;
+}
+
 interface AqualuxDataContextType {
   locations: Record<LocationKey, LocationInfo>;
   courseRates: Record<ClassType, Record<SessionCount, { price: number; perSession: number; discount?: string }>>;
   adminContacts: AdminContacts;
+  linkBioProfile: LinkBioProfile;
+  linkBioItems: LinkBioItem[];
   isAdminOpen: boolean;
   setIsAdminOpen: (open: boolean) => void;
   updateLocation: (key: LocationKey, updated: Partial<LocationInfo>) => void;
   updateCourseRate: (classType: ClassType, sessions: SessionCount, price: number, discount?: string) => void;
   updateAdminContacts: (contacts: Partial<AdminContacts>) => void;
+  updateLinkBioProfile: (profile: Partial<LinkBioProfile>) => void;
+  addLinkBioItem: (item: Omit<LinkBioItem, 'id'>) => void;
+  updateLinkBioItem: (id: string, item: Partial<LinkBioItem>) => void;
+  deleteLinkBioItem: (id: string) => void;
+  toggleLinkBioItem: (id: string) => void;
   resetToDefault: () => void;
 }
 
@@ -27,6 +52,42 @@ const DEFAULT_CONTACTS: AdminContacts = {
   faqihPhone: '082142698440',
   abedPhone: '08995911927'
 };
+
+const DEFAULT_LINKBIO_PROFILE: LinkBioProfile = {
+  handle: '@aqualux.swim',
+  bioText: 'Kursus Renang Privat 1-on-1 & Reguler Malang 🏊‍♂️ Pelatih Berpengalaman Finswimming Jatim.',
+  instagramUrl: 'https://instagram.com/aqualux_swm'
+};
+
+const DEFAULT_LINKBIO_ITEMS: LinkBioItem[] = [
+  {
+    id: '1',
+    title: 'Kunjungi Website Resmi Aqualux',
+    subtitle: 'Landing Page & Informasi Lengkap',
+    url: '/',
+    badge: 'WEBSITE',
+    iconName: 'Globe',
+    enabled: true
+  },
+  {
+    id: '2',
+    title: 'Chat WA Admin 1 (Coach Faqih)',
+    subtitle: 'Konsultasi Program & Pendaftaran',
+    url: 'wa_admin1',
+    badge: 'WHATSAPP',
+    iconName: 'MessageCircle',
+    enabled: true
+  },
+  {
+    id: '3',
+    title: 'Chat WA Admin 2 (Coach Abed)',
+    subtitle: 'Info Jadwal & Slot Pelatih Minggu Ini',
+    url: 'wa_admin2',
+    badge: 'WHATSAPP',
+    iconName: 'MessageCircle',
+    enabled: true
+  }
+];
 
 const AqualuxDataContext = createContext<AqualuxDataContextType | undefined>(undefined);
 
@@ -63,6 +124,26 @@ export const AqualuxDataProvider: React.FC<{ children: React.ReactNode }> = ({ c
     }
   });
 
+  // LinkBio Profile state
+  const [linkBioProfile, setLinkBioProfile] = useState<LinkBioProfile>(() => {
+    try {
+      const saved = localStorage.getItem(LOCAL_STORAGE_LINKBIO_PROFILE_KEY);
+      return saved ? JSON.parse(saved) : DEFAULT_LINKBIO_PROFILE;
+    } catch {
+      return DEFAULT_LINKBIO_PROFILE;
+    }
+  });
+
+  // LinkBio Items state
+  const [linkBioItems, setLinkBioItems] = useState<LinkBioItem[]>(() => {
+    try {
+      const saved = localStorage.getItem(LOCAL_STORAGE_LINKBIO_ITEMS_KEY);
+      return saved ? JSON.parse(saved) : DEFAULT_LINKBIO_ITEMS;
+    } catch {
+      return DEFAULT_LINKBIO_ITEMS;
+    }
+  });
+
   // Sync to localStorage
   useEffect(() => {
     try {
@@ -87,6 +168,22 @@ export const AqualuxDataProvider: React.FC<{ children: React.ReactNode }> = ({ c
       console.error('Failed to save contacts', e);
     }
   }, [adminContacts]);
+
+  useEffect(() => {
+    try {
+      localStorage.setItem(LOCAL_STORAGE_LINKBIO_PROFILE_KEY, JSON.stringify(linkBioProfile));
+    } catch (e) {
+      console.error('Failed to save linkBioProfile', e);
+    }
+  }, [linkBioProfile]);
+
+  useEffect(() => {
+    try {
+      localStorage.setItem(LOCAL_STORAGE_LINKBIO_ITEMS_KEY, JSON.stringify(linkBioItems));
+    } catch (e) {
+      console.error('Failed to save linkBioItems', e);
+    }
+  }, [linkBioItems]);
 
   const updateLocation = (key: LocationKey, updated: Partial<LocationInfo>) => {
     setLocations(prev => ({
@@ -116,13 +213,41 @@ export const AqualuxDataProvider: React.FC<{ children: React.ReactNode }> = ({ c
     setAdminContacts(prev => ({ ...prev, ...contacts }));
   };
 
+  const updateLinkBioProfile = (profile: Partial<LinkBioProfile>) => {
+    setLinkBioProfile(prev => ({ ...prev, ...profile }));
+  };
+
+  const addLinkBioItem = (item: Omit<LinkBioItem, 'id'>) => {
+    const newItem: LinkBioItem = {
+      ...item,
+      id: Date.now().toString()
+    };
+    setLinkBioItems(prev => [...prev, newItem]);
+  };
+
+  const updateLinkBioItem = (id: string, updated: Partial<LinkBioItem>) => {
+    setLinkBioItems(prev => prev.map(item => item.id === id ? { ...item, ...updated } : item));
+  };
+
+  const deleteLinkBioItem = (id: string) => {
+    setLinkBioItems(prev => prev.filter(item => item.id !== id));
+  };
+
+  const toggleLinkBioItem = (id: string) => {
+    setLinkBioItems(prev => prev.map(item => item.id === id ? { ...item, enabled: !item.enabled } : item));
+  };
+
   const resetToDefault = () => {
     setLocations(LOCATIONS_DATA);
     setCourseRates(COURSE_RATES);
     setAdminContacts(DEFAULT_CONTACTS);
+    setLinkBioProfile(DEFAULT_LINKBIO_PROFILE);
+    setLinkBioItems(DEFAULT_LINKBIO_ITEMS);
     localStorage.removeItem(LOCAL_STORAGE_LOCATIONS_KEY);
     localStorage.removeItem(LOCAL_STORAGE_RATES_KEY);
     localStorage.removeItem(LOCAL_STORAGE_CONTACTS_KEY);
+    localStorage.removeItem(LOCAL_STORAGE_LINKBIO_PROFILE_KEY);
+    localStorage.removeItem(LOCAL_STORAGE_LINKBIO_ITEMS_KEY);
   };
 
   return (
@@ -131,11 +256,18 @@ export const AqualuxDataProvider: React.FC<{ children: React.ReactNode }> = ({ c
         locations,
         courseRates,
         adminContacts,
+        linkBioProfile,
+        linkBioItems,
         isAdminOpen,
         setIsAdminOpen,
         updateLocation,
         updateCourseRate,
         updateAdminContacts,
+        updateLinkBioProfile,
+        addLinkBioItem,
+        updateLinkBioItem,
+        deleteLinkBioItem,
+        toggleLinkBioItem,
         resetToDefault
       }}
     >
