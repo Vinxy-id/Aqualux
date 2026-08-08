@@ -1,15 +1,18 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
+import { hashPassword, safeEqual } from '../utils/password';
 
 const LOCAL_STORAGE_PASSWORD_KEY = 'aqualux_admin_password_v1';
 const LOCAL_STORAGE_SESSION_KEY = 'aqualux_admin_session_v1';
 
 const DEFAULT_PASSWORD = 'aqualux123';
 
+const isHashFormat = (value: string): boolean => /^[a-f0-9]{64}$/.test(value);
+
 interface AuthContextType {
   isAuthenticated: boolean;
-  login: (passwordInput: string) => boolean;
+  login: (passwordInput: string) => Promise<boolean>;
   logout: () => void;
-  changePassword: (oldPass: string, newPass: string) => { success: boolean; message: string };
+  changePassword: (oldPass: string, newPass: string) => Promise<{ success: boolean; message: string }>;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -23,26 +26,57 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     }
   });
 
-  const getSavedPassword = (): string => {
+  const getSavedPassword = (): string | null => {
     try {
-      return localStorage.getItem(LOCAL_STORAGE_PASSWORD_KEY) || DEFAULT_PASSWORD;
+      return localStorage.getItem(LOCAL_STORAGE_PASSWORD_KEY);
     } catch {
-      return DEFAULT_PASSWORD;
+      return null;
     }
   };
 
-  const login = (passwordInput: string): boolean => {
-    const currentPassword = getSavedPassword();
-    if (passwordInput === currentPassword) {
+  const savePasswordHash = (hash: string) => {
+    try {
+      localStorage.setItem(LOCAL_STORAGE_PASSWORD_KEY, hash);
+    } catch (e) {
+      console.error('Failed to save password hash', e);
+    }
+  };
+
+  const verifyPassword = async (passwordInput: string): Promise<boolean> => {
+    const inputHash = await hashPassword(passwordInput);
+    const saved = getSavedPassword();
+
+    if (saved && isHashFormat(saved)) {
+      return safeEqual(inputHash, saved);
+    }
+
+    if (saved && !isHashFormat(saved)) {
+      if (saved === passwordInput) {
+        savePasswordHash(inputHash);
+        return true;
+      }
+      return false;
+    }
+
+    const defaultHash = await hashPassword(DEFAULT_PASSWORD);
+    if (safeEqual(inputHash, defaultHash)) {
+      savePasswordHash(inputHash);
+      return true;
+    }
+    return false;
+  };
+
+  const login = async (passwordInput: string): Promise<boolean> => {
+    const ok = await verifyPassword(passwordInput);
+    if (ok) {
       setIsAuthenticated(true);
       try {
         localStorage.setItem(LOCAL_STORAGE_SESSION_KEY, 'true');
       } catch (e) {
         console.error('Failed to save session', e);
       }
-      return true;
     }
-    return false;
+    return ok;
   };
 
   const logout = () => {
@@ -54,16 +88,17 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     }
   };
 
-  const changePassword = (oldPass: string, newPass: string) => {
-    const currentPassword = getSavedPassword();
-    if (oldPass !== currentPassword) {
+  const changePassword = async (oldPass: string, newPass: string): Promise<{ success: boolean; message: string }> => {
+    const oldOk = await verifyPassword(oldPass);
+    if (!oldOk) {
       return { success: false, message: 'Password lama tidak sesuai.' };
     }
     if (newPass.length < 6) {
       return { success: false, message: 'Password baru minimal 6 karakter.' };
     }
     try {
-      localStorage.setItem(LOCAL_STORAGE_PASSWORD_KEY, newPass);
+      const newHash = await hashPassword(newPass);
+      savePasswordHash(newHash);
       return { success: true, message: 'Password admin berhasil diubah!' };
     } catch {
       return { success: false, message: 'Gagal menyimpan password baru.' };

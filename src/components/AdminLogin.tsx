@@ -11,19 +11,40 @@ export const AdminLogin: React.FC<AdminLoginProps> = ({ onBackToLanding }) => {
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
+  const [isChecking, setIsChecking] = useState(false);
+  const [lockoutUntil, setLockoutUntil] = useState<number | null>(null);
+  const [failedAttempts, setFailedAttempts] = useState(0);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!password.trim()) {
       setErrorMessage('Masukkan password admin.');
       return;
     }
 
-    const success = login(password);
+    if (lockoutUntil && Date.now() < lockoutUntil) {
+      const waitSec = Math.ceil((lockoutUntil - Date.now()) / 1000);
+      setErrorMessage(`Terlalu banyak percobaan. Coba lagi dalam ${waitSec} detik.`);
+      return;
+    }
+
+    setIsChecking(true);
+    const success = await login(password);
+    setIsChecking(false);
+
     if (!success) {
-      setErrorMessage('Password admin salah. Silakan coba lagi.');
+      const next = failedAttempts + 1;
+      setFailedAttempts(next);
+      if (next >= 5) {
+        setLockoutUntil(Date.now() + 30000);
+        setFailedAttempts(0);
+        setErrorMessage('Terlalu banyak percobaan gagal. Coba lagi dalam 30 detik.');
+      } else {
+        setErrorMessage(`Password admin salah. Sisa percobaan: ${5 - next}`);
+      }
     } else {
       setErrorMessage('');
+      setFailedAttempts(0);
     }
   };
 
@@ -95,17 +116,18 @@ export const AdminLogin: React.FC<AdminLoginProps> = ({ onBackToLanding }) => {
 
           <button
             type="submit"
-            className="w-full py-3.5 px-4 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-extrabold text-sm shadow-md transition-all btn-hover-effect mt-2 flex items-center justify-center gap-2"
+            disabled={isChecking}
+            className="w-full py-3.5 px-4 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-extrabold text-sm shadow-md transition-all btn-hover-effect mt-2 flex items-center justify-center gap-2 disabled:opacity-60 disabled:cursor-not-allowed"
           >
             <Lock className="w-4 h-4 text-white" />
-            <span>Masuk ke Dashboard Admin</span>
+            <span>{isChecking ? 'Memeriksa...' : 'Masuk ke Dashboard Admin'}</span>
           </button>
         </form>
 
         {/* Helper Note / Demo Hint */}
         <div className="mt-6 pt-5 border-t border-slate-200 text-center">
           <p className="text-[11px] font-semibold text-slate-500">
-            Password Default Demo: <code className="bg-slate-100 text-blue-800 px-2 py-0.5 rounded border border-slate-300 font-mono font-bold">aqualux123</code>
+            Halaman admin bersifat terproteksi. Gunakan password yang telah disepakati dengan tim Aqualux.
           </p>
         </div>
 

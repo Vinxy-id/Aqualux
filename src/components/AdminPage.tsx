@@ -79,9 +79,9 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onBackToLanding }) => {
     setTimeout(() => setSaveToast(false), 3000);
   };
 
-  const handlePasswordChangeSubmit = (e: React.FormEvent) => {
+  const handlePasswordChangeSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const result = changePassword(oldPassword, newPassword);
+    const result = await changePassword(oldPassword, newPassword);
     if (result.success) {
       setPassMsg({ type: 'success', text: result.message });
       setOldPassword('');
