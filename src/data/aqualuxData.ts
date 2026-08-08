@@ -130,7 +130,7 @@ export const TESTIMONIALS_DATA: Testimonial[] = [
     category: 'Anak 5+',
     comment: 'Awalnya Albi nangis kalau disuruh masuk kolam. Setelah 3x pertemuan sama Coach Faqih, sekarang malah nggak mau selesai renang! Pembawakan pelatihnya sabar banget.',
     rating: 5,
-    avatar: '/aqualux-logo.png',
+    avatar: './aqualux-logo.png',
     outcomeBadge: 'Bisa Mengapung 4x Pertemuan'
   },
   {
@@ -140,7 +140,7 @@ export const TESTIMONIALS_DATA: Testimonial[] = [
     category: 'Persiapan TNI/Polri',
     comment: 'Awalnya renang 50m saya 1 menit lebih dan sering kehabisan napas. Dibimbing mas Coach secara intensif, waktu saya tembus 42 detik dan lolos seleksi fisik renang!',
     rating: 5,
-    avatar: '/aqualux-logo.png',
+    avatar: './aqualux-logo.png',
     outcomeBadge: 'Lolos Tes Renang Polri'
   },
   {
@@ -150,7 +150,7 @@ export const TESTIMONIALS_DATA: Testimonial[] = [
     category: 'Dewasa Pemula',
     comment: 'Sempat takut dipikir bakal malu diajarin pas gede. Ternyata suasana kelas privat di Hotel Tychi nyaman banget dan privat. Coach-nya profesional.',
     rating: 5,
-    avatar: '/aqualux-logo.png',
+    avatar: './aqualux-logo.png',
     outcomeBadge: 'Mahir Gaya Dada & Bebas'
   }
 ];

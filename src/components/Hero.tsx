@@ -124,7 +124,7 @@ export const Hero: React.FC = () => {
                 
                 {/* Official Logo Overlay */}
                 <div className="absolute top-3 left-3 bg-white/95 backdrop-blur-md p-1.5 sm:p-2 rounded-xl border border-slate-200 shadow-md">
-                  <img src="/aqualux-logo.png" alt="AQUALUX Logo" className="h-7 sm:h-9 w-auto object-contain" />
+                  <img src="./aqualux-logo.png" alt="AQUALUX Logo" className="h-7 sm:h-9 w-auto object-contain" />
                 </div>
 
                 <div className="absolute bottom-3 left-3 right-3 bg-white/95 backdrop-blur-md p-3 sm:p-3.5 rounded-xl border border-slate-200 text-xs shadow-md">
