@@ -8,7 +8,11 @@ node_modules
 dist
 build
 dist-ssr
+out
 *.local
+
+# Vite
+.vite
 
 # Logs
 logs
@@ -22,24 +26,42 @@ lerna-debug.log*
 # Editor / OS
 .vscode/*
 !.vscode/extensions.json
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/*.code-snippets
 .idea
-.DS_Store
 *.suo
 *.ntvs*
 *.njsproj
 *.sln
 *.sw?
+.DS_Store
+Thumbs.db
 
 # Env & secrets
 .env
 .env.local
+.env.development.local
+.env.test.local
+.env.production.local
 .env.*.local
 *.pem
+*.key
+*.p12
+*.pfx
 
 # Test coverage
 coverage
 .nyc_output
+*.lcov
 
 # TypeScript
 *.tsbuildinfo
 next-env.d.ts
+
+# Misc
+.eslintcache
+.stylelintcache
+.temp
+.tmp
