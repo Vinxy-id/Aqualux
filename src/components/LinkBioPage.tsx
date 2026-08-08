@@ -16,6 +16,7 @@ import {
 } from 'lucide-react';
 import { CheckBadgeIcon } from '@heroicons/react/24/solid';
 import { useAqualuxData } from '../context/AqualuxDataContext';
+import { isSafeExternalUrl } from '../utils/urlSafety';
 
 interface LinkBioPageProps {
   onBackToLanding: () => void;
@@ -25,6 +26,8 @@ interface LinkBioPageProps {
 export const LinkBioPage: React.FC<LinkBioPageProps> = ({ onBackToLanding, onOpenAdmin }) => {
   const { adminContacts, linkBioProfile, linkBioItems } = useAqualuxData();
   const [copied, setCopied] = useState(false);
+
+  const shareUrl = `${window.location.origin}${window.location.pathname}#links`;
 
   const cleanPhone1 = adminContacts.faqihPhone.replace(/\D/g, '');
   const formattedPhone1 = cleanPhone1.startsWith('0') ? '62' + cleanPhone1.slice(1) : cleanPhone1;
@@ -38,7 +41,7 @@ export const LinkBioPage: React.FC<LinkBioPageProps> = ({ onBackToLanding, onOpe
     const shareData = {
       title: 'AQUALUX Swimming Course Malang - Link in Bio',
       text: linkBioProfile.bioText,
-      url: window.location.origin + '/#links',
+      url: shareUrl,
     };
 
     if (navigator.share) {
@@ -53,7 +56,7 @@ export const LinkBioPage: React.FC<LinkBioPageProps> = ({ onBackToLanding, onOpe
   };
 
   const copyToClipboard = () => {
-    navigator.clipboard.writeText(window.location.origin + '/#links');
+    navigator.clipboard.writeText(shareUrl);
     setCopied(true);
     setTimeout(() => setCopied(false), 2500);
   };
@@ -244,7 +247,7 @@ export const LinkBioPage: React.FC<LinkBioPageProps> = ({ onBackToLanding, onOpe
               return (
                 <a
                   key={item.id}
-                  href={targetUrl}
+                  href={isSafeExternalUrl(targetUrl) ? targetUrl : '#'}
                   target={targetUrl.startsWith('http') ? '_blank' : '_self'}
                   rel="noopener noreferrer"
                   className="block"

@@ -30,6 +30,7 @@ import {
 import { useAqualuxData, LinkBioItem } from '../context/AqualuxDataContext';
 import { useAuth } from '../context/AuthContext';
 import { LocationKey } from '../types';
+import { isSafeExternalUrl } from '../utils/urlSafety';
 
 interface AdminPageProps {
   onBackToLanding: () => void;
@@ -71,6 +72,7 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onBackToLanding }) => {
   const [newBadge, setNewBadge] = useState('PROMO');
   const [newIconName, setNewIconName] = useState('Globe');
   const [editingItemId, setEditingItemId] = useState<string | null>(null);
+  const [urlError, setUrlError] = useState('');
 
   const triggerSaveNotification = () => {
     setSaveToast(true);
@@ -93,10 +95,18 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onBackToLanding }) => {
     e.preventDefault();
     if (!newTitle.trim() || !newUrl.trim()) return;
 
+    const trimmedUrl = newUrl.trim();
+    const isSpecialValue = trimmedUrl === '/' || trimmedUrl.startsWith('#') || trimmedUrl === 'wa_admin1' || trimmedUrl === 'wa_admin2';
+    if (!isSpecialValue && !isSafeExternalUrl(trimmedUrl)) {
+      setUrlError('URL tidak valid. Gunakan link http(s), wa.me, mailto, tel, "/", "#section", atau "wa_admin1"/"wa_admin2".');
+      return;
+    }
+    setUrlError('');
+
     addLinkBioItem({
       title: newTitle,
       subtitle: newSubtitle,
-      url: newUrl,
+      url: trimmedUrl,
       badge: newBadge.toUpperCase(),
       iconName: newIconName,
       enabled: true
@@ -719,10 +729,21 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onBackToLanding }) => {
                       type="text"
                       placeholder="Contoh: https://forms.google.com/... atau /"
                       value={newUrl}
-                      onChange={(e) => setNewUrl(e.target.value)}
-                      className="w-full px-3.5 py-2.5 bg-white border border-slate-300 rounded-xl font-mono text-slate-950 focus:outline-none focus:border-blue-600"
+                      onChange={(e) => {
+                        setNewUrl(e.target.value);
+                        if (urlError) setUrlError('');
+                      }}
+                      className={`w-full px-3.5 py-2.5 bg-white border rounded-xl font-mono text-slate-950 focus:outline-none focus:border-blue-600 ${
+                        urlError ? 'border-rose-400' : 'border-slate-300'
+                      }`}
                       required
                     />
+                    {urlError && (
+                      <p className="flex items-center gap-1 text-rose-700 font-bold mt-1">
+                        <AlertCircle className="w-3.5 h-3.5 shrink-0" />
+                        {urlError}
+                      </p>
+                    )}
                   </div>
 
                   <div>
