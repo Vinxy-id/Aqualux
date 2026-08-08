@@ -56,6 +56,12 @@ mcp_config.json
 skills-lock.json
 PANDUAN_*.md
 
+# Design reference files (local only)
+assets/
+src/assets/
+public/logo.png
+public/logo.svg
+
 # Misc
 .eslintcache
 .temp
