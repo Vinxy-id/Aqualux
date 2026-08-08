@@ -61,19 +61,19 @@ function AppContent() {
   }, []);
 
   const navigateToAdmin = () => {
-    window.history.pushState({}, '', '/admin');
+    window.history.pushState({}, '', 'admin');
     setRoute('admin');
     window.scrollTo(0, 0);
   };
 
   const navigateToLinks = () => {
-    window.history.pushState({}, '', '/links');
+    window.history.pushState({}, '', 'links');
     setRoute('links');
     window.scrollTo(0, 0);
   };
 
   const navigateToLanding = () => {
-    window.history.pushState({}, '', '/');
+    window.history.pushState({}, '', './');
     setRoute('landing');
     window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
   };

@@ -126,7 +126,7 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onBackToLanding }) => {
           </button>
 
           <div className="flex items-center gap-2">
-            <img src="/aqualux-logo.png" alt="Aqualux Logo" className="h-7 w-auto object-contain" />
+            <img src="./aqualux-logo.png" alt="Aqualux Logo" className="h-7 w-auto object-contain" />
             <span className="font-bold text-sm font-outfit text-white">Admin Portal</span>
           </div>
         </div>
@@ -503,7 +503,7 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onBackToLanding }) => {
                     Daftar Tautan Linktree ({linkBioItems.length} Link)
                   </h4>
                   <a
-                    href="/#links"
+                    href="#links"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-xs font-bold text-blue-600 hover:underline flex items-center gap-1"
@@ -816,7 +816,7 @@ const SidebarContent: React.FC<SidebarContentProps> = ({
       <div className="space-y-4">
         <div className="flex items-center gap-3">
           <div className="bg-white p-2 rounded-xl shadow-xs shrink-0">
-            <img src="/aqualux-logo.png" alt="Aqualux Logo" className="h-8 w-auto object-contain" />
+            <img src="./aqualux-logo.png" alt="Aqualux Logo" className="h-8 w-auto object-contain" />
           </div>
           <div>
             <h2 className="text-base font-black font-outfit text-white leading-tight">
