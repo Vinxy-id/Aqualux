@@ -15,6 +15,8 @@ import { StickyMobileBar } from './components/StickyMobileBar';
 import { AdminLogin } from './components/AdminLogin';
 import { AdminPage } from './components/AdminPage';
 
+import { PricingCalculator } from './components/PricingCalculator';
+
 function AppContent() {
   const { isAuthenticated } = useAuth();
   const [route, setRoute] = useState<'landing' | 'admin'>(() => {
@@ -71,6 +73,7 @@ function AppContent() {
         <Hero />
         <AchievementsBar />
         <ProgramsSection />
+        <PricingCalculator />
         <LocationsSection />
         <WhyChooseUs />
         <TestimonialsSection />
