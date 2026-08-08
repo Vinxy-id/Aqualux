@@ -60,6 +60,15 @@ coverage
 *.tsbuildinfo
 next-env.d.ts
 
+# AI tooling (local config)
+.agents/
+.claude/
+.continue/
+.cursor/
+agent/
+mcp_config.json
+skills-lock.json
+
 # Misc
 .eslintcache
 .stylelintcache
