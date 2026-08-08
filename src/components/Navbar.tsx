@@ -32,7 +32,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenAdmin }) => {
           {/* Official Logo Brand + Text Title */}
           <a href="#" className="flex items-center gap-2.5 group text-left">
             <img 
-              src="./aqualux-logo.png" 
+              src="/aqualux-logo.png" 
               alt="AQUALUX Private Swim" 
               className="h-10 sm:h-12 w-auto object-contain transition-transform group-hover:scale-105"
             />

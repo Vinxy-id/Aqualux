@@ -126,7 +126,7 @@ export const LinkBioPage: React.FC<LinkBioPageProps> = ({ onBackToLanding, onOpe
             <div className="relative inline-block mb-3">
               <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-full bg-white p-1 shadow-2xl border-2 border-blue-500/40 mx-auto overflow-hidden">
                 <img 
-                  src="./aqualux-logo.png" 
+                  src="/aqualux-logo.png" 
                   alt="AQUALUX Swimming Course" 
                   className="w-full h-full object-contain p-1"
                 />
