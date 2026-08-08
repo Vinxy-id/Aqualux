@@ -1,6 +1,8 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 import { Instagram, Globe, Phone, MapPin, ExternalLink, Settings } from 'lucide-react';
 import { useAqualuxData } from '../context/AqualuxDataContext';
+import { fadeUp, staggerContainer, viewportOnce } from '../utils/motion';
 
 interface FooterProps {
   onOpenAdmin?: () => void;
@@ -13,10 +15,16 @@ export const Footer: React.FC<FooterProps> = ({ onOpenAdmin }) => {
     <footer className="bg-slate-900 text-slate-400 pt-16 pb-24 md:pb-12 border-t border-slate-800">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 pb-12 border-b border-slate-800">
+        <motion.div
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 pb-12 border-b border-slate-800"
+          variants={staggerContainer(0.1)}
+          initial="hidden"
+          whileInView="visible"
+          viewport={viewportOnce}
+        >
           
           {/* Col 1: Brand Info & Official Logo */}
-          <div className="lg:col-span-4 space-y-4 text-left">
+          <motion.div variants={fadeUp} className="lg:col-span-4 space-y-4 text-left">
             <div className="bg-white p-2.5 rounded-2xl inline-block shadow-md">
               <img 
                 src="/aqualux-logo.png" 
@@ -50,10 +58,10 @@ export const Footer: React.FC<FooterProps> = ({ onOpenAdmin }) => {
                 <Globe className="w-4 h-4" />
               </a>
             </div>
-          </div>
+          </motion.div>
 
           {/* Col 2: Navigation Links */}
-          <div className="lg:col-span-3 space-y-3 text-left">
+          <motion.div variants={fadeUp} className="lg:col-span-3 space-y-3 text-left">
             <h4 className="text-xs font-bold text-white font-outfit uppercase tracking-wider">Navigasi Cepat</h4>
             <ul className="space-y-2.5 text-xs font-medium">
               <li><a href="#program" className="hover:text-blue-400 transition-colors">Program Kursus</a></li>
@@ -74,10 +82,10 @@ export const Footer: React.FC<FooterProps> = ({ onOpenAdmin }) => {
                 </li>
               )}
             </ul>
-          </div>
+          </motion.div>
 
           {/* Col 3: Official Contact & Locations */}
-          <div className="lg:col-span-5 space-y-4 text-left">
+          <motion.div variants={fadeUp} className="lg:col-span-5 space-y-4 text-left">
             <h4 className="text-xs font-bold text-white font-outfit uppercase tracking-wider">Kontak & Informasi Lokasi</h4>
             
             {/* WhatsApp Phone Contact */}
@@ -128,9 +136,9 @@ export const Footer: React.FC<FooterProps> = ({ onOpenAdmin }) => {
 
             </div>
 
-          </div>
+          </motion.div>
 
-        </div>
+        </motion.div>
 
         {/* Bottom Note */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between text-[11px] text-slate-500 gap-4">

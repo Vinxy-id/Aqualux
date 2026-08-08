@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
+import { motion } from 'framer-motion';
 import { Baby, GraduationCap, UserCheck, ShieldAlert, Check, ArrowRight, MessageCircle } from 'lucide-react';
 import { CATEGORY_PROGRAMS } from '../data/aqualuxData';
 import { buildGeneralWhatsAppUrl } from '../utils/whatsapp';
+import { fadeUp, staggerContainer, viewportOnce } from '../utils/motion';
 
 export const ProgramsSection: React.FC = () => {
   const [activeId, setActiveId] = useState<string>('anak');
@@ -46,15 +48,23 @@ export const ProgramsSection: React.FC = () => {
         </div>
 
         {/* Numbered Category Cards Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <motion.div
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"
+          variants={staggerContainer(0.1)}
+          initial="hidden"
+          whileInView="visible"
+          viewport={viewportOnce}
+        >
           {CATEGORY_PROGRAMS.map((prog, index) => {
             const isSelected = activeId === prog.id;
             const numberFormatted = `0${index + 1}`;
             const programWaUrl = buildGeneralWhatsAppUrl(`Halo Admin Aqualux, saya berminat mendaftar program ${prog.title}. Mohon info jadwal pelatih.`);
 
             return (
-              <div
+              <motion.div
                 key={prog.id}
+                variants={fadeUp}
+                whileHover={{ y: -6 }}
                 onClick={() => setActiveId(prog.id)}
                 className={`rounded-3xl p-5 sm:p-6 transition-all duration-200 border cursor-pointer flex flex-col justify-between relative text-left ${
                   isSelected 
@@ -127,10 +137,10 @@ export const ProgramsSection: React.FC = () => {
                   <MessageCircle className="w-4 h-4" />
                   <span>Pilih & Chat WA Admin</span>
                 </a>
-              </div>
+              </motion.div>
             );
           })}
-        </div>
+        </motion.div>
 
       </div>
     </section>

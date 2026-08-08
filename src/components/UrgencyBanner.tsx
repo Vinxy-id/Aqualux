@@ -1,7 +1,9 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 import { CalendarIcon } from '@heroicons/react/24/solid';
 import { MessageCircle } from 'lucide-react';
 import { buildGeneralWhatsAppUrl } from '../utils/whatsapp';
+import { fadeUp, staggerContainer, viewportOnce } from '../utils/motion';
 
 export const UrgencyBanner: React.FC = () => {
   const waUrl = buildGeneralWhatsAppUrl("Halo Admin Aqualux, saya mau konsultasi jadwal bimbingan renang.");
@@ -9,10 +11,16 @@ export const UrgencyBanner: React.FC = () => {
   return (
     <section className="py-10 bg-white border-y border-slate-300 text-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col lg:flex-row items-center justify-between gap-6 bg-blue-600 p-6 sm:p-8 rounded-3xl shadow-xl">
+        <motion.div
+          className="flex flex-col lg:flex-row items-center justify-between gap-6 bg-blue-600 p-6 sm:p-8 rounded-3xl shadow-xl"
+          variants={staggerContainer(0.12)}
+          initial="hidden"
+          whileInView="visible"
+          viewport={viewportOnce}
+        >
           
           {/* Left Content */}
-          <div className="space-y-2 text-center lg:text-left">
+          <motion.div variants={fadeUp} className="space-y-2 text-center lg:text-left">
             <div className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-blue-900 border border-blue-950 text-white text-xs font-extrabold uppercase tracking-wider shadow-xs">
               <CalendarIcon className="w-4 h-4 text-amber-400" />
               <span>Pendaftaran Kelas Bimbingan</span>
@@ -25,10 +33,10 @@ export const UrgencyBanner: React.FC = () => {
             <p className="text-xs sm:text-sm text-blue-100 font-medium max-w-xl">
               Kelas privat & reguler tersedia di Hotel Ubud, Tychi, dan Savana Malang dengan jadwal sesi yang fleksibel.
             </p>
-          </div>
+          </motion.div>
 
           {/* Right Action */}
-          <div className="shrink-0">
+          <motion.div variants={fadeUp} className="shrink-0">
             <a
               href={waUrl}
               target="_blank"
@@ -38,9 +46,9 @@ export const UrgencyBanner: React.FC = () => {
               <MessageCircle className="w-5 h-5 fill-slate-950" />
               <span>Tanya Jadwal via WA</span>
             </a>
-          </div>
+          </motion.div>
 
-        </div>
+        </motion.div>
       </div>
     </section>
   );

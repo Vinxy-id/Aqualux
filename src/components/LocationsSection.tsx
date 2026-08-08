@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
+import { motion } from 'framer-motion';
 import { MapPin, Clock, Calendar, ExternalLink, Ticket, Utensils, Navigation, MessageCircle } from 'lucide-react';
 import { useAqualuxData } from '../context/AqualuxDataContext';
 import { LocationKey } from '../types';
 import { buildGeneralWhatsAppUrl } from '../utils/whatsapp';
+import { fadeUp, staggerContainer, viewportOnce } from '../utils/motion';
 
 export const LocationsSection: React.FC = () => {
   const { locations } = useAqualuxData();
@@ -28,13 +30,21 @@ export const LocationsSection: React.FC = () => {
         </div>
 
         {/* 3 Location Cards Grid - Clean Uniform Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 mb-10 sm:mb-14">
+        <motion.div
+          className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 mb-10 sm:mb-14"
+          variants={staggerContainer(0.12)}
+          initial="hidden"
+          whileInView="visible"
+          viewport={viewportOnce}
+        >
           {Object.values(locations).map((loc) => {
             const isMapActive = activeMapKey === loc.key;
 
             return (
-              <div 
+              <motion.div 
                 key={loc.key}
+                variants={fadeUp}
+                whileHover={{ y: -6 }}
                 className="bg-white rounded-3xl overflow-hidden border border-slate-300 shadow-md hover:shadow-xl hover:border-blue-400 transition-all duration-300 flex flex-col justify-between text-left group"
               >
                 <div>
@@ -130,14 +140,20 @@ export const LocationsSection: React.FC = () => {
                   </a>
                 </div>
 
-              </div>
+              </motion.div>
             );
           })}
-        </div>
+        </motion.div>
 
         {/* Interactive Embedded Google Maps Section */}
-        <div id="map-preview-container" className="bg-white rounded-3xl p-5 sm:p-8 border border-slate-300 shadow-xl text-left">
-          
+        <motion.div
+          id="map-preview-container"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={viewportOnce}
+          transition={{ duration: 0.6, ease: 'easeOut' }}
+          className="bg-white rounded-3xl p-5 sm:p-8 border border-slate-300 shadow-xl text-left"
+        >
           {/* Map Header & Tab Selector */}
           <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 mb-6">
             <div>
@@ -145,9 +161,15 @@ export const LocationsSection: React.FC = () => {
                 <Navigation className="w-3.5 h-3.5 text-blue-700" />
                 <span>Peta Interaktif Google Maps</span>
               </div>
-              <h3 className="text-lg sm:text-2xl font-black text-slate-950 font-outfit">
+              <motion.h3
+                key={activeLocation.key}
+                initial={{ opacity: 0, x: -12 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.3 }}
+                className="text-lg sm:text-2xl font-black text-slate-950 font-outfit"
+              >
                 Lokasi: {activeLocation.name}
-              </h3>
+              </motion.h3>
               {activeLocation.address && (
                 <p className="text-xs sm:text-sm font-semibold text-slate-700 mt-1 flex items-start sm:items-center gap-1.5">
                   <MapPin className="w-4 h-4 text-blue-700 shrink-0 mt-0.5 sm:mt-0" />
@@ -215,7 +237,7 @@ export const LocationsSection: React.FC = () => {
             </a>
           </div>
 
-        </div>
+        </motion.div>
 
         {/* Transparency Note */}
         <div className="mt-8 p-4 rounded-2xl bg-blue-50 border border-blue-300 text-xs sm:text-sm text-slate-900 flex flex-col sm:flex-row items-center justify-between gap-3 text-left">

@@ -1,8 +1,10 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 import { Star, Quote, MessageCircle, User } from 'lucide-react';
 import { CheckCircleIcon } from '@heroicons/react/24/solid';
 import { TESTIMONIALS_DATA } from '../data/aqualuxData';
 import { buildGeneralWhatsAppUrl } from '../utils/whatsapp';
+import { fadeUp, staggerContainer, viewportOnce } from '../utils/motion';
 
 export const TestimonialsSection: React.FC = () => {
   const waUrl = buildGeneralWhatsAppUrl();
@@ -25,10 +27,18 @@ export const TestimonialsSection: React.FC = () => {
         </div>
 
         {/* Testimonials Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <motion.div
+          className="grid grid-cols-1 md:grid-cols-3 gap-6"
+          variants={staggerContainer(0.12)}
+          initial="hidden"
+          whileInView="visible"
+          viewport={viewportOnce}
+        >
           {TESTIMONIALS_DATA.map((item) => (
-            <div
+            <motion.div
               key={item.id}
+              variants={fadeUp}
+              whileHover={{ y: -6 }}
               className="bg-white p-6 rounded-3xl border border-slate-300 shadow-md card-clean-hover flex flex-col justify-between text-left relative"
             >
               <Quote className="w-8 h-8 text-blue-200 absolute top-6 right-6 pointer-events-none" />
@@ -64,9 +74,9 @@ export const TestimonialsSection: React.FC = () => {
                 </div>
               </div>
 
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
 
         {/* CTA Box */}
         <div className="mt-12 bg-blue-50 p-6 sm:p-8 rounded-3xl border border-blue-300 shadow-md text-center max-w-3xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">

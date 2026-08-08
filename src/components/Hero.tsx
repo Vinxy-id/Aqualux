@@ -1,7 +1,9 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 import { TrophyIcon } from '@heroicons/react/24/solid';
 import { MessageCircle, ArrowRight } from 'lucide-react';
 import { buildGeneralWhatsAppUrl } from '../utils/whatsapp';
+import { fadeUp, staggerContainer } from '../utils/motion';
 
 export const Hero: React.FC = () => {
   const waUrl = buildGeneralWhatsAppUrl();
@@ -12,57 +14,68 @@ export const Hero: React.FC = () => {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-10 lg:gap-12 items-center">
           
           {/* Left Column - High Contrast Text & CTA */}
-          <div className="lg:col-span-7 space-y-5 sm:space-y-6 text-center lg:text-left">
-            
+          <motion.div
+            className="lg:col-span-7 space-y-5 sm:space-y-6 text-center lg:text-left"
+            variants={staggerContainer(0.12, 0.1)}
+            initial="hidden"
+            animate="visible"
+          >
             {/* Top Pill Badge */}
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-full bg-blue-900 border border-blue-950 text-white text-xs sm:text-sm font-bold shadow-xs max-w-full">
+            <motion.div
+              variants={fadeUp}
+              className="inline-flex items-center gap-2 px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-full bg-blue-900 border border-blue-950 text-white text-xs sm:text-sm font-bold shadow-xs max-w-full"
+            >
               <TrophyIcon className="w-4 h-4 text-amber-400 shrink-0" />
               <span className="truncate sm:whitespace-normal">Pelatih Berprestasi Popda & Kejurnas Finswimming Jatim</span>
-            </div>
+            </motion.div>
 
             {/* Main Headline */}
-            <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight text-slate-950 font-outfit leading-[1.15] sm:leading-[1.12]">
+            <motion.h1
+              variants={fadeUp}
+              className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight text-slate-950 font-outfit leading-[1.15] sm:leading-[1.12]"
+            >
               Dari Takut Air Menjadi{' '}
               <span className="text-blue-600 block sm:inline mt-1 sm:mt-0">Percaya Diri Berenang</span>
-            </h1>
+            </motion.h1>
 
             {/* Subheadline - Sharp Dark Charcoal */}
-            <p className="text-sm sm:text-base lg:text-lg text-slate-800 font-medium max-w-2xl mx-auto lg:mx-0 leading-relaxed">
+            <motion.p
+              variants={fadeUp}
+              className="text-sm sm:text-base lg:text-lg text-slate-800 font-medium max-w-2xl mx-auto lg:mx-0 leading-relaxed"
+            >
               Program les renang privat 1-on-1 & reguler di Malang. Membantu anak 5+, pelajar, dewasa, hingga persiapan tes TNI/Polri dengan metode yang aman, terstruktur, dan ramah.
-            </p>
+            </motion.p>
 
             {/* Stat & Feature Boxes - Fixed Overflow Bug */}
-            <div className="grid grid-cols-3 gap-2.5 sm:gap-4 pt-1 max-w-lg mx-auto lg:mx-0">
-              <div className="bg-white p-3 sm:p-4 rounded-2xl border border-slate-300 shadow-sm text-center lg:text-left min-w-0">
-                <span className="text-base sm:text-xl lg:text-2xl font-black text-blue-700 font-outfit block truncate leading-tight">
-                  1-on-1
-                </span>
-                <span className="text-[11px] sm:text-xs font-bold text-slate-900 block mt-1 truncate">
-                  Metode Privat
-                </span>
-              </div>
-
-              <div className="bg-white p-3 sm:p-4 rounded-2xl border border-slate-300 shadow-sm text-center lg:text-left min-w-0">
-                <span className="text-base sm:text-xl lg:text-2xl font-black text-blue-700 font-outfit block truncate leading-tight">
-                  3 Hotel
-                </span>
-                <span className="text-[11px] sm:text-xs font-bold text-slate-900 block mt-1 truncate">
-                  Lokasi Malang
-                </span>
-              </div>
-
-              <div className="bg-white p-3 sm:p-4 rounded-2xl border border-slate-300 shadow-sm text-center lg:text-left min-w-0">
-                <span className="text-base sm:text-xl lg:text-2xl font-black text-blue-700 font-outfit block truncate leading-tight">
-                  Bertahap
-                </span>
-                <span className="text-[11px] sm:text-xs font-bold text-slate-900 block mt-1 truncate">
-                  Kurikulum Aman
-                </span>
-              </div>
-            </div>
+            <motion.div
+              variants={staggerContainer(0.1)}
+              className="grid grid-cols-3 gap-2.5 sm:gap-4 pt-1 max-w-lg mx-auto lg:mx-0"
+            >
+              {[
+                { value: '1-on-1', label: 'Metode Privat' },
+                { value: '3 Hotel', label: 'Lokasi Malang' },
+                { value: 'Bertahap', label: 'Kurikulum Aman' },
+              ].map((stat) => (
+                <motion.div
+                  key={stat.value}
+                  variants={fadeUp}
+                  className="bg-white p-3 sm:p-4 rounded-2xl border border-slate-300 shadow-sm text-center lg:text-left min-w-0"
+                >
+                  <span className="text-base sm:text-xl lg:text-2xl font-black text-blue-700 font-outfit block truncate leading-tight">
+                    {stat.value}
+                  </span>
+                  <span className="text-[11px] sm:text-xs font-bold text-slate-900 block mt-1 truncate">
+                    {stat.label}
+                  </span>
+                </motion.div>
+              ))}
+            </motion.div>
 
             {/* Action Buttons */}
-            <div className="pt-2 sm:pt-3 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3">
+            <motion.div
+              variants={fadeUp}
+              className="pt-2 sm:pt-3 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3"
+            >
               <a
                 href={waUrl}
                 target="_blank"
@@ -80,12 +93,17 @@ export const Hero: React.FC = () => {
                 <span>Lihat Kategori Program</span>
                 <ArrowRight className="w-4 h-4 text-white" />
               </a>
-            </div>
+            </motion.div>
 
-          </div>
+          </motion.div>
 
           {/* Right Column - Official Logo Showcase & Photo Card */}
-          <div className="lg:col-span-5 w-full">
+          <motion.div
+            className="lg:col-span-5 w-full"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.35, ease: 'easeOut' }}
+          >
             <div className="bg-white rounded-3xl p-4 sm:p-5 border border-slate-300 shadow-xl relative">
               
               {/* Main Image Frame */}
@@ -127,7 +145,7 @@ export const Hero: React.FC = () => {
               </div>
 
             </div>
-          </div>
+          </motion.div>
 
         </div>
       </div>

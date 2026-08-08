@@ -1,4 +1,5 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 import { TrophyIcon, CheckBadgeIcon } from '@heroicons/react/24/solid';
 import { COACH_ACHIEVEMENTS } from '../data/aqualuxData';
 
@@ -7,7 +8,13 @@ export const AchievementsBar: React.FC = () => {
   const repeatedAchievements = [...COACH_ACHIEVEMENTS, ...COACH_ACHIEVEMENTS, ...COACH_ACHIEVEMENTS];
 
   return (
-    <div className="bg-white border-y border-slate-300 py-5 text-slate-900 overflow-hidden relative">
+    <motion.div
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.6 }}
+      className="bg-white border-y border-slate-300 py-5 text-slate-900 overflow-hidden relative"
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-4">
         
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-left">
@@ -56,6 +63,6 @@ export const AchievementsBar: React.FC = () => {
         </div>
       </div>
 
-    </div>
+    </motion.div>
   );
 };

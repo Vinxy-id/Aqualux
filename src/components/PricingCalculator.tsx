@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
+import { motion } from 'framer-motion';
 import confetti from 'canvas-confetti';
 import { CalculatorIcon, InformationCircleIcon, CheckIcon, TagIcon, BoltIcon, SparklesIcon } from '@heroicons/react/24/solid';
 import { MessageCircle } from 'lucide-react';
 import { ClassType, SessionCount, LocationKey } from '../types';
 import { LOCATIONS_DATA, COURSE_RATES, CATEGORY_PROGRAMS } from '../data/aqualuxData';
 import { buildWhatsAppUrl } from '../utils/whatsapp';
+import { fadeUp, staggerContainer, viewportOnce } from '../utils/motion';
 
 export const PricingCalculator: React.FC = () => {
   const [selectedCategory, setSelectedCategory] = useState<string>('Anak Usia 5+ Th');
@@ -57,15 +59,27 @@ export const PricingCalculator: React.FC = () => {
         </div>
 
         {/* Main Calculator Container */}
-        <div className="max-w-4xl mx-auto bg-white rounded-3xl p-6 sm:p-8 border border-slate-300 shadow-xl">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={viewportOnce}
+          transition={{ duration: 0.6, ease: 'easeOut' }}
+          className="max-w-4xl mx-auto bg-white rounded-3xl p-6 sm:p-8 border border-slate-300 shadow-xl"
+        >
           
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
             
             {/* Left Controls */}
-            <div className="lg:col-span-7 space-y-5 text-left">
+            <motion.div
+              className="lg:col-span-7 space-y-5 text-left"
+              variants={staggerContainer(0.07)}
+              initial="hidden"
+              whileInView="visible"
+              viewport={viewportOnce}
+            >
               
               {/* Step 1: Kategori */}
-              <div>
+              <motion.div variants={fadeUp}>
                 <label className="block text-xs sm:text-sm font-black text-slate-950 uppercase tracking-wider mb-2">
                   1. Pilih Kategori Peserta
                 </label>
@@ -85,10 +99,10 @@ export const PricingCalculator: React.FC = () => {
                     </button>
                   ))}
                 </div>
-              </div>
+              </motion.div>
 
               {/* Step 2: Tipe Kelas */}
-              <div>
+              <motion.div variants={fadeUp}>
                 <label className="block text-xs sm:text-sm font-black text-slate-950 uppercase tracking-wider mb-2">
                   2. Pilih Tipe Kelas
                 </label>
@@ -125,10 +139,10 @@ export const PricingCalculator: React.FC = () => {
                     <span className="text-xs font-bold text-slate-700 block">Kelompok Kecil</span>
                   </button>
                 </div>
-              </div>
+              </motion.div>
 
               {/* Step 3: Sesi */}
-              <div>
+              <motion.div variants={fadeUp}>
                 <label className="block text-xs sm:text-sm font-black text-slate-950 uppercase tracking-wider mb-2 flex items-center justify-between">
                   <span>3. Jumlah Pertemuan</span>
                   {sessions === 8 && (
@@ -171,10 +185,10 @@ export const PricingCalculator: React.FC = () => {
                     <span className="text-xs font-bold text-slate-800 block mt-0.5">Paket Mahir Berenang</span>
                   </button>
                 </div>
-              </div>
+              </motion.div>
 
               {/* Step 4: Lokasi */}
-              <div>
+              <motion.div variants={fadeUp}>
                 <label className="block text-xs sm:text-sm font-black text-slate-950 uppercase tracking-wider mb-2">
                   4. Pilih Lokasi Kolam Hotel
                 </label>
@@ -197,12 +211,18 @@ export const PricingCalculator: React.FC = () => {
                     </button>
                   ))}
                 </div>
-              </div>
+              </motion.div>
 
-            </div>
+            </motion.div>
 
             {/* Right Summary Column (Electric Cobalt Blue Card Container) */}
-            <div className="lg:col-span-5 flex flex-col justify-between bg-blue-600 text-white rounded-2xl p-6 shadow-xl text-left">
+            <motion.div
+              className="lg:col-span-5 flex flex-col justify-between bg-blue-600 text-white rounded-2xl p-6 shadow-xl text-left"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={viewportOnce}
+              transition={{ duration: 0.6, delay: 0.15, ease: 'easeOut' }}
+            >
               
               <div>
                 {/* Header Summary */}
@@ -296,11 +316,11 @@ export const PricingCalculator: React.FC = () => {
                 </p>
               </div>
 
-            </div>
+            </motion.div>
 
           </div>
 
-        </div>
+        </motion.div>
 
       </div>
     </section>

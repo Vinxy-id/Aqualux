@@ -1,5 +1,7 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 import { Award, ShieldCheck, HeartHandshake, FileSpreadsheet } from 'lucide-react';
+import { fadeUp, staggerContainer, viewportOnce } from '../utils/motion';
 
 export const WhyChooseUs: React.FC = () => {
   const pillars = [
@@ -43,10 +45,18 @@ export const WhyChooseUs: React.FC = () => {
         </div>
 
         {/* 4 Pillars Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <motion.div
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
+          variants={staggerContainer(0.12)}
+          initial="hidden"
+          whileInView="visible"
+          viewport={viewportOnce}
+        >
           {pillars.map((item, idx) => (
-            <div 
+            <motion.div 
               key={idx}
+              variants={fadeUp}
+              whileHover={{ y: -6 }}
               className="bg-white p-6 rounded-3xl border border-slate-300 shadow-sm card-clean-hover text-left"
             >
               <div className="w-12 h-12 rounded-2xl bg-blue-50 border border-blue-200 flex items-center justify-center mb-4">
@@ -60,9 +70,9 @@ export const WhyChooseUs: React.FC = () => {
               <p className="text-xs sm:text-sm font-medium text-slate-800 leading-relaxed">
                 {item.description}
               </p>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
 
       </div>
     </section>
