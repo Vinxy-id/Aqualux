@@ -68,6 +68,7 @@ next-env.d.ts
 agent/
 mcp_config.json
 skills-lock.json
+PANDUAN_*.md
 
 # Misc
 .eslintcache
