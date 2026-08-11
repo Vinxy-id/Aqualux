@@ -38,6 +38,10 @@ interface AqualuxDataContextType {
   linkBioItems: LinkBioItem[];
   isAdminOpen: boolean;
   setIsAdminOpen: (open: boolean) => void;
+  isWaModalOpen: boolean;
+  waModalMessage: string;
+  openWaModal: (message?: string) => void;
+  closeWaModal: () => void;
   updateLocation: (key: LocationKey, updated: Partial<LocationInfo>) => void;
   updateCourseRate: (classType: ClassType, sessions: SessionCount, price: number, discount?: string) => void;
   updateAdminContacts: (contacts: Partial<AdminContacts>) => void;
@@ -56,9 +60,9 @@ const DEFAULT_CONTACTS: AdminContacts = {
 
 const DEFAULT_LINKBIO_PROFILE: LinkBioProfile = {
   title: 'Aqualux Swimming Course',
-  handle: '@aqualux_swim',
-  bioText: 'Kursus Renang Privat 1-on-1 & Reguler Malang 🏊‍♂️ Dibimbing Pelatih Berlisensi.\nPilih menu di bawah untuk konsultasi & pendaftaran! 👇',
-  instagramUrl: 'https://www.instagram.com/aqualux_swim/'
+  handle: '@aqualux.swimcourse',
+  bioText: 'Kursus Renang Privat 1-on-1 & Reguler di Malang, dibimbing oleh pelatih berlisensi.',
+  instagramUrl: 'https://www.instagram.com/aqualux.swimcourse/'
 };
 
 const DEFAULT_LINKBIO_ITEMS: LinkBioItem[] = [
@@ -91,9 +95,9 @@ const DEFAULT_LINKBIO_ITEMS: LinkBioItem[] = [
   },
   {
     id: '4',
-    title: 'Instagram Resmi @aqualux_swim',
+    title: 'Instagram Resmi @aqualux.swimcourse',
     subtitle: 'Galeri Foto, Video Sesi & Info Terbaru',
-    url: 'https://www.instagram.com/aqualux_swim/',
+    url: 'https://www.instagram.com/aqualux.swimcourse/',
     badge: 'INSTAGRAM',
     iconName: 'Instagram',
     enabled: true
@@ -104,6 +108,17 @@ const AqualuxDataContext = createContext<AqualuxDataContextType | undefined>(und
 
 export const AqualuxDataProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [isAdminOpen, setIsAdminOpen] = useState(false);
+  const [isWaModalOpen, setIsWaModalOpen] = useState(false);
+  const [waModalMessage, setWaModalMessage] = useState('');
+
+  const openWaModal = (message?: string) => {
+    setWaModalMessage(message || 'Halo Admin Aqualux, saya mau tanya-tanya informasi kursus renang privat/reguler di Malang.');
+    setIsWaModalOpen(true);
+  };
+
+  const closeWaModal = () => {
+    setIsWaModalOpen(false);
+  };
 
   // Locations state
   const [locations, setLocations] = useState<Record<LocationKey, LocationInfo>>(() => {
@@ -142,11 +157,9 @@ export const AqualuxDataProvider: React.FC<{ children: React.ReactNode }> = ({ c
       if (saved) {
         const parsed = JSON.parse(saved);
         parsed.title = 'Aqualux Swimming Course';
-        parsed.handle = '@aqualux_swim';
-        parsed.bioText = 'Kursus Renang Privat 1-on-1 & Reguler Malang 🏊‍♂️ Dibimbing Pelatih Berlisensi.\nPilih menu di bawah untuk konsultasi & pendaftaran! 👇';
-        if (parsed.instagramUrl === 'https://instagram.com/aqualux_swm' || !parsed.instagramUrl) {
-          parsed.instagramUrl = 'https://www.instagram.com/aqualux_swim/';
-        }
+        parsed.handle = '@aqualux.swimcourse';
+        parsed.bioText = 'Kursus Renang Privat 1-on-1 & Reguler di Malang, dibimbing oleh pelatih berlisensi.';
+        parsed.instagramUrl = 'https://www.instagram.com/aqualux.swimcourse/';
         return parsed;
       }
       return DEFAULT_LINKBIO_PROFILE;
@@ -166,8 +179,9 @@ export const AqualuxDataProvider: React.FC<{ children: React.ReactNode }> = ({ c
             item.subtitle = 'Konsultasi Program & Pendaftaran';
           }
           if (item.iconName === 'Instagram' || item.url.includes('instagram.com')) {
-            item.title = 'Instagram Resmi @aqualux_swim';
-            item.url = 'https://www.instagram.com/aqualux_swim/';
+            item.title = 'Instagram Resmi @aqualux.swimcourse';
+            item.subtitle = 'Galeri Foto, Video Sesi & Info Terbaru';
+            item.url = 'https://www.instagram.com/aqualux.swimcourse/';
           }
         });
         const hasIg = parsed.some(item => item.iconName === 'Instagram' || item.url.includes('instagram.com'));
@@ -298,6 +312,10 @@ export const AqualuxDataProvider: React.FC<{ children: React.ReactNode }> = ({ c
         linkBioItems,
         isAdminOpen,
         setIsAdminOpen,
+        isWaModalOpen,
+        waModalMessage,
+        openWaModal,
+        closeWaModal,
         updateLocation,
         updateCourseRate,
         updateAdminContacts,

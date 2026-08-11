@@ -34,12 +34,12 @@ export const Footer: React.FC<FooterProps> = ({ onOpenAdmin }) => {
             </div>
 
             <p className="text-xs text-slate-400 leading-relaxed max-w-sm">
-              Jasa kursus renang profesional privat & reguler di Malang. Membantu anak 5+, pelajar, dewasa, hingga persiapan fisik ujian TNI/Polri berenang aman & percaya diri.
+              Jasa kursus renang profesional privat & reguler di kota Malang. Membantu anak mulai usia 5 tahun, pelajar, dewasa, hingga persiapan fisik ujian TNI & Polri berenang aman & percaya diri.
             </p>
 
             <div className="flex items-center gap-3 pt-2">
               <a
-                href="https://www.instagram.com/aqualux_swim/"
+                href="https://www.instagram.com/aqualux.swimcourse/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-9 h-9 rounded-xl bg-slate-800 border border-slate-700 flex items-center justify-center text-slate-300 hover:text-blue-400 hover:border-blue-500/40 transition-colors"

@@ -2,11 +2,11 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { CalendarIcon } from '@heroicons/react/24/solid';
 import { MessageCircle } from 'lucide-react';
-import { buildGeneralWhatsAppUrl } from '../utils/whatsapp';
+import { useAqualuxData } from '../context/AqualuxDataContext';
 import { fadeUp, staggerContainer, viewportOnce } from '../utils/motion';
 
 export const UrgencyBanner: React.FC = () => {
-  const waUrl = buildGeneralWhatsAppUrl("Halo Admin Aqualux, saya mau konsultasi jadwal bimbingan renang.");
+  const { openWaModal } = useAqualuxData();
 
   return (
     <section className="py-10 bg-white border-y border-slate-300 text-white">
@@ -37,15 +37,14 @@ export const UrgencyBanner: React.FC = () => {
 
           {/* Right Action */}
           <motion.div variants={fadeUp} className="shrink-0">
-            <a
-              href={waUrl}
-              target="_blank"
-              rel="noopener noreferrer"
+            <button
+              type="button"
+              onClick={() => openWaModal("Halo Admin Aqualux, saya mau konsultasi jadwal bimbingan renang.")}
               className="inline-flex items-center justify-center gap-2 px-7 py-4 rounded-full bg-emerald-400 hover:bg-emerald-300 text-slate-950 font-black text-sm shadow-md transition-all btn-hover-effect"
             >
               <MessageCircle className="w-5 h-5 fill-slate-950" />
               <span>Tanya Jadwal via WA</span>
-            </a>
+            </button>
           </motion.div>
 
         </motion.div>

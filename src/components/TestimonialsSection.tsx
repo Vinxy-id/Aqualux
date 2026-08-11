@@ -3,11 +3,11 @@ import { motion } from 'framer-motion';
 import { Star, Quote, MessageCircle, User } from 'lucide-react';
 import { CheckCircleIcon } from '@heroicons/react/24/solid';
 import { TESTIMONIALS_DATA } from '../data/aqualuxData';
-import { buildGeneralWhatsAppUrl } from '../utils/whatsapp';
+import { useAqualuxData } from '../context/AqualuxDataContext';
 import { fadeUp, staggerContainer, viewportOnce } from '../utils/motion';
 
 export const TestimonialsSection: React.FC = () => {
-  const waUrl = buildGeneralWhatsAppUrl();
+  const { openWaModal } = useAqualuxData();
 
   return (
     <section id="testimoni" className="py-20 bg-white text-slate-900 border-t border-slate-300 relative overflow-hidden">
@@ -88,15 +88,14 @@ export const TestimonialsSection: React.FC = () => {
             <p className="text-xs sm:text-sm font-semibold text-slate-700 mt-0.5">Tanyakan ketersediaan jadwal pelatih untuk sesi minggu ini.</p>
           </div>
 
-          <a
-            href={waUrl}
-            target="_blank"
-            rel="noopener noreferrer"
+          <button
+            type="button"
+            onClick={() => openWaModal()}
             className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold text-xs sm:text-sm shrink-0 shadow-md btn-hover-effect btn-tactile"
           >
             <MessageCircle className="w-4 h-4" />
             <span>Tanya Jadwal WA</span>
-          </a>
+          </button>
         </motion.div>
 
       </motion.div>

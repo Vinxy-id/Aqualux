@@ -14,6 +14,7 @@ import { Footer } from './components/Footer';
 import { AdminLogin } from './components/AdminLogin';
 import { AdminPage } from './components/AdminPage';
 import { LinkBioPage } from './components/LinkBioPage';
+import { WhatsAppModal } from './components/WhatsAppModal';
 
 function AppContent() {
   const { isAuthenticated } = useAuth();
@@ -86,7 +87,12 @@ function AppContent() {
   }
 
   if (route === 'links') {
-    return <LinkBioPage onBackToLanding={navigateToLanding} onOpenAdmin={navigateToAdmin} />;
+    return (
+      <>
+        <LinkBioPage onBackToLanding={navigateToLanding} onOpenAdmin={navigateToAdmin} />
+        <WhatsAppModal />
+      </>
+    );
   }
 
   return (
@@ -103,6 +109,7 @@ function AppContent() {
         <FAQSection />
       </main>
       <Footer onOpenAdmin={navigateToAdmin} />
+      <WhatsAppModal />
     </div>
   );
 }

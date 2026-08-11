@@ -2,10 +2,11 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Baby, GraduationCap, UserCheck, ShieldAlert, Check, MessageCircle } from 'lucide-react';
 import { CATEGORY_PROGRAMS } from '../data/aqualuxData';
-import { buildGeneralWhatsAppUrl } from '../utils/whatsapp';
+import { useAqualuxData } from '../context/AqualuxDataContext';
 import { fadeUp, staggerContainer, viewportOnce } from '../utils/motion';
 
 export const ProgramsSection: React.FC = () => {
+  const { openWaModal } = useAqualuxData();
   const [activeId, setActiveId] = useState<string>('anak');
 
   const getIcon = (name: string) => {
@@ -49,15 +50,14 @@ export const ProgramsSection: React.FC = () => {
             </p>
           </div>
 
-          <a 
-            href={buildGeneralWhatsAppUrl()}
-            target="_blank"
-            rel="noopener noreferrer"
+          <button 
+            type="button"
+            onClick={() => openWaModal()}
             className="inline-flex items-center gap-2 text-xs font-extrabold text-white bg-emerald-600 hover:bg-emerald-700 px-5 py-3 rounded-full shadow-md transition-all shrink-0 min-h-[44px] btn-tactile"
           >
             <MessageCircle className="w-4 h-4" />
             <span>Tanya Jadwal via WA</span>
-          </a>
+          </button>
         </motion.div>
 
         {/* Numbered Category Cards Grid */}
@@ -65,7 +65,7 @@ export const ProgramsSection: React.FC = () => {
           {CATEGORY_PROGRAMS.map((prog, index) => {
             const isSelected = activeId === prog.id;
             const numberFormatted = `0${index + 1}`;
-            const programWaUrl = buildGeneralWhatsAppUrl(`Halo Admin Aqualux, saya berminat mendaftar program ${prog.title}. Mohon info jadwal pelatih.`);
+            const programMsg = `Halo Admin Aqualux, saya berminat mendaftar program ${prog.title}. Mohon info jadwal pelatih.`;
 
             return (
               <motion.div
@@ -130,10 +130,12 @@ export const ProgramsSection: React.FC = () => {
                 </div>
 
                 {/* Card CTA */}
-                <a
-                  href={programWaUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                <button
+                  type="button"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    openWaModal(programMsg);
+                  }}
                   className={`w-full inline-flex items-center justify-center gap-2 py-3 rounded-full font-extrabold text-xs transition-all min-h-[44px] btn-tactile ${
                     isSelected
                       ? 'bg-emerald-400 text-slate-950 hover:bg-emerald-300 shadow-md'
@@ -142,7 +144,7 @@ export const ProgramsSection: React.FC = () => {
                 >
                   <MessageCircle className="w-4 h-4" />
                   <span>Pilih & Chat WA Admin</span>
-                </a>
+                </button>
               </motion.div>
             );
           })}

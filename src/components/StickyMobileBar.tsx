@@ -1,10 +1,10 @@
 import React from 'react';
 import { PhoneIcon } from '@heroicons/react/24/solid';
 import { MapPin } from 'lucide-react';
-import { buildGeneralWhatsAppUrl } from '../utils/whatsapp';
+import { useAqualuxData } from '../context/AqualuxDataContext';
 
 export const StickyMobileBar: React.FC = () => {
-  const waUrl = buildGeneralWhatsAppUrl();
+  const { openWaModal } = useAqualuxData();
 
   return (
     <div className="md:hidden fixed bottom-0 left-0 right-0 z-40 p-2.5 sm:p-3 bg-slate-900/95 backdrop-blur-md border-t border-slate-800 shadow-2xl">
@@ -20,15 +20,14 @@ export const StickyMobileBar: React.FC = () => {
         </a>
 
         {/* Button 2: WhatsApp Direct */}
-        <a
-          href={waUrl}
-          target="_blank"
-          rel="noopener noreferrer"
+        <button
+          type="button"
+          onClick={() => openWaModal()}
           className="col-span-8 inline-flex items-center justify-center gap-2 py-3 px-3 rounded-full bg-emerald-600 hover:bg-emerald-700 text-white font-black text-xs shadow-lg active:scale-95 transition-all min-h-[44px]"
         >
           <PhoneIcon className="w-4 h-4 text-white shrink-0" />
           <span>Hubungi Admin WA</span>
-        </a>
+        </button>
 
       </div>
     </div>

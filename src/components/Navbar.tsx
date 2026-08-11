@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { PhoneIcon } from '@heroicons/react/24/solid';
-import { buildGeneralWhatsAppUrl } from '../utils/whatsapp';
+import { useAqualuxData } from '../context/AqualuxDataContext';
 
 interface NavbarProps {
   onOpenAdmin?: () => void;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({ onOpenAdmin }) => {
+  const { openWaModal } = useAqualuxData();
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -17,8 +18,6 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenAdmin }) => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
-
-  const waUrl = buildGeneralWhatsAppUrl();
 
   return (
     <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-200 bg-white border-b ${
@@ -57,15 +56,14 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenAdmin }) => {
 
           {/* Desktop CTA WhatsApp */}
           <div className="hidden md:flex items-center gap-3">
-            <a
-              href={waUrl}
-              target="_blank"
-              rel="noopener noreferrer"
+            <button
+              type="button"
+              onClick={() => openWaModal()}
               className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold text-xs shadow-md transition-all btn-hover-effect btn-tactile"
             >
               <PhoneIcon className="w-4 h-4 text-white" />
               <span>Chat Admin WA</span>
-            </a>
+            </button>
           </div>
 
           {/* Mobile Menu Toggle */}
@@ -109,15 +107,17 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenAdmin }) => {
             </button>
           )}
           
-          <a
-            href={waUrl}
-            target="_blank"
-            rel="noopener noreferrer"
+          <button
+            type="button"
+            onClick={() => {
+              setMobileMenuOpen(false);
+              openWaModal();
+            }}
             className="w-full inline-flex items-center justify-center gap-2 py-3 rounded-xl bg-emerald-600 text-white font-extrabold text-xs shadow-md mt-2"
           >
             <PhoneIcon className="w-4 h-4" />
             <span>Hubungi Admin WA (Faqih / Abed)</span>
-          </a>
+          </button>
         </div>
       )}
     </header>

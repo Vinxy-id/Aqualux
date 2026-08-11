@@ -128,27 +128,27 @@ export const TESTIMONIALS_DATA: Testimonial[] = [
     name: 'Ibu Ratna Pertiwi',
     role: 'Orang Tua dari Albi (6 th)',
     category: 'Anak 5+',
-    comment: 'Awalnya Albi nangis kalau disuruh masuk kolam. Setelah 3x pertemuan sama Coach Faqih, sekarang malah nggak mau selesai renang! Pembawakan pelatihnya sabar banget.',
+    comment: 'Awalnya Albi takut dan nangis kalau disuruh masuk kolam. Alhamdulillah setelah 3x pertemuan sama Coach Faqih, anaknya malah ketagihan renang dan udah berani meluncur sendiri. Pembawakan pelatihnya sabar dan ramah.',
     rating: 5,
     avatar: './aqualux-logo.png',
     outcomeBadge: 'Bisa Mengapung 4x Pertemuan'
   },
   {
     id: '2',
-    name: 'Bagas Wibowo',
-    role: 'Pendaftar Bintara Polri 2024',
-    category: 'Persiapan TNI/Polri',
-    comment: 'Awalnya renang 50m saya 1 menit lebih dan sering kehabisan napas. Dibimbing mas Coach secara intensif, waktu saya tembus 42 detik dan lolos seleksi fisik renang!',
+    name: 'Mas Bagas',
+    role: 'Persiapan Fisik Tes Kedinasan',
+    category: 'Persiapan Fisik',
+    comment: 'Awalnya renang 50m saya sering kehabisan napas di tengah kolam. Setelah dibimbing intensif sama Coach Abed, pernapasan jadi lebih teratur dan fisik jauh lebih siap untuk tes renang.',
     rating: 5,
     avatar: './aqualux-logo.png',
-    outcomeBadge: 'Lolos Tes Renang Polri'
+    outcomeBadge: 'Stamina & Fisik Renang Meningkat'
   },
   {
     id: '3',
     name: 'Dini Rahmadani',
-    role: 'Karyawan Swasta (28 th)',
+    role: 'Lulusan Sekolah (20 th)',
     category: 'Dewasa Pemula',
-    comment: 'Sempat takut dipikir bakal malu diajarin pas gede. Ternyata suasana kelas privat di Hotel Tychi nyaman banget dan privat. Coach-nya profesional.',
+    comment: 'Sempat minder mau les renang pas baru lulus sekolah, takut canggung diajarin pas udah gede. Pas cobain privat sama Coach Abed di Hotel Tychi, suasananya enak banget, santai, dan coach-nya telaten ngajarin dari nol. Sekarang udah berani dan lancar gaya dada!',
     rating: 5,
     avatar: './aqualux-logo.png',
     outcomeBadge: 'Mahir Gaya Dada & Bebas'
@@ -163,22 +163,52 @@ export const FAQ_DATA: FAQItem[] = [
   },
   {
     question: 'Berapa durasi untuk 1 kali pertemuan?',
-    answer: 'Durasi 1 kali pertemuan adalah 1 Jam 15 Menit. Durasi ini sudah dirancang ideal agar peserta mendapat pemanasan cukup, materi teknik, dan pendinginan tanpa kelelahan berlebih.',
+    answer: 'Durasi 1 kali pertemuan adalah 1 Jam 15 Menit. Durasi ini sudah dirancang ideal agar peserta mendapat pemanasan cukup, materi teknik berenang, dan pendinginan. **Peserta diharapkan hadir 15 menit sebelum latihan dimulai untuk melakukan stretching.**',
     category: 'teknis'
   },
   {
     question: 'Bagaimana jika peserta sakit atau berhalangan hadir?',
-    answer: 'Jadwal sesi bisa di-reschedule (dijadwalkan ulang) dengan syarat mengonfirmasi kepada Coach minimal 3-4 jam sebelum sesi dimulai.',
+    answer: 'Jadwal sesi bisa di-reschedule (dijadwalkan ulang) dengan syarat mengonfirmasi kepada Coach minimal H-1 sebelum sesi dimulai.',
     category: 'jadwal'
   },
   {
-    question: 'Apakah pelatih laki-laki atau perempuan?',
-    answer: 'Kami memiliki tim pelatih profesional berpengalaman dan bersertifikat. Anda bisa mengonfirmasi kebutuhan pelatih saat berkonsultasi via WhatsApp.',
-    category: 'teknis'
+    question: 'Apakah biaya kursus sudah termasuk tiket masuk kolam renang?',
+    answer: 'Belum. **Note: Harga paket kursus belum termasuk tiket masuk kolam renang!** Tiket masuk kolam (HTM) dibayarkan secara terpisah oleh peserta di loket hotel/kolam renang pada setiap kedatangan.',
+    category: 'harga'
   },
   {
     question: 'Berapa lama sampai anak/peserta bisa berenang?',
-    answer: 'Rata-rata peserta anak-anak maupun dewasa sudah bisa mengapung dan meluncur mandiri dalam 4x pertemuan, serta menguasai 1 gaya penuh dalam 8x pertemuan.',
+    answer: 'Progres setiap peserta tidak bisa dipastikan secara mutlak karena sangat bergantung pada tumbuh kembang motorik, keberanian, dan kecepatan adaptasi air masing-masing anak. Namun secara umum, rata-rata peserta sudah bisa mengapung & meluncur mandiri dalam 4x pertemuan, serta menguasai 1 gaya penuh dalam 8x pertemuan.',
     category: 'garansi'
+  },
+  {
+    question: 'Apa saja perlengkapan yang perlu dibawa saat latihan renang?',
+    answer: 'Berikut perlengkapan yang **perlu dibawa** peserta saat datang latihan:\n• Pakaian Renang\n• Kacamata Renang\n• Handuk\n• Air Minum',
+    category: 'teknis'
+  },
+  {
+    question: 'Apakah peralatan renang & pelampung difasilitasi oleh Aqualux?',
+    answer: 'Ya, pihak kursus Aqualux **memfasilitasi peralatan latihan** yang dapat digunakan peserta selama sesi bimbingan, antara lain:\n• Pelampung\n• Pool Buoy\n• Pelampung Punggung\n\nPeserta tidak perlu membeli pelampung sendiri.',
+    category: 'teknis'
+  },
+  {
+    question: 'Apakah jadwal latihan bisa ditentukan sesuai waktu luang kami/anak?',
+    answer: 'Ya, jadwal bimbingan **sangat fleksibel**. Anda dapat memilih hari dan jam latihan (sesi pagi atau sore) sesuai kesepakatan dengan Coach.',
+    category: 'jadwal'
+  },
+  {
+    question: 'Apakah orang tua boleh mendampingi anak saat latihan di pinggir kolam?',
+    answer: 'Sangat diperbolehkan. Orang tua dapat duduk santai di area tribun atau kafe/restoran kolam hotel untuk **memantau langsung** perkembangan anak selama sesi bimbingan.',
+    category: 'teknis'
+  },
+  {
+    question: 'Bagaimana jika anak sangat takut air atau punya trauma?',
+    answer: 'Pelatih Aqualux terlatih menangani anak takut air dengan **metode yang aman & ramah** (water familiarity). Latihan dilakukan secara bertahap tanpa paksaan hingga anak merasa nyaman dan percaya diri.',
+    category: 'teknis'
+  },
+  {
+    question: 'Berapa lama masa berlaku untuk paket 4x atau 8x pertemuan?',
+    answer: 'Masa berlaku paket adalah **1-2 bulan** sejak sesi pertama dimulai. Jika peserta berhalangan hadir atau sakit, sesi latihan tidak hangus dan bisa di-reschedule.',
+    category: 'jadwal'
   }
 ];

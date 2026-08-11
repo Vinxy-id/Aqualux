@@ -2,11 +2,11 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { TrophyIcon, ShieldCheckIcon, SparklesIcon } from '@heroicons/react/24/solid';
 import { MessageCircle, ArrowRight, Activity, Thermometer, Users } from 'lucide-react';
-import { buildGeneralWhatsAppUrl } from '../utils/whatsapp';
+import { useAqualuxData } from '../context/AqualuxDataContext';
 import { fadeUp, staggerContainer } from '../utils/motion';
 
 export const Hero: React.FC = () => {
-  const waUrl = buildGeneralWhatsAppUrl();
+  const { openWaModal } = useAqualuxData();
 
   return (
     <section className="pt-24 pb-12 sm:pt-32 sm:pb-20 lg:pt-36 lg:pb-24 bg-gradient-to-b from-blue-50/70 via-white to-slate-50 text-slate-900 relative overflow-hidden">
@@ -50,25 +50,26 @@ export const Hero: React.FC = () => {
               variants={fadeUp}
               className="text-sm sm:text-base lg:text-lg text-slate-700 font-medium max-w-2xl mx-auto lg:mx-0 leading-relaxed"
             >
-              Program les renang privat 1-on-1 & reguler di Malang. Membantu anak 5+, pelajar, dewasa, hingga persiapan tes TNI/Polri dengan metode yang aman, terstruktur, dan ramah.
+              Program les renang privat 1-on-1 & reguler di kota Malang. Membantu anak mulai usia 5 tahun, pelajar, dewasa, hingga persiapan tes TNI & Polri dengan metode yang aman, terstruktur, dan ramah.
             </motion.p>
 
             {/* Stat & Feature Boxes - Tabular Figures */}
             <motion.div
               variants={staggerContainer(0.1)}
-              className="grid grid-cols-3 gap-2.5 sm:gap-4 pt-1 max-w-lg mx-auto lg:mx-0"
+              className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 sm:gap-3.5 pt-1 max-w-2xl mx-auto lg:mx-0"
             >
               {[
-                { value: '1-on-1', label: 'Metode Privat' },
+                { value: '1-on-1', label: 'Kelas Privat' },
+                { value: '3–4 Anak', label: 'Kelas Reguler' },
                 { value: '3 Hotel', label: 'Lokasi Malang' },
                 { value: 'Bertahap', label: 'Metode Belajar' },
               ].map((stat) => (
                 <motion.div
                   key={stat.value}
                   variants={fadeUp}
-                  className="card-clean-elevated p-3 sm:p-4 rounded-2xl text-center lg:text-left min-w-0"
+                  className="card-clean-elevated p-3 sm:p-3.5 rounded-2xl text-center lg:text-left min-w-0"
                 >
-                  <span className="text-base sm:text-xl lg:text-2xl font-black text-blue-700 font-mono block truncate leading-tight">
+                  <span className="text-base sm:text-lg lg:text-xl font-black text-blue-700 font-mono block truncate leading-tight">
                     {stat.value}
                   </span>
                   <span className="text-[11px] sm:text-xs font-bold text-slate-800 block mt-1 truncate">
@@ -83,15 +84,14 @@ export const Hero: React.FC = () => {
               variants={fadeUp}
               className="pt-2 sm:pt-3 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3"
             >
-              <a
-                href={waUrl}
-                target="_blank"
-                rel="noopener noreferrer"
+              <button
+                type="button"
+                onClick={() => openWaModal()}
                 className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-6 sm:px-7 py-3.5 sm:py-4 rounded-full bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold text-sm sm:text-base shadow-lg shadow-emerald-600/25 transition-all btn-hover-effect btn-tactile min-h-[48px]"
               >
                 <MessageCircle className="w-5 h-5 text-white" />
                 <span>Daftar Kursus via WhatsApp</span>
-              </a>
+              </button>
 
               <a
                 href="#program"

@@ -43,7 +43,7 @@ export const WhyChooseUs: React.FC = () => {
     {
       icon: <Award className="w-5 h-5 text-blue-700" />,
       title: 'Pelatih Berpengalaman',
-      description: 'Diajar oleh pelatih yang memiliki rekam jejak atlet dan pemahaman teknik renang yang baik.'
+      description: 'Diajar oleh pelatih berlisensi yang memiliki rekam jejak atlet dan pemahaman teknik renang yang baik.'
     },
     {
       icon: <ShieldCheck className="w-5 h-5 text-emerald-700" />,
@@ -52,13 +52,13 @@ export const WhyChooseUs: React.FC = () => {
     },
     {
       icon: <HeartHandshake className="w-5 h-5 text-blue-700" />,
-      title: 'Program Belajar Bertahap',
-      description: 'Kurikulum belajar dari pengenalan air hingga penguasaan teknik gaya renang.'
+      title: 'Program Latihan Bertahap',
+      description: 'Program latihan dari pengenalan air hingga penguasaan teknik gaya renang yang benar.'
     },
     {
       icon: <FileSpreadsheet className="w-5 h-5 text-indigo-700" />,
       title: 'Evaluasi Kemajuan Sesi',
-      description: 'Coach memberikan catatan perkembangan secara berkala agar target belajar terpantau.'
+      description: 'Coach memberikan catatan perkembangan secara berkala agar target latihan terpantau perkembangannya.'
     }
   ];
 

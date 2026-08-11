@@ -168,26 +168,20 @@ export const LinkBioPage: React.FC<LinkBioPageProps> = ({ onBackToLanding, onOpe
                 href={waAdmin1Url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 rounded-2xl bg-slate-900 border border-slate-800 flex items-center justify-center text-emerald-400 hover:bg-emerald-600 hover:text-white transition-all btn-tactile shadow-sm relative"
-                title="WhatsApp Admin 1 (Coach Faqih)"
+                className="w-10 h-10 rounded-2xl bg-slate-900 border border-slate-800 flex items-center justify-center text-emerald-400 hover:bg-emerald-600 hover:text-white transition-all btn-tactile shadow-sm"
+                title="WhatsApp Coach Faqih"
               >
                 <MessageCircle className="w-5 h-5" />
-                <span className="absolute -top-1 -right-1 w-4 h-4 rounded-full bg-emerald-500 text-slate-950 font-mono font-black text-[9px] flex items-center justify-center border border-slate-950">
-                  1
-                </span>
               </a>
 
               <a
                 href={waAdmin2Url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 rounded-2xl bg-slate-900 border border-slate-800 flex items-center justify-center text-emerald-400 hover:bg-emerald-600 hover:text-white transition-all btn-tactile shadow-sm relative"
-                title="WhatsApp Admin 2 (Coach Abed)"
+                className="w-10 h-10 rounded-2xl bg-slate-900 border border-slate-800 flex items-center justify-center text-emerald-400 hover:bg-emerald-600 hover:text-white transition-all btn-tactile shadow-sm"
+                title="WhatsApp Coach Abed"
               >
                 <MessageCircle className="w-5 h-5" />
-                <span className="absolute -top-1 -right-1 w-4 h-4 rounded-full bg-emerald-500 text-slate-950 font-mono font-black text-[9px] flex items-center justify-center border border-slate-950">
-                  2
-                </span>
               </a>
 
               {linkBioProfile.instagramUrl && (
@@ -245,11 +239,11 @@ export const LinkBioPage: React.FC<LinkBioPageProps> = ({ onBackToLanding, onOpe
                       {renderIcon(item.iconName)}
                     </div>
                     <div className="text-left min-w-0 flex-1">
-                      <span className="text-sm font-black text-white font-outfit block whitespace-normal break-words group-hover:text-blue-300 transition-colors leading-snug">
+                      <span className="text-xs sm:text-sm font-black text-white font-outfit block whitespace-normal break-normal break-keep group-hover:text-blue-300 transition-colors leading-snug">
                         {item.title}
                       </span>
                       {item.subtitle && (
-                        <span className="text-[11px] font-semibold text-slate-400 block whitespace-normal break-words mt-0.5 leading-relaxed">
+                        <span className="text-[11px] font-semibold text-slate-400 block whitespace-normal break-normal mt-0.5 leading-relaxed">
                           {item.subtitle}
                         </span>
                       )}

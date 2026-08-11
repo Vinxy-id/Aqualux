@@ -5,10 +5,12 @@ import { CalculatorIcon, CheckIcon, TagIcon, BoltIcon, SparklesIcon } from '@her
 import { MessageCircle } from 'lucide-react';
 import { ClassType, SessionCount, LocationKey } from '../types';
 import { LOCATIONS_DATA, COURSE_RATES, CATEGORY_PROGRAMS } from '../data/aqualuxData';
-import { buildWhatsAppUrl } from '../utils/whatsapp';
+import { useAqualuxData } from '../context/AqualuxDataContext';
+import { buildWhatsAppMessageText } from '../utils/whatsapp';
 import { fadeUp, staggerContainer, viewportOnce } from '../utils/motion';
 
 export const PricingCalculator: React.FC = () => {
+  const { openWaModal } = useAqualuxData();
   const [selectedCategory, setSelectedCategory] = useState<string>('Anak Usia 5+ Tahun');
   const [classType, setClassType] = useState<ClassType>('privat');
   const [sessions, setSessions] = useState<SessionCount>(8);
@@ -19,7 +21,7 @@ export const PricingCalculator: React.FC = () => {
   const totalHtm = selectedLocation.htm * sessions;
   const grandTotal = rateInfo.price + totalHtm;
 
-  const waUrl = buildWhatsAppUrl(
+  const calculatedMsg = buildWhatsAppMessageText(
     selectedCategory,
     classType,
     sessions,
@@ -36,6 +38,7 @@ export const PricingCalculator: React.FC = () => {
     } catch (e) {
       // Ignore
     }
+    openWaModal(calculatedMsg);
   };
 
   return (
@@ -134,7 +137,7 @@ export const PricingCalculator: React.FC = () => {
                       <span className="text-sm font-black font-outfit">Reguler (3-4 Orang)</span>
                       {classType === 'reguler' && <CheckIcon className="w-4 h-4 text-blue-700" />}
                     </div>
-                    <span className="text-xs font-bold text-slate-700 block">Kelompok Kecil</span>
+                    <span className="text-xs font-bold text-slate-700 block">1 Pelatih : 3–4 Peserta (Min 3, Max 4 Anak)</span>
                   </button>
                 </div>
               </div>
@@ -291,16 +294,14 @@ export const PricingCalculator: React.FC = () => {
 
               {/* Action Button CTA */}
               <div className="mt-6">
-                <a
-                  href={waUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                <button
+                  type="button"
                   onClick={handleWaClick}
                   className="w-full inline-flex items-center justify-center gap-2 py-4 px-5 rounded-full bg-emerald-400 hover:bg-emerald-300 text-slate-950 font-black text-sm sm:text-base shadow-lg transition-all btn-hover-effect btn-tactile"
                 >
                   <MessageCircle className="w-5 h-5 fill-slate-950" />
                   <span>Ambil Slot & Konsultasi WA</span>
-                </a>
+                </button>
 
                 <p className="text-xs text-blue-100 text-center font-medium mt-2.5 flex items-center justify-center gap-1">
                   <BoltIcon className="w-3.5 h-3.5 text-emerald-300" />
