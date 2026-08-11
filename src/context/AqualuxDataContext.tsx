@@ -14,6 +14,7 @@ export interface AdminContacts {
 }
 
 export interface LinkBioProfile {
+  title?: string;
   handle: string;
   bioText: string;
   instagramUrl: string;
@@ -54,9 +55,10 @@ const DEFAULT_CONTACTS: AdminContacts = {
 };
 
 const DEFAULT_LINKBIO_PROFILE: LinkBioProfile = {
-  handle: '@aqualux.swim',
-  bioText: 'Kursus Renang Privat 1-on-1 & Reguler Malang 🏊‍♂️ Pelatih Berpengalaman Finswimming Jatim.',
-  instagramUrl: 'https://instagram.com/aqualux_swm'
+  title: 'Aqualux Swimming Course',
+  handle: '@aqualux_swim',
+  bioText: 'Kursus Renang Privat 1-on-1 & Reguler Malang 🏊‍♂️ Dibimbing Pelatih Berlisensi.\nPilih menu di bawah untuk konsultasi & pendaftaran! 👇',
+  instagramUrl: 'https://www.instagram.com/aqualux_swim/'
 };
 
 const DEFAULT_LINKBIO_ITEMS: LinkBioItem[] = [
@@ -81,10 +83,19 @@ const DEFAULT_LINKBIO_ITEMS: LinkBioItem[] = [
   {
     id: '3',
     title: 'Chat WA Admin 2 (Coach Abed)',
-    subtitle: 'Info Jadwal & Slot Pelatih Minggu Ini',
+    subtitle: 'Konsultasi Program & Pendaftaran',
     url: 'wa_admin2',
     badge: 'WHATSAPP',
     iconName: 'MessageCircle',
+    enabled: true
+  },
+  {
+    id: '4',
+    title: 'Instagram Resmi @aqualux_swim',
+    subtitle: 'Galeri Foto, Video Sesi & Info Terbaru',
+    url: 'https://www.instagram.com/aqualux_swim/',
+    badge: 'INSTAGRAM',
+    iconName: 'Instagram',
     enabled: true
   }
 ];
@@ -128,7 +139,17 @@ export const AqualuxDataProvider: React.FC<{ children: React.ReactNode }> = ({ c
   const [linkBioProfile, setLinkBioProfile] = useState<LinkBioProfile>(() => {
     try {
       const saved = localStorage.getItem(LOCAL_STORAGE_LINKBIO_PROFILE_KEY);
-      return saved ? JSON.parse(saved) : DEFAULT_LINKBIO_PROFILE;
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        parsed.title = 'Aqualux Swimming Course';
+        parsed.handle = '@aqualux_swim';
+        parsed.bioText = 'Kursus Renang Privat 1-on-1 & Reguler Malang 🏊‍♂️ Dibimbing Pelatih Berlisensi.\nPilih menu di bawah untuk konsultasi & pendaftaran! 👇';
+        if (parsed.instagramUrl === 'https://instagram.com/aqualux_swm' || !parsed.instagramUrl) {
+          parsed.instagramUrl = 'https://www.instagram.com/aqualux_swim/';
+        }
+        return parsed;
+      }
+      return DEFAULT_LINKBIO_PROFILE;
     } catch {
       return DEFAULT_LINKBIO_PROFILE;
     }
@@ -138,7 +159,24 @@ export const AqualuxDataProvider: React.FC<{ children: React.ReactNode }> = ({ c
   const [linkBioItems, setLinkBioItems] = useState<LinkBioItem[]>(() => {
     try {
       const saved = localStorage.getItem(LOCAL_STORAGE_LINKBIO_ITEMS_KEY);
-      return saved ? JSON.parse(saved) : DEFAULT_LINKBIO_ITEMS;
+      if (saved) {
+        const parsed: LinkBioItem[] = JSON.parse(saved);
+        parsed.forEach(item => {
+          if (item.url === 'wa_admin1' || item.url === 'wa_admin2') {
+            item.subtitle = 'Konsultasi Program & Pendaftaran';
+          }
+          if (item.iconName === 'Instagram' || item.url.includes('instagram.com')) {
+            item.title = 'Instagram Resmi @aqualux_swim';
+            item.url = 'https://www.instagram.com/aqualux_swim/';
+          }
+        });
+        const hasIg = parsed.some(item => item.iconName === 'Instagram' || item.url.includes('instagram.com'));
+        if (!hasIg) {
+          parsed.push(DEFAULT_LINKBIO_ITEMS[3]);
+        }
+        return parsed;
+      }
+      return DEFAULT_LINKBIO_ITEMS;
     } catch {
       return DEFAULT_LINKBIO_ITEMS;
     }

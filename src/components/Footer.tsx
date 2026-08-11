@@ -39,7 +39,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenAdmin }) => {
 
             <div className="flex items-center gap-3 pt-2">
               <a
-                href="https://instagram.com/aqualux_swm"
+                href="https://www.instagram.com/aqualux_swim/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-9 h-9 rounded-xl bg-slate-800 border border-slate-700 flex items-center justify-center text-slate-300 hover:text-blue-400 hover:border-blue-500/40 transition-colors"

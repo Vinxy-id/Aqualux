@@ -1,5 +1,38 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import { Lock, KeyRound, Eye, EyeOff, ArrowLeft, ShieldCheck, AlertCircle } from 'lucide-react';
+
+const LOCKOUT_STORAGE_KEY = 'aqualux_login_lockout_v1';
+
+interface LockoutState {
+  until: number;
+  attempts: number;
+}
+
+const readLockout = (): LockoutState => {
+  try {
+    const raw = localStorage.getItem(LOCKOUT_STORAGE_KEY);
+    if (raw) {
+      const parsed = JSON.parse(raw);
+      return {
+        until: typeof parsed.until === 'number' ? parsed.until : 0,
+        attempts: typeof parsed.attempts === 'number' ? parsed.attempts : 0,
+      };
+    }
+  } catch { /* ignore */ }
+  return { until: 0, attempts: 0 };
+};
+
+const writeLockout = (until: number, attempts: number) => {
+  try {
+    localStorage.setItem(LOCKOUT_STORAGE_KEY, JSON.stringify({ until, attempts }));
+  } catch { /* ignore */ }
+};
+
+const clearLockout = () => {
+  try {
+    localStorage.removeItem(LOCKOUT_STORAGE_KEY);
+  } catch { /* ignore */ }
+};
 import { useAuth } from '../context/AuthContext';
 
 interface AdminLoginProps {
@@ -12,8 +45,16 @@ export const AdminLogin: React.FC<AdminLoginProps> = ({ onBackToLanding }) => {
   const [showPassword, setShowPassword] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
   const [isChecking, setIsChecking] = useState(false);
-  const [lockoutUntil, setLockoutUntil] = useState<number | null>(null);
-  const [failedAttempts, setFailedAttempts] = useState(0);
+  const [lockoutUntil, setLockoutUntil] = useState<number | null>(() => {
+    const saved = readLockout();
+    return saved.until > Date.now() ? saved.until : null;
+  });
+  const [failedAttempts, setFailedAttempts] = useState(() => {
+    const saved = readLockout();
+    // If lockout has expired, reset attempts
+    if (saved.until > 0 && saved.until <= Date.now()) return 0;
+    return saved.attempts;
+  });
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -36,15 +77,19 @@ export const AdminLogin: React.FC<AdminLoginProps> = ({ onBackToLanding }) => {
       const next = failedAttempts + 1;
       setFailedAttempts(next);
       if (next >= 5) {
-        setLockoutUntil(Date.now() + 30000);
+        const until = Date.now() + 30000;
+        setLockoutUntil(until);
         setFailedAttempts(0);
+        writeLockout(until, 0);
         setErrorMessage('Terlalu banyak percobaan gagal. Coba lagi dalam 30 detik.');
       } else {
+        writeLockout(0, next);
         setErrorMessage(`Password admin salah. Sisa percobaan: ${5 - next}`);
       }
     } else {
       setErrorMessage('');
       setFailedAttempts(0);
+      clearLockout();
     }
   };
 

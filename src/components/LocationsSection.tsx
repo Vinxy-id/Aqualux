@@ -12,6 +12,21 @@ export const LocationsSection: React.FC = () => {
   const activeLocation = locations[activeMapKey] || locations.ubud;
   const waUrl = buildGeneralWhatsAppUrl();
 
+  /** Only allow Google Maps HTTPS embeds in the iframe. */
+  const isValidMapEmbedUrl = (url: string): boolean => {
+    try {
+      const parsed = new URL(url);
+      return (
+        parsed.protocol === 'https:' &&
+        (parsed.hostname === 'maps.google.com' ||
+          parsed.hostname === 'www.google.com' ||
+          parsed.hostname.endsWith('.google.com'))
+      );
+    } catch {
+      return false;
+    }
+  };
+
   return (
     <section id="lokasi" className="py-16 sm:py-24 bg-slate-50 text-slate-900 border-t border-slate-300 relative overflow-hidden">
       
@@ -190,7 +205,7 @@ export const LocationsSection: React.FC = () => {
 
           {/* Embedded Map iFrame */}
           <div className="relative w-full h-72 sm:h-96 rounded-2xl overflow-hidden border border-slate-300 shadow-inner bg-slate-200">
-            {activeLocation.embedMapUrl ? (
+            {activeLocation.embedMapUrl && isValidMapEmbedUrl(activeLocation.embedMapUrl) ? (
               <iframe
                 title={`Google Map - ${activeLocation.name}`}
                 src={activeLocation.embedMapUrl}

@@ -91,6 +91,18 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onBackToLanding }) => {
     }
   };
 
+  const renderAdminIcon = (iconName: string) => {
+    switch (iconName) {
+      case 'MessageCircle': return <MessageCircle className="w-4 h-4 text-emerald-400" />;
+      case 'Instagram': return <Instagram className="w-4 h-4 text-pink-400" />;
+      case 'Calculator': return <Calculator className="w-4 h-4 text-amber-400" />;
+      case 'MapPin': return <MapPin className="w-4 h-4 text-rose-400" />;
+      case 'GraduationCap': return <GraduationCap className="w-4 h-4 text-cyan-400" />;
+      case 'Lock': return <Lock className="w-4 h-4 text-slate-400" />;
+      case 'Globe': default: return <Globe className="w-4 h-4 text-blue-400" />;
+    }
+  };
+
   const handleAddLinkSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!newTitle.trim() || !newUrl.trim()) return;
@@ -486,6 +498,19 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onBackToLanding }) => {
                 </h4>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div className="sm:col-span-2">
+                    <label className="block font-bold text-slate-900 mb-1">Nama / Judul Profil Bio:</label>
+                    <input
+                      type="text"
+                      value={linkBioProfile.title || 'Aqualux Swimming Course'}
+                      onChange={(e) => {
+                        updateLinkBioProfile({ title: e.target.value });
+                        triggerSaveNotification();
+                      }}
+                      className="w-full px-3.5 py-2.5 bg-white border border-slate-300 rounded-xl font-bold text-slate-950 focus:outline-none focus:border-blue-600"
+                    />
+                  </div>
+
                   <div>
                     <label className="block font-bold text-slate-900 mb-1">Handle Sosial Instagram:</label>
                     <input
@@ -590,14 +615,18 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onBackToLanding }) => {
                                 type="text"
                                 value={item.url}
                                 onChange={(e) => {
-                                  updateLinkBioItem(item.id, { url: e.target.value });
+                                  const val = e.target.value;
+                                  const lower = val.trimStart().toLowerCase();
+                                  if (lower.startsWith('javascript:') || lower.startsWith('data:') || lower.startsWith('vbscript:')) {
+                                    return;
+                                  }
+                                  updateLinkBioItem(item.id, { url: val });
                                   triggerSaveNotification();
                                 }}
                                 className="w-full px-3 py-2 bg-white border border-slate-300 rounded-xl font-mono text-slate-900"
                               />
                             </div>
-
-                            <div>
+                             <div>
                               <label className="block font-bold text-slate-900 mb-1">Badge Tag Label:</label>
                               <input
                                 type="text"
@@ -608,6 +637,26 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onBackToLanding }) => {
                                 }}
                                 className="w-full px-3 py-2 bg-white border border-slate-300 rounded-xl font-mono font-bold text-slate-900"
                               />
+                            </div>
+
+                            <div>
+                              <label className="block font-bold text-slate-900 mb-1">Ikon Tautan:</label>
+                              <select
+                                value={item.iconName || 'Globe'}
+                                onChange={(e) => {
+                                  updateLinkBioItem(item.id, { iconName: e.target.value });
+                                  triggerSaveNotification();
+                                }}
+                                className="w-full px-3 py-2 bg-white border border-slate-300 rounded-xl font-bold text-slate-900"
+                              >
+                                <option value="Globe">Globe (Website)</option>
+                                <option value="MessageCircle">MessageCircle (WhatsApp)</option>
+                                <option value="Instagram">Instagram</option>
+                                <option value="Calculator">Kalkulator</option>
+                                <option value="MapPin">Lokasi Map</option>
+                                <option value="GraduationCap">Edukasi / Program</option>
+                                <option value="Lock">Kunci / Lock</option>
+                              </select>
                             </div>
                           </div>
 
@@ -625,8 +674,8 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onBackToLanding }) => {
                         /* Card Read Mode */
                         <div className="flex items-center justify-between gap-3">
                           <div className="flex items-center gap-3 overflow-hidden">
-                            <div className="w-9 h-9 rounded-xl bg-slate-900 text-blue-400 flex items-center justify-center shrink-0">
-                              <Globe className="w-4 h-4" />
+                            <div className="w-9 h-9 rounded-xl bg-slate-900 flex items-center justify-center shrink-0">
+                              {renderAdminIcon(item.iconName)}
                             </div>
                             <div className="overflow-hidden">
                               <div className="flex items-center gap-2">
@@ -755,6 +804,23 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onBackToLanding }) => {
                       onChange={(e) => setNewBadge(e.target.value)}
                       className="w-full px-3.5 py-2.5 bg-white border border-slate-300 rounded-xl font-mono font-bold text-slate-950 focus:outline-none focus:border-blue-600"
                     />
+                  </div>
+
+                  <div>
+                    <label className="block font-bold text-slate-900 mb-1">Pilih Ikon Tautan:</label>
+                    <select
+                      value={newIconName}
+                      onChange={(e) => setNewIconName(e.target.value)}
+                      className="w-full px-3.5 py-2.5 bg-white border border-slate-300 rounded-xl font-bold text-slate-950 focus:outline-none focus:border-blue-600"
+                    >
+                      <option value="Globe">Globe (Website)</option>
+                      <option value="MessageCircle">MessageCircle (WhatsApp)</option>
+                      <option value="Instagram">Instagram</option>
+                      <option value="Calculator">Kalkulator</option>
+                      <option value="MapPin">Lokasi Map</option>
+                      <option value="GraduationCap">Edukasi / Program</option>
+                      <option value="Lock">Kunci / Lock</option>
+                    </select>
                   </div>
                 </div>
 

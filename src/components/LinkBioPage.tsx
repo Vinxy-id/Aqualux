@@ -55,10 +55,14 @@ export const LinkBioPage: React.FC<LinkBioPageProps> = ({ onBackToLanding, onOpe
     }
   };
 
-  const copyToClipboard = () => {
-    navigator.clipboard.writeText(shareUrl);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2500);
+  const copyToClipboard = async () => {
+    try {
+      await navigator.clipboard.writeText(shareUrl);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2500);
+    } catch {
+      // Clipboard API unavailable or permission denied — fail silently
+    }
   };
 
   const renderIcon = (iconName: string) => {
@@ -72,6 +76,14 @@ export const LinkBioPage: React.FC<LinkBioPageProps> = ({ onBackToLanding, onOpe
       case 'Lock': return <Lock className="w-5 h-5 text-slate-400" />;
       default: return <Sparkles className="w-5 h-5 text-blue-400" />;
     }
+  };
+
+  const getBadgeStyle = (badge: string) => {
+    const upper = badge.toUpperCase();
+    if (upper === 'WHATSAPP') return 'bg-emerald-950/60 text-emerald-400 border-emerald-800/80';
+    if (upper === 'INSTAGRAM') return 'bg-pink-950/60 text-pink-400 border-pink-800/80';
+    if (upper === 'WEBSITE') return 'bg-blue-950/60 text-blue-400 border-blue-800/80';
+    return 'bg-slate-950 text-slate-400 border-slate-800 group-hover:text-blue-400 group-hover:border-blue-500/40';
   };
 
   const activeItems = linkBioItems.filter(item => item.enabled);
@@ -140,13 +152,13 @@ export const LinkBioPage: React.FC<LinkBioPageProps> = ({ onBackToLanding, onOpe
             </div>
 
             <h1 className="text-xl sm:text-2xl font-black text-white font-outfit tracking-tight flex items-center justify-center gap-1.5">
-              <span>Aqualux Private Swim</span>
+              <span>{linkBioProfile.title || 'Aqualux Swimming Course'}</span>
               <CheckBadgeIcon className="w-5 h-5 text-blue-500 shrink-0" />
             </h1>
 
             <p className="text-xs font-mono text-blue-400 font-bold mt-1">{linkBioProfile.handle}</p>
 
-            <p className="text-xs sm:text-sm font-medium text-slate-300 max-w-xs mx-auto mt-2 leading-relaxed">
+            <p className="text-xs sm:text-sm font-medium text-slate-300 max-w-xs sm:max-w-sm mx-auto mt-2 leading-relaxed whitespace-pre-line">
               {linkBioProfile.bioText}
             </p>
 
@@ -156,10 +168,26 @@ export const LinkBioPage: React.FC<LinkBioPageProps> = ({ onBackToLanding, onOpe
                 href={waAdmin1Url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 rounded-2xl bg-slate-900 border border-slate-800 flex items-center justify-center text-emerald-400 hover:bg-emerald-600 hover:text-white transition-all btn-tactile shadow-sm"
-                title="WhatsApp Admin 1"
+                className="w-10 h-10 rounded-2xl bg-slate-900 border border-slate-800 flex items-center justify-center text-emerald-400 hover:bg-emerald-600 hover:text-white transition-all btn-tactile shadow-sm relative"
+                title="WhatsApp Admin 1 (Coach Faqih)"
               >
                 <MessageCircle className="w-5 h-5" />
+                <span className="absolute -top-1 -right-1 w-4 h-4 rounded-full bg-emerald-500 text-slate-950 font-mono font-black text-[9px] flex items-center justify-center border border-slate-950">
+                  1
+                </span>
+              </a>
+
+              <a
+                href={waAdmin2Url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-10 h-10 rounded-2xl bg-slate-900 border border-slate-800 flex items-center justify-center text-emerald-400 hover:bg-emerald-600 hover:text-white transition-all btn-tactile shadow-sm relative"
+                title="WhatsApp Admin 2 (Coach Abed)"
+              >
+                <MessageCircle className="w-5 h-5" />
+                <span className="absolute -top-1 -right-1 w-4 h-4 rounded-full bg-emerald-500 text-slate-950 font-mono font-black text-[9px] flex items-center justify-center border border-slate-950">
+                  2
+                </span>
               </a>
 
               {linkBioProfile.instagramUrl && (
@@ -212,16 +240,16 @@ export const LinkBioPage: React.FC<LinkBioPageProps> = ({ onBackToLanding, onOpe
 
               const CardContent = (
                 <div className="bg-slate-900/90 hover:bg-slate-800/90 border border-slate-800 hover:border-blue-500/60 p-4 rounded-2xl flex items-center justify-between gap-3 transition-all duration-200 card-clean-hover cursor-pointer btn-tactile shadow-lg group">
-                  <div className="flex items-center gap-3.5 min-w-0">
+                  <div className="flex items-center gap-3.5 min-w-0 flex-1">
                     <div className="w-10 h-10 rounded-xl bg-slate-950 border border-slate-800 flex items-center justify-center shrink-0 group-hover:border-blue-500/40">
                       {renderIcon(item.iconName)}
                     </div>
-                    <div className="text-left truncate">
-                      <span className="text-sm font-black text-white font-outfit block truncate group-hover:text-blue-300 transition-colors">
+                    <div className="text-left min-w-0 flex-1">
+                      <span className="text-sm font-black text-white font-outfit block whitespace-normal break-words group-hover:text-blue-300 transition-colors leading-snug">
                         {item.title}
                       </span>
                       {item.subtitle && (
-                        <span className="text-[11px] font-semibold text-slate-400 block truncate mt-0.5">
+                        <span className="text-[11px] font-semibold text-slate-400 block whitespace-normal break-words mt-0.5 leading-relaxed">
                           {item.subtitle}
                         </span>
                       )}
@@ -229,7 +257,7 @@ export const LinkBioPage: React.FC<LinkBioPageProps> = ({ onBackToLanding, onOpe
                   </div>
 
                   {item.badge && (
-                    <span className="text-[10px] font-mono font-bold bg-slate-950 text-slate-400 border border-slate-800 px-2.5 py-1 rounded-full shrink-0 uppercase tracking-wider group-hover:text-blue-400 group-hover:border-blue-500/40">
+                    <span className={`text-[10px] font-mono font-bold border px-2.5 py-1 rounded-full shrink-0 uppercase tracking-wider ${getBadgeStyle(item.badge)}`}>
                       {item.badge}
                     </span>
                   )}
