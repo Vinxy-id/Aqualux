@@ -34,7 +34,7 @@ export const ProgramsSection: React.FC = () => {
               Program Renang Sesuai Kebutuhan
             </h2>
             <p className="mt-2 text-sm sm:text-base font-medium text-slate-700 max-w-xl">
-              Pilih program bimbingan berdasarkan usia atau persiapan khusus ujian fisik yang Anda perlukan.
+              Pilih program latihan berdasarkan usia atau persiapan khusus ujian fisik yang Anda perlukan.
             </p>
           </div>
 
@@ -51,7 +51,7 @@ export const ProgramsSection: React.FC = () => {
         {/* 2 Main Program Cards Grid */}
         <motion.div variants={staggerContainer(0.12)} className="grid grid-cols-1 lg:grid-cols-2 gap-8 text-left">
           
-          {/* KOTAK 1: Program Bimbingan Usia (Anak, Pelajar, Dewasa) */}
+          {/* KOTAK 1: Program Latihan Usia (Anak, Pelajar, Dewasa) */}
           <motion.div
             variants={fadeUp}
             whileHover={{ y: -4 }}
@@ -59,22 +59,30 @@ export const ProgramsSection: React.FC = () => {
             className="rounded-3xl p-5 sm:p-8 flex flex-col justify-between border-2 border-blue-400 bg-gradient-to-br from-blue-700 via-blue-800 to-blue-900 text-white shadow-2xl hover:shadow-blue-900/30 transition-all duration-300 relative group"
           >
             <div>
-              <div className="flex flex-wrap sm:flex-nowrap items-center justify-between gap-2.5 mb-6">
-                <span className="text-[11px] sm:text-xs font-mono font-black uppercase tracking-wider text-blue-100 bg-blue-950/80 px-3.5 py-1.5 rounded-full border border-blue-300/40 shadow-sm inline-flex items-center gap-1.5 max-w-full">
-                  ANAK 5+ • PELAJAR • DEWASA
-                </span>
+              <div className="flex items-start justify-between gap-3 mb-6">
+                <div className="flex flex-wrap items-center gap-1.5 min-w-0">
+                  <span className="text-[10px] sm:text-xs font-mono font-black uppercase tracking-wider text-blue-100 bg-blue-950/80 px-3 py-1 rounded-full border border-blue-300/40 shadow-sm">
+                    ANAK 5+ THN
+                  </span>
+                  <span className="text-[10px] sm:text-xs font-mono font-black uppercase tracking-wider text-blue-100 bg-blue-950/80 px-3 py-1 rounded-full border border-blue-300/40 shadow-sm">
+                    PELAJAR
+                  </span>
+                  <span className="text-[10px] sm:text-xs font-mono font-black uppercase tracking-wider text-blue-100 bg-blue-950/80 px-3 py-1 rounded-full border border-blue-300/40 shadow-sm">
+                    DEWASA 19+
+                  </span>
+                </div>
 
-                <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-2xl bg-white/10 text-white border border-white/20 flex items-center justify-center shrink-0 shadow-xs group-hover:scale-105 transition-transform ml-auto sm:ml-0">
+                <div className="w-11 h-11 rounded-2xl bg-white/10 text-white border border-white/20 flex items-center justify-center shrink-0 shadow-xs group-hover:scale-105 transition-transform">
                   <Users className="w-5 h-5" />
                 </div>
               </div>
 
               <h3 className="text-2xl sm:text-3xl font-black font-outfit text-white mb-3 tracking-tight leading-snug">
-                Program Bimbingan Usia
+                Program Latihan Usia
               </h3>
 
               <p className="text-sm font-semibold text-blue-100 leading-relaxed mb-6">
-                Bimbingan renang privat 1-on-1 & reguler disesuaikan dengan tingkatan usia, karakter, dan target belajar masing-masing peserta.
+                Program latihan renang privat 1-on-1 & reguler disesuaikan dengan tingkatan usia, karakter, dan target belajar masing-masing peserta.
               </p>
 
               {/* Checklist Features */}
@@ -136,20 +144,20 @@ export const ProgramsSection: React.FC = () => {
                 PILIH KATEGORI USIA UNTUK DAFTAR VIA WA:
               </span>
 
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
                 <button
                   type="button"
-                  onClick={() => openWaModal("Halo Admin Aqualux, saya berminat mendaftar Program Anak Pemula (Usia 5+ tahun). Mohon info jadwal pelatih.")}
-                  className="w-full py-3 px-3 rounded-2xl bg-emerald-400 hover:bg-emerald-300 text-slate-950 font-black text-xs sm:text-sm flex items-center justify-center gap-2 shadow-lg transition-all btn-tactile text-center"
+                  onClick={() => openWaModal("Halo Admin Aqualux, saya berminat mendaftar Program Anak (Mulai Usia 5 Tahun). Mohon info jadwal pelatih.")}
+                  className="w-full py-3 px-2.5 rounded-2xl bg-emerald-400 hover:bg-emerald-300 text-slate-950 font-black text-[11px] sm:text-xs flex items-center justify-center gap-1.5 shadow-lg transition-all btn-tactile text-center"
                 >
                   <MessageCircle className="w-4 h-4 shrink-0 fill-slate-950" />
-                  <span>Anak 5+ Thn</span>
+                  <span>Anak Mulai Usia 5 Tahun</span>
                 </button>
 
                 <button
                   type="button"
                   onClick={() => openWaModal("Halo Admin Aqualux, saya berminat mendaftar Program Pelajar & Remaja (12-18 tahun). Mohon info jadwal pelatih.")}
-                  className="w-full py-3 px-3 rounded-2xl bg-emerald-400 hover:bg-emerald-300 text-slate-950 font-black text-xs sm:text-sm flex items-center justify-center gap-2 shadow-lg transition-all btn-tactile text-center"
+                  className="w-full py-3 px-2.5 rounded-2xl bg-emerald-400 hover:bg-emerald-300 text-slate-950 font-black text-[11px] sm:text-xs flex items-center justify-center gap-1.5 shadow-lg transition-all btn-tactile text-center"
                 >
                   <MessageCircle className="w-4 h-4 shrink-0 fill-slate-950" />
                   <span>Pelajar (12-18)</span>
@@ -157,31 +165,31 @@ export const ProgramsSection: React.FC = () => {
 
                 <button
                   type="button"
-                  onClick={() => openWaModal("Halo Admin Aqualux, saya berminat mendaftar Program Dewasa & Umum (19+ tahun). Mohon info jadwal pelatih.")}
-                  className="w-full py-3 px-3 rounded-2xl bg-emerald-400 hover:bg-emerald-300 text-slate-950 font-black text-xs sm:text-sm flex items-center justify-center gap-2 shadow-lg transition-all btn-tactile text-center"
+                  onClick={() => openWaModal("Halo Admin Aqualux, saya berminat mendaftar Program Dewasa (Mulai Usia 19 Tahun). Mohon info jadwal pelatih.")}
+                  className="w-full py-3 px-2.5 rounded-2xl bg-emerald-400 hover:bg-emerald-300 text-slate-950 font-black text-[11px] sm:text-xs flex items-center justify-center gap-1.5 shadow-lg transition-all btn-tactile text-center"
                 >
                   <MessageCircle className="w-4 h-4 shrink-0 fill-slate-950" />
-                  <span>Dewasa (19+)</span>
+                  <span>Dewasa Mulai Usia 19 Tahun</span>
                 </button>
               </div>
             </div>
           </motion.div>
 
-          {/* KOTAK 2: Persiapan Tes TNI / Polri (TANDA KHUSUS KEDINASAN) */}
+          {/* KOTAK 2: Persiapan Tes TNI / Polri (TANDA KHUSUS KEDINASAN - WARNA HARMONIS) */}
           <motion.div
             variants={fadeUp}
             whileHover={{ y: -4 }}
             transition={{ duration: 0.25 }}
-            className="rounded-3xl p-5 sm:p-8 flex flex-col justify-between border-2 border-amber-400 bg-gradient-to-br from-blue-900 via-slate-900 to-blue-950 text-white shadow-2xl shadow-amber-500/10 hover:shadow-amber-500/25 transition-all duration-300 relative group"
+            className="rounded-3xl p-5 sm:p-8 flex flex-col justify-between border-2 border-amber-400 bg-gradient-to-br from-blue-700 via-blue-800 to-blue-900 text-white shadow-2xl hover:shadow-blue-900/30 transition-all duration-300 relative group"
           >
             <div>
-              <div className="flex flex-wrap sm:flex-nowrap items-center justify-between gap-2.5 mb-6">
-                <span className="text-[11px] sm:text-xs font-mono font-black uppercase tracking-wider text-slate-950 bg-gradient-to-r from-amber-400 via-yellow-300 to-amber-400 px-3.5 py-1.5 rounded-full border border-amber-200 shadow-md inline-flex items-center gap-1.5 max-w-full">
+              <div className="flex items-start justify-between gap-3 mb-6">
+                <span className="text-[10px] sm:text-xs font-mono font-black uppercase tracking-wider text-slate-950 bg-gradient-to-r from-amber-400 via-yellow-300 to-amber-400 px-3.5 py-1.5 rounded-full border border-amber-200 shadow-md inline-flex items-center gap-1.5">
                   <Flame className="w-3.5 h-3.5 fill-slate-950 shrink-0" />
                   <span>PROGRAM KHUSUS • TNI / POLRI</span>
                 </span>
 
-                <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-2xl bg-amber-400/20 text-amber-300 border border-amber-400/40 flex items-center justify-center shrink-0 shadow-md group-hover:scale-105 transition-transform ml-auto sm:ml-0">
+                <div className="w-11 h-11 rounded-2xl bg-amber-400/20 text-amber-300 border border-amber-400/40 flex items-center justify-center shrink-0 shadow-md group-hover:scale-105 transition-transform">
                   <ShieldAlert className="w-5 h-5" />
                 </div>
               </div>
@@ -191,7 +199,7 @@ export const ProgramsSection: React.FC = () => {
               </h3>
 
               <p className="text-sm font-semibold text-blue-100 leading-relaxed mb-6">
-                Bimbingan intensif target waktu renang 50 meter gaya dada dan ketahanan fisik untuk persiapan seleksi ketangkasan renang kedinasan.
+                Latihan intensif target waktu renang 25 & 50 meter gaya dada & gaya crawl serta ketahanan fisik untuk persiapan seleksi ketangkasan renang kedinasan.
               </p>
 
               {/* Checklist Features */}
@@ -206,7 +214,7 @@ export const ProgramsSection: React.FC = () => {
                   <div className="w-5 h-5 rounded-full bg-amber-400/20 border border-amber-400/50 flex items-center justify-center shrink-0">
                     <Check className="w-3.5 h-3.5 text-amber-300 stroke-[3]" />
                   </div>
-                  <span>Latihan Kecepatan 25 meter dan 50 Meter</span>
+                  <span>Latihan Kecepatan 25 meter & 50 Meter gaya dada & gaya crawl</span>
                 </li>
                 <li className="flex items-center gap-3 text-xs sm:text-sm font-bold text-white">
                   <div className="w-5 h-5 rounded-full bg-amber-400/20 border border-amber-400/50 flex items-center justify-center shrink-0">

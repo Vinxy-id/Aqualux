@@ -129,7 +129,7 @@ export const Hero: React.FC = () => {
 
                 <div className="absolute bottom-3 left-3 right-3 bg-white/95 backdrop-blur-md p-3 sm:p-3.5 rounded-xl border border-slate-200 text-xs shadow-md">
                   <div className="flex items-center justify-between text-slate-900 font-extrabold mb-1">
-                    <span className="text-blue-700 font-outfit text-xs sm:text-sm">AQUALUX Private Swim</span>
+                    <span className="text-blue-700 font-outfit text-xs sm:text-sm">AQUALUX Swimming Course</span>
                     <span className="bg-blue-100 text-blue-900 border border-blue-300 text-[10px] px-2 py-0.5 rounded-full font-mono font-bold">
                       Pelatih Berpengalaman
                     </span>

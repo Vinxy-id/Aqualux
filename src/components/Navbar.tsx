@@ -32,7 +32,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenAdmin }) => {
           <a href="#" className="flex items-center gap-2.5 group text-left">
             <img 
               src="./aqualux-logo.png" 
-              alt="AQUALUX Private Swim" 
+              alt="AQUALUX Swimming Course" 
               className="h-10 sm:h-12 w-auto object-contain transition-transform group-hover:scale-105"
             />
             <div className="flex flex-col">
@@ -40,7 +40,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenAdmin }) => {
                 AQUALUX
               </span>
               <span className="text-[10px] sm:text-[11px] font-mono font-bold text-blue-700 tracking-wider uppercase leading-tight mt-0.5">
-                Private Swim
+                Swimming Course
               </span>
             </div>
           </a>

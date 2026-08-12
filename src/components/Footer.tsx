@@ -28,7 +28,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenAdmin }) => {
             <div className="bg-white p-2.5 rounded-2xl inline-block shadow-md">
               <img 
                 src="./aqualux-logo.png" 
-                alt="AQUALUX Private Swim" 
+                alt="AQUALUX Swimming Course" 
                 className="h-14 w-auto object-contain"
               />
             </div>
@@ -143,7 +143,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenAdmin }) => {
 
         {/* Bottom Note */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between text-[11px] text-slate-500 gap-4">
-          <p>© {new Date().getFullYear()} AQUALUX Private Swim. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} AQUALUX Swimming Course. All rights reserved.</p>
           {onOpenAdmin && (
             <button
               type="button"

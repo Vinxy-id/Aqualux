@@ -6,7 +6,7 @@ test.describe('Aqualux Link-in-Bio E2E Tests', () => {
     await page.goto('/#links');
 
     await expect(page.getByText('AQUALUX BIO LINK')).toBeVisible();
-    await expect(page.getByRole('heading', { name: /Aqualux Private Swim/i })).toBeVisible();
+    await expect(page.getByRole('heading', { name: /Aqualux Swimming Course/i })).toBeVisible();
     await expect(page.getByText('@aqualux.swim')).toBeVisible();
   });
 

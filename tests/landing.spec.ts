@@ -8,7 +8,7 @@ test.describe('Aqualux Landing Page E2E Tests', () => {
 
   test('should display official brand title and logo', async ({ page }) => {
     await expect(page).toHaveTitle(/AQUALUX Swimming Course/i);
-    const logo = page.locator('img[alt="AQUALUX Private Swim"]').first();
+    const logo = page.locator('img[alt="AQUALUX Swimming Course"]').first();
     await expect(logo).toBeVisible();
   });
 
