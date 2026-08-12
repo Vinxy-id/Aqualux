@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Suspense, lazy } from 'react';
 import { AqualuxDataProvider } from './context/AqualuxDataContext';
 import { AuthProvider, useAuth } from './context/AuthContext';
 import { Navbar } from './components/Navbar';
@@ -12,10 +12,11 @@ import { TestimonialsSection } from './components/TestimonialsSection';
 import { UrgencyBanner } from './components/UrgencyBanner';
 import { FAQSection } from './components/FAQSection';
 import { Footer } from './components/Footer';
-import { AdminLogin } from './components/AdminLogin';
-import { AdminPage } from './components/AdminPage';
 import { LinkBioPage } from './components/LinkBioPage';
 import { WhatsAppModal } from './components/WhatsAppModal';
+
+const AdminLogin = lazy(() => import('./components/AdminLogin').then(m => ({ default: m.AdminLogin })));
+const AdminPage = lazy(() => import('./components/AdminPage').then(m => ({ default: m.AdminPage })));
 
 function AppContent() {
   const { isAuthenticated } = useAuth();
@@ -81,10 +82,15 @@ function AppContent() {
   };
 
   if (route === 'admin') {
-    if (!isAuthenticated) {
-      return <AdminLogin onBackToLanding={navigateToLanding} />;
-    }
-    return <AdminPage onBackToLanding={navigateToLanding} />;
+    return (
+      <Suspense fallback={<div className="min-h-screen bg-slate-900 flex items-center justify-center text-white font-mono text-xs">Memuat Portal Admin...</div>}>
+        {!isAuthenticated ? (
+          <AdminLogin onBackToLanding={navigateToLanding} />
+        ) : (
+          <AdminPage onBackToLanding={navigateToLanding} />
+        )}
+      </Suspense>
+    );
   }
 
   if (route === 'links') {

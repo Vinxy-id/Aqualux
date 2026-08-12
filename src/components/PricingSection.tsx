@@ -72,7 +72,7 @@ export const PricingSection: React.FC = () => {
         {/* Header */}
         <motion.div variants={fadeUp} className="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
           <span className="text-xs font-mono font-bold uppercase tracking-wider text-blue-900 bg-blue-100 px-3.5 py-1.5 rounded-full mb-3 inline-block border border-blue-300">
-            TRANSPARANSI BIAYA KURSUS
+            PRICE LIST (PAKET)
           </span>
           <h2 className="text-3xl sm:text-4xl font-black text-slate-950 font-outfit tracking-tight text-balance">
             Daftar Paket Harga Les Renang

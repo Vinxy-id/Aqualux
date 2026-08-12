@@ -210,5 +210,10 @@ export const FAQ_DATA: FAQItem[] = [
     question: 'Berapa lama masa berlaku untuk paket 4x atau 8x pertemuan?',
     answer: 'Masa berlaku paket adalah **1-2 bulan** sejak sesi pertama dimulai. Jika peserta berhalangan hadir atau sakit, sesi latihan tidak hangus dan bisa di-reschedule.',
     category: 'jadwal'
+  },
+  {
+    question: 'Apakah biaya kursus renang bisa dibayar per pertemuan?',
+    answer: 'Mohon maaf, **pembayaran tidak bisa dilakukan per pertemuan**. Seluruh pembayaran biaya bimbingan di Aqualux dilakukan sekaligus di awal untuk **paket bulanan (4x atau 8x pertemuan)** sebelum program bimbingan dimulai.',
+    category: 'harga'
   }
 ];

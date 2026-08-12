@@ -5,7 +5,7 @@ import { FAQ_DATA } from '../data/aqualuxData';
 import { useAqualuxData } from '../context/AqualuxDataContext';
 import { fadeUp, staggerContainer, viewportOnce } from '../utils/motion';
 
-const DEFAULT_VISIBLE_INDICES = [0, 1, 2, 4, 6, 10]; // 1-indexed points: 1, 2, 3, 5, 7, 11
+const DEFAULT_VISIBLE_INDICES = [0, 1, 2, 4, 6, 10, 11]; // 1-indexed points: 1, 2, 3, 5, 7, 11, 12
 
 export const FAQSection: React.FC = () => {
   const { openWaModal } = useAqualuxData();
