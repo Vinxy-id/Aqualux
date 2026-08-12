@@ -18,7 +18,7 @@ export const LOCATIONS_DATA: Record<LocationKey, LocationInfo> = {
     key: 'tychi',
     name: 'Hotel Tychi Malang',
     htm: 30000,
-    days: 'Senin – Jumat',
+    days: 'Setiap Hari (Fleksibel)',
     hours: '06.00 – 17.00 WIB',
     badge: 'Favorit Peserta',
     address: 'Jl. Jaksa Agung Suprapto No.17, Rampal Celaket, Klojen, Kota Malang',
@@ -31,7 +31,7 @@ export const LOCATIONS_DATA: Record<LocationKey, LocationInfo> = {
     key: 'savana',
     name: 'Hotel Savana Malang',
     htm: 50000,
-    days: 'Senin, Rabu, Kamis, Jumat',
+    days: 'Setiap Hari (Kecuali Selasa Libur)',
     hours: '06.00 – 17.00 WIB',
     badge: 'Include Makan & Minum',
     address: 'Jl. Letjen Sutoyo No.32-34, Rampal Celaket, Klojen, Kota Malang',
@@ -44,12 +44,12 @@ export const LOCATIONS_DATA: Record<LocationKey, LocationInfo> = {
 
 export const COURSE_RATES: Record<ClassType, Record<SessionCount, { price: number; perSession: number; discount?: string }>> = {
   privat: {
-    4: { price: 600000, perSession: 150000 },
-    8: { price: 1000000, perSession: 125000, discount: 'Hemat Rp 200.000!' }
+    4: { price: 500000, perSession: 125000 },
+    8: { price: 850000, perSession: 106250, discount: 'Hemat & Terjangkau!' }
   },
   reguler: {
-    4: { price: 400000, perSession: 100000 },
-    8: { price: 600000, perSession: 75000, discount: 'Hemat Rp 200.000!' }
+    4: { price: 350000, perSession: 87500 },
+    8: { price: 550000, perSession: 68750, discount: 'Hemat & Terjangkau!' }
   }
 };
 
@@ -64,7 +64,7 @@ export const COACH_ACHIEVEMENTS: CoachAchievement[] = [
 export const CATEGORY_PROGRAMS: CategoryProgram[] = [
   {
     id: 'anak',
-    title: 'Anak Usia 5+ Tahun',
+    title: 'Anak Mulai Usia 5 Tahun',
     target: 'Anak Pemula / Takut Air',
     iconName: 'Baby',
     description: 'Pendekatan berenang yang ramah anak, aman, dan menyenangkan. Mengubah rasa takut air menjadi percaya diri.',

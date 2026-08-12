@@ -1,16 +1,16 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Award, ShieldCheck, HeartHandshake, FileSpreadsheet, Trophy, Medal, Star, CheckCircle2, UserCheck } from 'lucide-react';
+import { Award, ShieldCheck, HeartHandshake, FileSpreadsheet, Trophy, Medal, Star, CheckCircle2, TrendingUp } from 'lucide-react';
 import { fadeUp, staggerContainer, viewportOnce } from '../utils/motion';
 
 export const WhyChooseUs: React.FC = () => {
   const coachAchievements = [
     {
-      title: 'Pengalaman Atlet Finswimming',
-      subtitle: 'KEJUARAAN POPDA & KEJURNAS JATIM',
-      description: 'Pelatih berlatar belakang atlet renang & finswimming tingkat Jawa Timur hingga Kejurnas dengan penguasaan teknik dasar dan gaya renang yang baik.',
+      title: 'Pengalaman Atlet Renang',
+      subtitle: 'REKAM JEJAK ATLET & PELATIH BERPENGALAMAN',
+      description: 'Pelatih berlatar belakang atlet renang dengan penguasaan teknik dasar dan gaya renang yang presisi.',
       icon: <Trophy className="w-6 h-6 text-amber-500" />,
-      badge: 'POPDA & KEJURNAS',
+      badge: 'ATLET RENANG',
       footer: 'Latar Belakang Atlet & Pelatih'
     },
     {
@@ -22,16 +22,16 @@ export const WhyChooseUs: React.FC = () => {
       footer: 'Metode Belajar Aman & Bertahap'
     },
     {
-      title: 'Persiapan Tes Renang Kedinasan',
-      subtitle: 'BIMBINGAN TEKNIK GAYA DADA & WATER TRAPPEN',
-      description: 'Mendampingi peserta persiapan seleksi TNI/Polri/Kedinasan untuk melatih teknik gaya dada 50 meter dan daya tahan fisik saat tes.',
-      icon: <UserCheck className="w-6 h-6 text-emerald-600" />,
-      badge: 'PROGRAM KEDINASAN',
-      footer: 'Fokus Target Waktu & Teknik'
+      title: 'Pendampingan Progres Terukur',
+      subtitle: 'EVALUASI KEMAMPUAN MENGAPUNG & GAYA RENANG',
+      description: 'Setiap perkembangan teknik mengapung, pernapasan, hingga gaya renang murid selalu dievaluasi secara bertahap dan terukur.',
+      icon: <TrendingUp className="w-6 h-6 text-emerald-600" />,
+      badge: 'PROGRES TERUKUR',
+      footer: 'Evaluasi Berkelanjutan'
     },
     {
       title: 'Pendekatan Sabar & Ramah',
-      subtitle: 'UNTUK ANAK 5+, REMAJA & DEWASA',
+      subtitle: 'UNTUK ANAK MULAI USIA 5 TAHUN, REMAJA & DEWASA',
       description: 'Membimbing murid pemula dari anak-anak hingga dewasa secara bertahap agar merasa tenang dan percaya diri di dalam air.',
       icon: <Star className="w-6 h-6 text-indigo-600" />,
       badge: 'ANAK & DEWASA',

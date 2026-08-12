@@ -11,7 +11,7 @@ import { fadeUp, staggerContainer, viewportOnce } from '../utils/motion';
 
 export const PricingCalculator: React.FC = () => {
   const { openWaModal } = useAqualuxData();
-  const [selectedCategory, setSelectedCategory] = useState<string>('Anak Usia 5+ Tahun');
+  const [selectedCategory, setSelectedCategory] = useState<string>('Anak Mulai Usia 5 Tahun');
   const [classType, setClassType] = useState<ClassType>('privat');
   const [sessions, setSessions] = useState<SessionCount>(8);
   const [locationKey, setLocationKey] = useState<LocationKey>('tychi');

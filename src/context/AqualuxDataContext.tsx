@@ -2,11 +2,11 @@ import React, { createContext, useContext, useState, useEffect } from 'react';
 import { LocationInfo, ClassType, SessionCount, LocationKey } from '../types';
 import { LOCATIONS_DATA, COURSE_RATES } from '../data/aqualuxData';
 
-const LOCAL_STORAGE_LOCATIONS_KEY = 'aqualux_locations_data_v1';
-const LOCAL_STORAGE_RATES_KEY = 'aqualux_course_rates_v1';
+const LOCAL_STORAGE_LOCATIONS_KEY = 'aqualux_locations_data_v2';
+const LOCAL_STORAGE_RATES_KEY = 'aqualux_course_rates_v2';
 const LOCAL_STORAGE_CONTACTS_KEY = 'aqualux_admin_contacts_v1';
 const LOCAL_STORAGE_LINKBIO_PROFILE_KEY = 'aqualux_linkbio_profile_v1';
-const LOCAL_STORAGE_LINKBIO_ITEMS_KEY = 'aqualux_linkbio_items_v1';
+const LOCAL_STORAGE_LINKBIO_ITEMS_KEY = 'aqualux_linkbio_items_v2';
 
 export interface AdminContacts {
   faqihPhone: string;
