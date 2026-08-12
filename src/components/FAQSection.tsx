@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronDown, HelpCircle, MessageCircle } from 'lucide-react';
 import { FAQ_DATA } from '../data/aqualuxData';
 import { useAqualuxData } from '../context/AqualuxDataContext';
@@ -61,46 +61,59 @@ export const FAQSection: React.FC = () => {
           </p>
         </motion.div>
 
-        {/* Accordion List - Clean Layout without Stagger Gaps */}
-        <div className="space-y-3.5 text-left">
-          {visibleItems.map(({ item, originalIndex }) => {
-            const isOpen = openIndex === originalIndex;
+        {/* Accordion List with Smooth Layout & Height Motion */}
+        <motion.div layout className="space-y-3.5 text-left">
+          <AnimatePresence initial={false}>
+            {visibleItems.map(({ item, originalIndex }) => {
+              const isOpen = openIndex === originalIndex;
 
-            return (
-              <motion.div
-                key={originalIndex}
-                layout
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -10 }}
-                transition={{ duration: 0.2 }}
-                className="card-clean-elevated rounded-2xl overflow-hidden"
-              >
-                <button
-                  type="button"
-                  onClick={() => toggleAccordion(originalIndex)}
-                  className="w-full p-4 sm:p-5 text-left flex items-center justify-between gap-4 font-black text-slate-950 font-outfit text-sm sm:text-base hover:text-blue-700 transition-colors btn-tactile"
+              return (
+                <motion.div
+                  key={originalIndex}
+                  layout
+                  initial={{ opacity: 0, y: 12 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -12 }}
+                  transition={{ duration: 0.25, ease: 'easeInOut' }}
+                  className="card-clean-elevated rounded-2xl overflow-hidden"
                 >
-                  <span className="flex items-center gap-3">
-                    <HelpCircle className="w-5 h-5 text-blue-700 shrink-0" />
-                    <span>{item.question}</span>
-                  </span>
-                  <ChevronDown className={`w-5 h-5 text-slate-600 transition-transform duration-200 ${
-                    isOpen ? 'rotate-180 text-blue-700' : ''
-                  }`} />
-                </button>
+                  <button
+                    type="button"
+                    onClick={() => toggleAccordion(originalIndex)}
+                    className="w-full p-4 sm:p-5 text-left flex items-center justify-between gap-4 font-black text-slate-950 font-outfit text-sm sm:text-base hover:text-blue-700 transition-colors btn-tactile"
+                  >
+                    <span className="flex items-center gap-3">
+                      <HelpCircle className="w-5 h-5 text-blue-700 shrink-0" />
+                      <span>{item.question}</span>
+                    </span>
+                    <ChevronDown className={`w-5 h-5 text-slate-600 transition-transform duration-300 ${
+                      isOpen ? 'rotate-180 text-blue-700' : ''
+                    }`} />
+                  </button>
 
-                {isOpen && (
-                  <div className="px-5 pb-5 text-xs sm:text-sm text-slate-900 leading-relaxed border-t border-slate-200 pt-3">
-                    <p className="bg-slate-50 p-4 rounded-xl border border-slate-200 text-slate-800 font-medium leading-relaxed whitespace-pre-line">
-                      {renderFormattedAnswer(item.answer)}
-                    </p>
-                  </div>
-                )}
-              </motion.div>
-            );
-          })}
-        </div>
+                  <AnimatePresence initial={false}>
+                    {isOpen && (
+                      <motion.div
+                        key="answer-content"
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: 'auto', opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.25, ease: [0.04, 0.62, 0.23, 0.98] }}
+                        className="overflow-hidden"
+                      >
+                        <div className="px-5 pb-5 text-xs sm:text-sm text-slate-900 leading-relaxed border-t border-slate-200 pt-3">
+                          <p className="bg-slate-50 p-4 rounded-xl border border-slate-200 text-slate-800 font-medium leading-relaxed whitespace-pre-line">
+                            {renderFormattedAnswer(item.answer)}
+                          </p>
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </motion.div>
+              );
+            })}
+          </AnimatePresence>
+        </motion.div>
 
         {/* Show More / Show Less Toggle Button */}
         {!showAllFaq ? (

@@ -5,6 +5,7 @@ import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
 import { AchievementsBar } from './components/AchievementsBar';
 import { ProgramsSection } from './components/ProgramsSection';
+import { PricingSection } from './components/PricingSection';
 import { LocationsSection } from './components/LocationsSection';
 import { WhyChooseUs } from './components/WhyChooseUs';
 import { TestimonialsSection } from './components/TestimonialsSection';
@@ -102,6 +103,7 @@ function AppContent() {
         <Hero />
         <AchievementsBar />
         <ProgramsSection />
+        <PricingSection />
         <LocationsSection />
         <WhyChooseUs />
         <TestimonialsSection />

@@ -54,6 +54,6 @@ export function buildWhatsAppUrl(
 }
 
 export function buildGeneralWhatsAppUrl(messageCustom?: string): string {
-  const msg = messageCustom || "Halo Admin Aqualux, saya mau tanya-tanya informasi kursus renang privat/reguler di Malang.";
+  const msg = messageCustom || "Halo Admin Aqualux, saya mau tanya-tanya informasi kursus renang privat/reguler di Kota Malang.";
   return buildWhatsAppUrlForPhone('6282142698440', msg);
 }

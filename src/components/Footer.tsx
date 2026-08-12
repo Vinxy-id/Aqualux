@@ -34,7 +34,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenAdmin }) => {
             </div>
 
             <p className="text-xs text-slate-400 leading-relaxed max-w-sm">
-              Jasa kursus renang profesional privat & reguler di kota Malang. Membantu anak mulai usia 5 tahun, pelajar, dewasa, hingga persiapan fisik ujian TNI & Polri berenang aman & percaya diri.
+              Kursus renang profesional privat & reguler di kota Malang. Membantu anak mulai usia 5 tahun, pelajar, dewasa, hingga persiapan fisik ujian TNI & Polri berenang aman & percaya diri.
             </p>
 
             <div className="flex items-center gap-3 pt-2">

@@ -77,7 +77,7 @@ const DEFAULT_LINKBIO_ITEMS: LinkBioItem[] = [
   },
   {
     id: '2',
-    title: 'Chat WA Admin 1 (Coach Faqih)',
+    title: 'Chat WA Coach Faqih',
     subtitle: 'Konsultasi Program & Pendaftaran',
     url: 'wa_admin1',
     badge: 'WHATSAPP',
@@ -86,7 +86,7 @@ const DEFAULT_LINKBIO_ITEMS: LinkBioItem[] = [
   },
   {
     id: '3',
-    title: 'Chat WA Admin 2 (Coach Abed)',
+    title: 'Chat WA Coach Abed',
     subtitle: 'Konsultasi Program & Pendaftaran',
     url: 'wa_admin2',
     badge: 'WHATSAPP',
@@ -112,7 +112,7 @@ export const AqualuxDataProvider: React.FC<{ children: React.ReactNode }> = ({ c
   const [waModalMessage, setWaModalMessage] = useState('');
 
   const openWaModal = (message?: string) => {
-    setWaModalMessage(message || 'Halo Admin Aqualux, saya mau tanya-tanya informasi kursus renang privat/reguler di Malang.');
+    setWaModalMessage(message || 'Halo Admin Aqualux, saya mau tanya-tanya informasi kursus renang privat/reguler di Kota Malang.');
     setIsWaModalOpen(true);
   };
 

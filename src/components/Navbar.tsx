@@ -48,6 +48,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenAdmin }) => {
           {/* Desktop Nav Pills */}
           <nav className="hidden md:flex items-center gap-1.5 bg-slate-100 p-1.5 rounded-full border border-slate-300 text-xs font-bold text-slate-800">
             <a href="#program" className="px-4 py-2 rounded-full hover:bg-white hover:text-blue-700 hover:shadow-xs transition-all">Program Kursus</a>
+            <a href="#harga" className="px-4 py-2 rounded-full hover:bg-white hover:text-blue-700 hover:shadow-xs transition-all">Paket Harga</a>
             <a href="#lokasi" className="px-4 py-2 rounded-full hover:bg-white hover:text-blue-700 hover:shadow-xs transition-all">Lokasi & HTM</a>
             <a href="#keunggulan" className="px-4 py-2 rounded-full hover:bg-white hover:text-blue-700 hover:shadow-xs transition-all">Keunggulan Pelatih</a>
             <a href="#testimoni" className="px-4 py-2 rounded-full hover:bg-white hover:text-blue-700 hover:shadow-xs transition-all">Testimoni Alumni</a>
@@ -88,6 +89,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenAdmin }) => {
       {mobileMenuOpen && (
         <div className="md:hidden bg-white border-b border-slate-300 px-4 py-5 space-y-3 text-slate-900 text-sm font-bold">
           <a href="#program" onClick={() => setMobileMenuOpen(false)} className="block py-2">Program Kursus</a>
+          <a href="#harga" onClick={() => setMobileMenuOpen(false)} className="block py-2">Paket Harga</a>
           <a href="#lokasi" onClick={() => setMobileMenuOpen(false)} className="block py-2">Lokasi Hotel & HTM</a>
           <a href="#keunggulan" onClick={() => setMobileMenuOpen(false)} className="block py-2">Keunggulan Pelatih</a>
           <a href="#testimoni" onClick={() => setMobileMenuOpen(false)} className="block py-2">Testimoni Alumni</a>
