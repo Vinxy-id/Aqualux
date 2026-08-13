@@ -91,25 +91,17 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenAdmin }) => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between">
             
-            {/* Official Logo Brand + Text Title */}
+            {/* Official Full Logo Brand Image (Icon + Text Combined) */}
             <a 
               href="#" 
               onClick={(e) => handleNavClick(e, '#')}
-              className="flex items-center gap-2.5 group text-left cursor-pointer"
+              className="flex items-center group text-left cursor-pointer"
             >
               <img 
                 src="./aqualux-logo.png" 
                 alt="AQUALUX Swimming Course" 
                 className="h-10 sm:h-12 w-auto object-contain transition-transform group-hover:scale-105"
               />
-              <div className="flex flex-col">
-                <span className="font-black text-lg sm:text-xl font-outfit text-slate-950 tracking-tight leading-none group-hover:text-blue-700 transition-colors">
-                  AQUALUX
-                </span>
-                <span className="text-[10px] sm:text-[11px] font-mono font-bold text-blue-700 tracking-wider uppercase leading-tight mt-0.5">
-                  Swimming Course
-                </span>
-              </div>
             </a>
 
             {/* Desktop Nav Pills */}
