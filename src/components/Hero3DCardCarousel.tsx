@@ -61,7 +61,7 @@ const CAROUSEL_CARDS: CardData[] = [
     id: 4,
     title: 'Solusi Anak Takut & Trauma Air',
     subtitle: 'Metode Water Familiarity aman tanpa paksaan. Anak jadi lebih tenang, berani, dan ceria.',
-    badge: 'Ramah Anak 5+ Thn',
+    badge: 'Ramah Anak-Anak',
     image: 'https://images.unsplash.com/photo-1530549387789-4c1017266635?auto=format&fit=crop&w=800&q=80',
     highlight1Label: 'Peralatan:',
     highlight1Val: 'Gratis Dipinjamkan',
@@ -332,7 +332,7 @@ export const Hero3DCardCarousel: React.FC = () => {
                   {/* Top Logo & Tag Overlay */}
                   <div className="absolute top-2.5 left-2.5 right-2.5 flex items-center justify-between pointer-events-none">
                     <div className="bg-white/95 backdrop-blur-md px-2 py-1 rounded-xl border border-slate-200 shadow-md">
-                      <img src="./aqualux-logo.png" alt="AQUALUX Logo" className="h-5 sm:h-6 w-auto object-contain" />
+                      <img src="./aqualux-icon.png" alt="AQUALUX Logo" className="h-5 sm:h-6 w-auto object-contain" />
                     </div>
 
                     <span className={`px-2.5 py-0.5 rounded-full text-[10px] sm:text-xs font-mono font-bold border shadow-xs backdrop-blur-md ${card.tagColor}`}>

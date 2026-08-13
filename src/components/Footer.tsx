@@ -27,9 +27,9 @@ export const Footer: React.FC<FooterProps> = ({ onOpenAdmin }) => {
           <motion.div variants={fadeUp} className="lg:col-span-4 space-y-4 text-left">
             <div className="bg-white p-2.5 rounded-2xl inline-block shadow-md">
               <img 
-                src="./aqualux-logo.png" 
+                src="./aqualux-icon.png" 
                 alt="AQUALUX Swimming Course" 
-                className="h-14 w-auto object-contain"
+                className="h-12 w-auto object-contain"
               />
             </div>
 

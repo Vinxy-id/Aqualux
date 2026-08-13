@@ -100,7 +100,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenAdmin }) => {
               <img 
                 src="./aqualux-logo.png" 
                 alt="AQUALUX Swimming Course" 
-                className="h-10 sm:h-12 w-auto object-contain transition-transform group-hover:scale-105"
+                className="h-12 sm:h-15 w-auto object-contain transition-transform group-hover:scale-105"
               />
             </a>
 
