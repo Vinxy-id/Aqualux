@@ -6,33 +6,33 @@ import { fadeUp, staggerContainer, viewportOnce } from '../utils/motion';
 export const WhyChooseUs: React.FC = () => {
   const coachAchievements = [
     {
-      title: 'Pengalaman Atlet Renang',
+      title: 'Pelatih Renang',
       subtitle: 'REKAM JEJAK ATLET & PELATIH BERPENGALAMAN',
-      description: 'Pelatih berlatar belakang atlet renang dengan penguasaan teknik dasar dan gaya renang yang presisi.',
+      description: 'Pelatih berlatar belakang atlet renang dengan penguasaan teknik dasar dan gaya renang yang benar.',
       icon: <Trophy className="w-6 h-6 text-amber-500" />,
-      badge: 'ATLET RENANG',
+      badge: 'PELATIH RENANG',
       footer: 'Latar Belakang Atlet & Pelatih'
     },
     {
-      title: 'Metode Pengajaran Terstruktur',
-      subtitle: 'SERTIFIKASI & METODOLOGI BERTAHAP',
-      description: 'Menggunakan metode kepelatihan yang terstruktur, menyesuaikan ritme belajar peserta, serta mengutamakan keselamatan selama di kolam.',
+      title: 'Program Latihan',
+      subtitle: 'BERLISENSI & PROGRAM LATIHAN BERTAHAP',
+      description: 'Menggunakan metode latihan yang terstruktur, menyesuaikan ritme belajar peserta, serta mengutamakan keselamatan selama di kolam.',
       icon: <Medal className="w-6 h-6 text-blue-600" />,
-      badge: 'METODE TERSTRUKTUR',
-      footer: 'Metode Belajar Aman & Bertahap'
+      badge: 'METODE LATIHAN TERSTRUKTUR',
+      footer: 'Metode Latihan Ramah, Aman & Bertahap'
     },
     {
-      title: 'Pendampingan Progres Terukur',
-      subtitle: 'EVALUASI KEMAMPUAN MENGAPUNG & GAYA RENANG',
-      description: 'Setiap perkembangan teknik mengapung, pernapasan, hingga gaya renang murid selalu dievaluasi secara bertahap dan terukur.',
+      title: 'Evaluasi Progres Latihan',
+      subtitle: 'EVALUASI KEMAMPUAN GAYA BERENANG',
+      description: 'Setiap perkembangan teknik mengapung, pernapasan, hingga gaya renang peserta selalu dievaluasi secara bertahap dan terukur.',
       icon: <TrendingUp className="w-6 h-6 text-emerald-600" />,
       badge: 'PROGRES TERUKUR',
-      footer: 'Evaluasi Berkelanjutan'
+      footer: 'Evaluasi Berkala'
     },
     {
       title: 'Pendekatan Sabar & Ramah',
-      subtitle: 'UNTUK ANAK MULAI USIA 5 TAHUN, REMAJA & DEWASA',
-      description: 'Membimbing murid pemula dari anak-anak hingga dewasa secara bertahap agar merasa tenang dan percaya diri di dalam air.',
+      subtitle: 'UNTUK ANAK MULAI USIA 5 TAHUN, REMAJA, DEWASA & PERSIAPAN TNI/POLRI/KEDINASAN',
+      description: 'Melatih peserta pemula dari anak-anak hingga dewasa secara bertahap agar merasa tenang dan percaya diri di dalam air.',
       icon: <Star className="w-6 h-6 text-indigo-600" />,
       badge: 'ANAK & DEWASA',
       footer: 'Bimbingan Individual'
@@ -48,7 +48,7 @@ export const WhyChooseUs: React.FC = () => {
     {
       icon: <ShieldCheck className="w-5 h-5 text-emerald-700" />,
       title: 'Keselamatan & Kenyamanan',
-      description: 'Keamanan murid adalah fokus utama. Pendekatan ramah tanpa paksaan untuk anak dan pemula.'
+      description: 'Keamanan peserta adalah fokus utama. Pendekatan ramah tanpa paksaan untuk anak dan pemula.'
     },
     {
       icon: <HeartHandshake className="w-5 h-5 text-blue-700" />,
@@ -85,7 +85,7 @@ export const WhyChooseUs: React.FC = () => {
             Pengalaman & Metode Pelatih Aqualux
           </h2>
           <p className="mt-3 text-base font-medium text-slate-700">
-            Pelatihan dibimbing oleh pelatih berlatar belakang atlet renang dengan metode mengajar yang terstruktur, sabar, dan aman.
+            Latihan dibimbing oleh pelatih berlatar belakang atlet renang dengan program latihan yang terstruktur, sabar, ramah dan aman.
           </p>
         </motion.div>
 
