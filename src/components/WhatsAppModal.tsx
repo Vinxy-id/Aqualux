@@ -105,7 +105,7 @@ export const WhatsAppModal: React.FC = () => {
                   Coach Faqih
                 </span>
 
-                <span className="text-[11px] sm:text-xs font-mono font-bold text-emerald-700 block mt-0.5 truncate w-full">
+                <span className="text-[10px] sm:text-xs font-mono font-bold text-emerald-700 block mt-0.5 truncate w-full tracking-tight">
                   {formatted1}
                 </span>
 
@@ -134,7 +134,7 @@ export const WhatsAppModal: React.FC = () => {
                   Coach Abed
                 </span>
 
-                <span className="text-[11px] sm:text-xs font-mono font-bold text-emerald-700 block mt-0.5 truncate w-full">
+                <span className="text-[10px] sm:text-xs font-mono font-bold text-emerald-700 block mt-0.5 truncate w-full tracking-tight">
                   {formatted2}
                 </span>
 

@@ -492,7 +492,7 @@ export const Hero3DCardCarousel: React.FC = () => {
                 <div className="flex flex-wrap items-center justify-between gap-2 pb-3 mb-1 border-b border-slate-800 shrink-0">
                   <div className="flex items-center gap-2.5">
                     <div className="p-1 bg-white rounded-xl">
-                      <img src="./aqualux-logo.png" alt="Aqualux Logo" className="h-5 sm:h-6 w-auto" />
+                      <img src="./aqualux-icon.png" alt="Aqualux Logo" className="h-5 sm:h-6 w-auto" />
                     </div>
                     <div>
                       <span className="text-white font-extrabold text-sm sm:text-base font-outfit block leading-tight">
@@ -575,7 +575,7 @@ export const Hero3DCardCarousel: React.FC = () => {
                   />
 
                   {/* Subtle Hint Overlay at bottom of viewer */}
-                  <div className="absolute bottom-3 left-1/2 -translate-x-1/2 bg-slate-900/85 backdrop-blur-md px-3 py-1 rounded-full text-[10px] text-slate-300 border border-slate-700/80 font-mono shadow-md pointer-events-none whitespace-nowrap">
+                  <div className="absolute bottom-3 left-1/2 -translate-x-1/2 bg-slate-900/85 backdrop-blur-md px-3 py-1 rounded-full text-[10px] text-slate-300 border border-slate-700/80 font-mono shadow-md pointer-events-none text-center max-w-[90%] leading-tight">
                     {zoomScale > 1 ? '🔍 Scroll / Geser untuk melihat rincian detail' : '💡 Double-click / Scroll / Gunakan (+)(-) untuk Zoom'}
                   </div>
                 </div>
