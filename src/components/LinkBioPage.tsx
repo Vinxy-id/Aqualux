@@ -66,14 +66,14 @@ export const LinkBioPage: React.FC<LinkBioPageProps> = ({ onBackToLanding }) => 
 
   const renderIcon = (iconName: string) => {
     switch (iconName) {
-      case 'Globe': return <Globe className="w-5 h-5 text-blue-600" />;
+      case 'Globe': return <Globe className="w-5 h-5 text-[#1B64F2]" />;
       case 'MessageCircle': return <MessageCircle className="w-5 h-5 text-emerald-600" />;
       case 'Calculator': return <Calculator className="w-5 h-5 text-amber-600" />;
       case 'MapPin': return <MapPin className="w-5 h-5 text-rose-600" />;
-      case 'GraduationCap': return <GraduationCap className="w-5 h-5 text-blue-600" />;
+      case 'GraduationCap': return <GraduationCap className="w-5 h-5 text-[#1B64F2]" />;
       case 'Instagram': return <Instagram className="w-5 h-5 text-pink-600" />;
       case 'Lock': return <Lock className="w-5 h-5 text-slate-500" />;
-      default: return <Sparkles className="w-5 h-5 text-blue-600" />;
+      default: return <Sparkles className="w-5 h-5 text-[#1B64F2]" />;
     }
   };
 
@@ -81,14 +81,14 @@ export const LinkBioPage: React.FC<LinkBioPageProps> = ({ onBackToLanding }) => 
     const upper = badge.toUpperCase();
     if (upper === 'WHATSAPP') return 'bg-emerald-600 text-white font-extrabold shadow-xs';
     if (upper === 'INSTAGRAM') return 'bg-pink-600 text-white font-extrabold shadow-xs';
-    if (upper === 'WEBSITE') return 'bg-blue-600 text-white font-extrabold shadow-xs';
+    if (upper === 'WEBSITE') return 'bg-[#1B64F2] text-white font-extrabold shadow-xs';
     return 'bg-slate-800 text-white font-extrabold shadow-xs';
   };
 
   const activeItems = linkBioItems.filter(item => item.enabled);
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-sky-100/70 via-slate-100 to-blue-50/80 text-slate-900 font-sans relative overflow-x-hidden flex flex-col items-center py-6 px-4 selection:bg-blue-600 selection:text-white">
+    <div className="min-h-screen bg-gradient-to-b from-sky-100/70 via-slate-100 to-blue-50/80 text-slate-900 font-sans relative overflow-x-hidden flex flex-col items-center py-6 px-4 selection:bg-[#1B64F2] selection:text-white">
       
       {/* Background Soft Glow */}
       <div className="glow-cyan-ambient w-[450px] h-[450px] top-0 left-1/2 -translate-x-1/2 opacity-30 pointer-events-none" />
@@ -101,19 +101,19 @@ export const LinkBioPage: React.FC<LinkBioPageProps> = ({ onBackToLanding }) => 
           <div className="flex items-center justify-between mb-6">
             <button
               onClick={onBackToLanding}
-              className="w-10 h-10 rounded-full bg-white border border-slate-200 shadow-md flex items-center justify-center text-slate-700 hover:text-blue-700 hover:bg-blue-50 transition-all cursor-pointer active:scale-95"
+              className="w-10 h-10 rounded-full bg-white border border-slate-200 shadow-md flex items-center justify-center text-slate-700 hover:text-[#1B64F2] hover:bg-blue-50 transition-all cursor-pointer active:scale-95"
               title="Kembali ke Web Utama"
             >
               <ArrowLeft className="w-5 h-5" />
             </button>
 
-            <span className="text-[11px] font-mono font-black text-blue-900 uppercase tracking-widest bg-white px-3.5 py-1 rounded-full border border-blue-200 shadow-xs">
+            <span className="text-[11px] font-mono font-black text-[#1B64F2] uppercase tracking-widest bg-white px-3.5 py-1 rounded-full border border-blue-200 shadow-xs">
               AQUALUX BIO LINK
             </span>
 
             <button
               onClick={handleShare}
-              className="w-10 h-10 rounded-full bg-white border border-slate-200 shadow-md flex items-center justify-center text-slate-700 hover:text-blue-700 hover:bg-blue-50 transition-all cursor-pointer active:scale-95 relative"
+              className="w-10 h-10 rounded-full bg-white border border-slate-200 shadow-md flex items-center justify-center text-slate-700 hover:text-[#1B64F2] hover:bg-blue-50 transition-all cursor-pointer active:scale-95 relative"
               title="Bagikan Tautan"
             >
               {copied ? <Check className="w-5 h-5 text-emerald-600" /> : <Share2 className="w-5 h-5" />}
@@ -138,24 +138,24 @@ export const LinkBioPage: React.FC<LinkBioPageProps> = ({ onBackToLanding }) => 
           {/* Profile Header */}
           <div className="text-center mb-8">
             <div className="relative inline-block mb-3">
-              <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-full bg-white p-1.5 shadow-xl border-4 border-blue-600 mx-auto overflow-hidden">
+              <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-full bg-white p-1.5 shadow-xl border-4 border-[#1B64F2] mx-auto overflow-hidden">
                 <img 
                   src="./aqualux-logo.png" 
                   alt="AQUALUX Swimming Course" 
                   className="w-full h-full object-contain p-1"
                 />
               </div>
-              <div className="absolute bottom-1 right-1 bg-blue-600 rounded-full p-1 border-2 border-white shadow-md">
+              <div className="absolute bottom-1 right-1 bg-[#1B64F2] rounded-full p-1 border-2 border-white shadow-md">
                 <CheckBadgeIcon className="w-4 h-4 text-white" />
               </div>
             </div>
 
             <h1 className="text-2xl sm:text-3xl font-black text-slate-950 font-outfit tracking-tight flex items-center justify-center gap-1.5">
               <span>{linkBioProfile.title || 'Aqualux Swimming Course'}</span>
-              <CheckBadgeIcon className="w-5.5 h-5.5 text-blue-600 shrink-0" />
+              <CheckBadgeIcon className="w-5.5 h-5.5 text-[#1B64F2] shrink-0" />
             </h1>
 
-            <p className="text-xs font-mono text-blue-700 font-black mt-1 tracking-wide">{linkBioProfile.handle}</p>
+            <p className="text-xs font-mono text-[#1B64F2] font-black mt-1 tracking-wide">{linkBioProfile.handle}</p>
 
             <p className="text-xs sm:text-sm font-semibold text-slate-700 max-w-xs sm:max-w-sm mx-auto mt-2 leading-relaxed whitespace-pre-line">
               {linkBioProfile.bioText}
@@ -197,7 +197,7 @@ export const LinkBioPage: React.FC<LinkBioPageProps> = ({ onBackToLanding }) => 
 
               <button
                 onClick={onBackToLanding}
-                className="w-11 h-11 rounded-2xl bg-white border border-slate-200 shadow-md flex items-center justify-center text-blue-600 hover:bg-blue-600 hover:text-white transition-all cursor-pointer active:scale-95"
+                className="w-11 h-11 rounded-2xl bg-white border border-slate-200 shadow-md flex items-center justify-center text-[#1B64F2] hover:bg-[#1B64F2] hover:text-white transition-all cursor-pointer active:scale-95"
                 title="Website Resmi"
               >
                 <Globe className="w-5 h-5" />
@@ -205,7 +205,7 @@ export const LinkBioPage: React.FC<LinkBioPageProps> = ({ onBackToLanding }) => 
             </div>
           </div>
 
-          {/* Vertical Stack of White Cards with Crisp Blue Frame (Matching User Reference Image) */}
+          {/* Vertical Stack of White Cards with Electric Blue Frame (#1B64F2) */}
           <div className="space-y-3.5 mb-8">
             {activeItems.map((item) => {
               let targetUrl = item.url;
@@ -232,13 +232,13 @@ export const LinkBioPage: React.FC<LinkBioPageProps> = ({ onBackToLanding }) => 
               }
 
               const CardContent = (
-                <div className="bg-white border-[3px] border-blue-400/90 hover:border-blue-600 p-3.5 sm:p-4 rounded-2xl flex items-center justify-between gap-3 transition-all duration-200 cursor-pointer shadow-md hover:shadow-xl group active:scale-[0.99]">
+                <div className="bg-white border-[3px] border-[#1B64F2] hover:border-blue-700 p-3.5 sm:p-4 rounded-2xl flex items-center justify-between gap-3 transition-all duration-200 cursor-pointer shadow-md hover:shadow-xl group active:scale-[0.99]">
                   <div className="flex items-center gap-3.5 min-w-0 flex-1">
-                    <div className="w-11 h-11 rounded-xl bg-blue-50 border border-blue-200 flex items-center justify-center shrink-0 group-hover:bg-blue-600 group-hover:text-white transition-colors">
+                    <div className="w-11 h-11 rounded-xl bg-blue-50 border border-blue-200 flex items-center justify-center shrink-0 group-hover:bg-[#1B64F2] group-hover:text-white transition-colors">
                       {renderIcon(item.iconName)}
                     </div>
                     <div className="text-left min-w-0 flex-1">
-                      <span className="text-sm sm:text-base font-black text-slate-950 font-outfit block whitespace-normal break-normal break-keep group-hover:text-blue-700 transition-colors leading-snug">
+                      <span className="text-sm sm:text-base font-black text-slate-950 font-outfit block whitespace-normal break-normal break-keep group-hover:text-[#1B64F2] transition-colors leading-snug">
                         {item.title}
                       </span>
                       {item.subtitle && (
@@ -283,7 +283,7 @@ export const LinkBioPage: React.FC<LinkBioPageProps> = ({ onBackToLanding }) => 
         {/* Footer Branding */}
         <div className="text-center pt-4 pb-4">
           <div className="inline-flex items-center gap-1.5 text-xs font-mono font-bold text-slate-600">
-            <Sparkles className="w-3.5 h-3.5 text-blue-600" />
+            <Sparkles className="w-3.5 h-3.5 text-[#1B64F2]" />
             <span>AQUALUX Swimming Course Malang © 2026</span>
           </div>
         </div>
