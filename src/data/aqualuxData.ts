@@ -100,7 +100,7 @@ export const CATEGORY_PROGRAMS: CategoryProgram[] = [
     features: [
       'Privasi Terjaga di Kolam Hotel',
       'Penyesuaian Pace Belajar Individual',
-      'Mengatasi Trauma & Cemas Air',
+      'Mengatasi Trauma & Takut Air',
       'Jadwal Sesi Sangat Fleksibel'
     ],
     tag: 'Privat & Nyaman'

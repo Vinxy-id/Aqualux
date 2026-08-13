@@ -130,7 +130,7 @@ export const ProgramsSection: React.FC = () => {
                   'Pelatih Sabar & Berlisensi',
                   'Evaluasi setelah latihan',
                   'Privasi Terjaga di Kolam Hotel',
-                  'Mengatasi Trauma & Cemas Air',
+                  'Mengatasi Trauma & Takut Air',
                   'Jadwal Sesi Sangat Fleksibel',
                 ].map((feature, idx) => (
                   <motion.li 
