@@ -13,6 +13,7 @@ import { UrgencyBanner } from './components/UrgencyBanner';
 import { FAQSection } from './components/FAQSection';
 import { Footer } from './components/Footer';
 import { WhatsAppModal } from './components/WhatsAppModal';
+import { SpeedInsights } from '@vercel/speed-insights/react';
 
 const AdminLogin = lazy(() => import('./components/AdminLogin').then(m => ({ default: m.AdminLogin })));
 const AdminPage = lazy(() => import('./components/AdminPage').then(m => ({ default: m.AdminPage })));
@@ -127,6 +128,7 @@ export function App() {
     <AuthProvider>
       <AqualuxDataProvider>
         <AppContent />
+        <SpeedInsights />
       </AqualuxDataProvider>
     </AuthProvider>
   );
