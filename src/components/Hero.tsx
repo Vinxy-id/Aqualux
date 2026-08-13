@@ -29,10 +29,12 @@ export const Hero: React.FC = () => {
             {/* Top Pill Badge */}
             <motion.div
               variants={fadeUp}
-              className="inline-flex items-center gap-2 px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-full bg-blue-950 border border-blue-900 text-white text-xs sm:text-sm font-bold shadow-md max-w-full"
+              className="inline-flex items-center gap-2 px-3.5 py-2 sm:px-4 sm:py-2 rounded-2xl sm:rounded-full bg-blue-950 border border-blue-900 text-white text-xs sm:text-sm font-bold shadow-md max-w-full text-left"
             >
               <TrophyIcon className="w-4 h-4 text-amber-400 shrink-0" />
-              <span className="truncate sm:whitespace-normal font-mono text-xs tracking-wider">PELATIH BERPENGALAMAN FINSWIMMING JATIM</span>
+              <span className="font-mono text-[11px] sm:text-xs tracking-wider leading-snug whitespace-normal">
+                PELATIH BERPENGALAMAN FINSWIMMING JATIM
+              </span>
             </motion.div>
 
             {/* Main Headline */}
@@ -51,7 +53,7 @@ export const Hero: React.FC = () => {
               variants={fadeUp}
               className="text-sm sm:text-base lg:text-lg text-slate-700 font-medium max-w-2xl mx-auto lg:mx-0 leading-relaxed"
             >
-              Program les renang privat 1-on-1 & reguler di kota Malang. Membantu anak mulai usia 5 tahun, pelajar, dewasa, hingga persiapan tes TNI & Polri dengan metode yang aman, terstruktur, dan ramah.
+              Program les renang privat 1-on-1 & reguler di kota Malang. Membantu anak mulai usia 5 tahun, pelajar, dewasa, hingga persiapan tes TNI, Polri dan kedinasan dengan metode yang aman, terstruktur, dan ramah.
             </motion.p>
 
             {/* Stat & Feature Boxes - Tabular Figures */}
