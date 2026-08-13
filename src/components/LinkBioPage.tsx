@@ -232,7 +232,7 @@ export const LinkBioPage: React.FC<LinkBioPageProps> = ({ onBackToLanding }) => 
               }
 
               const CardContent = (
-                <div className="bg-white border-2 border-blue-300 hover:border-blue-600 p-3.5 sm:p-4 rounded-2xl flex items-center justify-between gap-3 transition-all duration-200 cursor-pointer shadow-md hover:shadow-xl group active:scale-[0.99]">
+                <div className="bg-white border-[3px] border-blue-400/90 hover:border-blue-600 p-3.5 sm:p-4 rounded-2xl flex items-center justify-between gap-3 transition-all duration-200 cursor-pointer shadow-md hover:shadow-xl group active:scale-[0.99]">
                   <div className="flex items-center gap-3.5 min-w-0 flex-1">
                     <div className="w-11 h-11 rounded-xl bg-blue-50 border border-blue-200 flex items-center justify-center shrink-0 group-hover:bg-blue-600 group-hover:text-white transition-colors">
                       {renderIcon(item.iconName)}
