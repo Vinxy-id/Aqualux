@@ -62,7 +62,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenAdmin }) => {
 
           {/* Col 2: Navigation Links */}
           <motion.div variants={fadeUp} className="lg:col-span-3 space-y-3 text-left">
-            <h4 className="text-xs font-bold text-white font-outfit uppercase tracking-wider">Navigasi Cepat</h4>
+            <h2 className="text-xs font-bold text-white font-outfit uppercase tracking-wider">Navigasi Cepat</h2>
             <ul className="space-y-2.5 text-xs font-medium">
               <li><a href="#program" className="hover:text-blue-400 transition-colors">Program Kursus</a></li>
               <li><a href="#lokasi" className="hover:text-blue-400 transition-colors">Lokasi Hotel Bimbingan</a></li>
@@ -87,7 +87,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenAdmin }) => {
 
           {/* Col 3: Official Contact & Locations */}
           <motion.div variants={fadeUp} className="lg:col-span-5 space-y-4 text-left">
-            <h4 className="text-xs font-bold text-white font-outfit uppercase tracking-wider">Kontak & Informasi Lokasi</h4>
+            <h2 className="text-xs font-bold text-white font-outfit uppercase tracking-wider">Kontak & Informasi Lokasi</h2>
             
             {/* WhatsApp Phone Contact */}
             <div className="flex items-start gap-2.5 bg-slate-800/80 p-3 rounded-xl border border-slate-700/80 text-xs">
@@ -148,7 +148,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenAdmin }) => {
             <button
               type="button"
               onClick={onOpenAdmin}
-              className="hover:text-blue-400 transition-colors underline"
+              className="text-slate-300 hover:text-blue-400 transition-colors underline"
             >
               Aqualux Admin Portal (/admin)
             </button>

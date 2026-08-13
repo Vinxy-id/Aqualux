@@ -50,7 +50,7 @@ const CAROUSEL_CARDS: CardData[] = [
     title: 'Pelatih Berlisensi Finswimming',
     subtitle: 'Didampingi pelatih berpengalaman Finswimming Jatim dengan metode evaluasi berkala.',
     badge: 'Pelatih Berpengalaman',
-    image: 'https://images.unsplash.com/photo-1519315901367-f34ff9154487?auto=format&fit=crop&w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1519315901367-f34ff9154487?auto=format&fit=crop&w=440&q=75&fm=webp',
     highlight1Label: 'Kualifikasi:',
     highlight1Val: 'Eks-Atlet Jatim',
     highlight2Label: 'Pendekatan:',
@@ -62,7 +62,7 @@ const CAROUSEL_CARDS: CardData[] = [
     title: 'Solusi Anak Takut & Trauma Air',
     subtitle: 'Metode Water Familiarity aman tanpa paksaan. Anak jadi lebih tenang, berani, dan ceria.',
     badge: 'Ramah Anak-Anak',
-    image: 'https://images.unsplash.com/photo-1530549387789-4c1017266635?auto=format&fit=crop&w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1530549387789-4c1017266635?auto=format&fit=crop&w=440&q=75&fm=webp',
     highlight1Label: 'Peralatan:',
     highlight1Val: 'Gratis Dipinjamkan',
     highlight2Label: 'Adaptasi Air:',
@@ -74,7 +74,7 @@ const CAROUSEL_CARDS: CardData[] = [
     title: 'Persiapan Tes TNI & POLRI',
     subtitle: 'Bimbingan khusus melatih teknik 4 gaya renang, ketahanan fisik, dan kecepatan target waktu.',
     badge: 'Program Kedinasan',
-    image: 'https://images.unsplash.com/photo-1438029071396-1e831a7fa6d8?auto=format&fit=crop&w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1438029071396-1e831a7fa6d8?auto=format&fit=crop&w=440&q=75&fm=webp',
     highlight1Label: 'Fokus Latihan:',
     highlight1Val: 'Ketahanan & Speed',
     highlight2Label: 'Target Lulus:',
@@ -326,6 +326,9 @@ export const Hero3DCardCarousel: React.FC = () => {
                     className={`w-full h-full ${
                       card.isBrochure ? 'object-cover object-top' : 'object-cover'
                     } transition-transform duration-700 group-hover:scale-105`}
+                    loading={index === 0 ? 'eager' : 'lazy'}
+                    width="440"
+                    height="280"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/25 to-transparent" />
 

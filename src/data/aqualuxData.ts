@@ -10,7 +10,7 @@ export const LOCATIONS_DATA: Record<LocationKey, LocationInfo> = {
     badge: 'Paling Terjangkau',
     address: 'Jl. Bendungan Sigura-Gura No.6, Karangbesuki, Sukun, Kota Malang',
     description: 'Suasana tenang dengan kolam renang outdoor bersih dan asri. Sangat cocok untuk anak-anak dan pemula.',
-    image: 'https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?auto=format&fit=crop&w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?auto=format&fit=crop&w=450&q=75&fm=webp',
     mapUrl: 'https://maps.google.com/?q=Ubud+Hotel+Cottages+Malang',
     embedMapUrl: 'https://maps.google.com/maps?q=Ubud%20Hotel%20%26%20Cottages%20Malang%20Sigura%20Gura&t=&z=16&ie=UTF8&iwloc=&output=embed'
   },
@@ -23,7 +23,7 @@ export const LOCATIONS_DATA: Record<LocationKey, LocationInfo> = {
     badge: 'Favorit Peserta',
     address: 'Jl. Jaksa Agung Suprapto No.17, Rampal Celaket, Klojen, Kota Malang',
     description: 'Kolam renang bernuansa privat di pusat kota dengan fasilitas lengkap, kamar ganti bersih dan nyaman.',
-    image: 'https://images.unsplash.com/photo-1584132967334-10e028bd69f7?auto=format&fit=crop&w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1584132967334-10e028bd69f7?auto=format&fit=crop&w=450&q=75&fm=webp',
     mapUrl: 'https://maps.google.com/?q=Tychi+Hotel+Malang',
     embedMapUrl: 'https://maps.google.com/maps?q=Tychi%20Hotel%20Malang%20Jaksa%20Agung%20Suprapto&t=&z=16&ie=UTF8&iwloc=&output=embed'
   },
@@ -36,7 +36,7 @@ export const LOCATIONS_DATA: Record<LocationKey, LocationInfo> = {
     badge: 'Include Makan & Minum',
     address: 'Jl. Letjen Sutoyo No.32-34, Rampal Celaket, Klojen, Kota Malang',
     description: 'Fasilitas premium bintang 4. HTM Rp50.000 sudah termasuk voucher makan & minum gratis di hotel.',
-    image: 'https://images.unsplash.com/photo-1572331165267-854da2b10ccc?auto=format&fit=crop&w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1572331165267-854da2b10ccc?auto=format&fit=crop&w=450&q=75&fm=webp',
     mapUrl: 'https://maps.google.com/?q=Savana+Hotel+Convention+Malang',
     embedMapUrl: 'https://maps.google.com/maps?q=Savana%20Hotel%20%26%20Convention%20Malang%20Letjen%20Sutoyo&t=&z=16&ie=UTF8&iwloc=&output=embed'
   }
