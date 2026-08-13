@@ -130,7 +130,7 @@ export const TESTIMONIALS_DATA: Testimonial[] = [
     category: 'Anak 5+',
     comment: 'Awalnya Albi takut dan nangis kalau disuruh masuk kolam. Alhamdulillah setelah 3x pertemuan sama Coach Faqih, anaknya malah ketagihan renang dan udah berani meluncur sendiri. Pembawakan pelatihnya sabar dan ramah.',
     rating: 5,
-    avatar: './aqualux-logo.png',
+    avatar: './aqualux-logo.webp',
     outcomeBadge: 'Bisa Mengapung 4x Pertemuan'
   },
   {
@@ -140,7 +140,7 @@ export const TESTIMONIALS_DATA: Testimonial[] = [
     category: 'Persiapan Fisik',
     comment: 'Awalnya renang 50m saya sering kehabisan napas di tengah kolam. Setelah dibimbing intensif sama Coach Abed, pernapasan jadi lebih teratur dan fisik jauh lebih siap untuk tes renang.',
     rating: 5,
-    avatar: './aqualux-logo.png',
+    avatar: './aqualux-logo.webp',
     outcomeBadge: 'Stamina & Fisik Renang Meningkat'
   },
   {

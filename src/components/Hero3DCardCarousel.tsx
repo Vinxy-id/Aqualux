@@ -10,6 +10,7 @@ export interface CardData {
   subtitle: string;
   badge: string;
   image: string;
+  fullImage?: string;
   highlight1Label: string;
   highlight1Val: string;
   highlight2Label: string;
@@ -24,7 +25,8 @@ const CAROUSEL_CARDS: CardData[] = [
     title: 'Brosur Price List & Lokasi Resmi',
     subtitle: 'Rincian paket reguler & privat, harga mulai Rp350rb, lokasi hotel Malang, & prestasi pelatih.',
     badge: 'Brosur & Price List',
-    image: './brosur-aqualux-1.png',
+    image: './brosur-aqualux-1-thumb.webp',
+    fullImage: './brosur-aqualux-1.webp',
     highlight1Label: 'Paket Kursus:',
     highlight1Val: 'Reguler & Privat',
     highlight2Label: 'Harga Paket:',
@@ -37,7 +39,8 @@ const CAROUSEL_CARDS: CardData[] = [
     title: 'Brosur Program Bimbingan',
     subtitle: 'Poster resmi Aqualux: Kelas anak 5+ thn, pelajar, dewasa, hingga persiapan tes TNI/Polri.',
     badge: 'Poster Program Resmi',
-    image: './brosur-aqualux-2.jpg',
+    image: './brosur-aqualux-2-thumb.webp',
+    fullImage: './brosur-aqualux-2.webp',
     highlight1Label: 'Target Peserta:',
     highlight1Val: 'Anak s/d Dewasa',
     highlight2Label: 'Metode Belajar:',
@@ -313,7 +316,7 @@ export const Hero3DCardCarousel: React.FC = () => {
                   onClick={(e) => {
                     if (card.isBrochure && isCenter) {
                       e.stopPropagation();
-                      setZoomBrochure(card.image);
+                      setZoomBrochure(card.fullImage || card.image);
                     }
                   }}
                   className={`relative h-46 sm:h-56 rounded-2xl overflow-hidden mb-3 border border-slate-200/80 shadow-inner bg-slate-900 group/img ${
@@ -327,6 +330,7 @@ export const Hero3DCardCarousel: React.FC = () => {
                       card.isBrochure ? 'object-cover object-top' : 'object-cover'
                     } transition-transform duration-700 group-hover:scale-105`}
                     loading={index === 0 ? 'eager' : 'lazy'}
+                    fetchPriority={index === 0 ? 'high' : 'auto'}
                     width="440"
                     height="280"
                   />
@@ -335,7 +339,7 @@ export const Hero3DCardCarousel: React.FC = () => {
                   {/* Top Logo & Tag Overlay */}
                   <div className="absolute top-2.5 left-2.5 right-2.5 flex items-center justify-between pointer-events-none">
                     <div className="bg-white/95 backdrop-blur-md px-2 py-1 rounded-xl border border-slate-200 shadow-md">
-                      <img src="./aqualux-icon.png" alt="AQUALUX Logo" className="h-5 sm:h-6 w-auto object-contain" />
+                      <img src="./aqualux-icon-small.png" alt="AQUALUX Logo" className="h-5 sm:h-6 w-auto object-contain" width="24" height="24" />
                     </div>
 
                     <span className={`px-2.5 py-0.5 rounded-full text-[10px] sm:text-xs font-mono font-bold border shadow-xs backdrop-blur-md ${card.tagColor}`}>
@@ -391,7 +395,7 @@ export const Hero3DCardCarousel: React.FC = () => {
                         type="button"
                         onClick={(e) => {
                           e.stopPropagation();
-                          setZoomBrochure(card.image);
+                          setZoomBrochure(card.fullImage || card.image);
                         }}
                         className="w-full py-2.5 px-3 rounded-xl bg-blue-600 hover:bg-blue-700 active:scale-[0.98] text-white text-xs font-extrabold flex items-center justify-center gap-1.5 transition-all shadow-md shadow-blue-600/25 cursor-pointer"
                       >
@@ -495,7 +499,7 @@ export const Hero3DCardCarousel: React.FC = () => {
                 <div className="flex flex-wrap items-center justify-between gap-2 pb-3 mb-1 border-b border-slate-800 shrink-0">
                   <div className="flex items-center gap-2.5">
                     <div className="p-1 bg-white rounded-xl">
-                      <img src="./aqualux-icon.png" alt="Aqualux Logo" className="h-5 sm:h-6 w-auto" />
+                      <img src="./aqualux-icon-small.png" alt="Aqualux Logo" className="h-5 sm:h-6 w-auto" width="24" height="24" />
                     </div>
                     <div>
                       <span className="text-white font-extrabold text-sm sm:text-base font-outfit block leading-tight">

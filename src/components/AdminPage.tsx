@@ -149,7 +149,7 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onBackToLanding }) => {
 
           <div className="flex items-center gap-2">
             <div className="bg-white p-1 rounded-lg shrink-0">
-              <img src="./aqualux-logo.png" alt="Aqualux Logo" className="h-6 w-auto object-contain" />
+              <img src="./aqualux-logo.webp" alt="Aqualux Logo" className="h-6 w-auto object-contain" width="80" height="24" />
             </div>
             <div>
               <span className="font-black text-sm font-outfit text-white block leading-none">Admin Portal</span>
@@ -924,7 +924,7 @@ const SidebarContent: React.FC<SidebarContentProps> = ({
       <div className="space-y-3">
         <div className="flex items-center gap-2.5">
           <div className="bg-white p-1.5 rounded-xl shadow-xs shrink-0">
-            <img src="./aqualux-logo.png" alt="Aqualux Logo" className="h-7 w-auto object-contain" />
+            <img src="./aqualux-logo.webp" alt="Aqualux Logo" className="h-7 w-auto object-contain" width="90" height="28" />
           </div>
           <div>
             <h2 className="text-sm font-black font-outfit text-white leading-tight">

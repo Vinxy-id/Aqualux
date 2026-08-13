@@ -98,8 +98,10 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenAdmin }) => {
               className="flex items-center group text-left cursor-pointer"
             >
               <img 
-                src="./aqualux-logo.png" 
+                src="./aqualux-logo.webp" 
                 alt="AQUALUX Swimming Course" 
+                width="160"
+                height="54"
                 className="h-12 sm:h-15 w-auto object-contain transition-transform group-hover:scale-105"
               />
             </a>

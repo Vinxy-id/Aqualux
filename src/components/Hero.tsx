@@ -108,14 +108,9 @@ export const Hero: React.FC = () => {
           </motion.div>
 
           {/* Right Column - 3D Card Stack Carousel */}
-          <motion.div
-            className="lg:col-span-5 w-full overflow-visible"
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.35, ease: 'easeOut' }}
-          >
+          <div className="lg:col-span-5 w-full overflow-visible">
             <Hero3DCardCarousel />
-          </motion.div>
+          </div>
 
         </div>
       </div>
