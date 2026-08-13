@@ -1,9 +1,10 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { TrophyIcon, ShieldCheckIcon, SparklesIcon } from '@heroicons/react/24/solid';
-import { MessageCircle, ArrowRight, Activity, Thermometer, Users } from 'lucide-react';
+import { TrophyIcon } from '@heroicons/react/24/solid';
+import { MessageCircle, ArrowRight } from 'lucide-react';
 import { useAqualuxData } from '../context/AqualuxDataContext';
 import { fadeUp, staggerContainer } from '../utils/motion';
+import { Hero3DCardCarousel } from './Hero3DCardCarousel';
 
 export const Hero: React.FC = () => {
   const { openWaModal } = useAqualuxData();
@@ -104,56 +105,14 @@ export const Hero: React.FC = () => {
 
           </motion.div>
 
-          {/* Right Column - Elevated Showcase Card */}
+          {/* Right Column - 3D Card Stack Carousel */}
           <motion.div
-            className="lg:col-span-5 w-full"
+            className="lg:col-span-5 w-full overflow-visible"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.35, ease: 'easeOut' }}
           >
-            <div className="card-clean-elevated rounded-3xl p-4 sm:p-5 relative">
-              
-              {/* Main Image Frame */}
-              <div className="relative h-64 sm:h-80 rounded-2xl overflow-hidden mb-3.5 border border-slate-200 shadow-inner">
-                <img
-                  src="https://images.unsplash.com/photo-1530549387789-4c1017266635?auto=format&fit=crop&w=800&q=80"
-                  alt="AQUALUX Swimming Course"
-                  className="w-full h-full object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/85 via-transparent to-transparent opacity-90" />
-                
-                {/* Official Logo Overlay */}
-                <div className="absolute top-3 left-3 bg-white/95 backdrop-blur-md p-1.5 sm:p-2 rounded-xl border border-slate-200 shadow-md">
-                  <img src="./aqualux-logo.png" alt="AQUALUX Logo" className="h-7 sm:h-9 w-auto object-contain" />
-                </div>
-
-                <div className="absolute bottom-3 left-3 right-3 bg-white/95 backdrop-blur-md p-3 sm:p-3.5 rounded-xl border border-slate-200 text-xs shadow-md">
-                  <div className="flex items-center justify-between text-slate-900 font-extrabold mb-1">
-                    <span className="text-blue-700 font-outfit text-xs sm:text-sm">AQUALUX Swimming Course</span>
-                    <span className="bg-blue-100 text-blue-900 border border-blue-300 text-[10px] px-2 py-0.5 rounded-full font-mono font-bold">
-                      Pelatih Berpengalaman
-                    </span>
-                  </div>
-                  <p className="text-[11px] sm:text-xs font-semibold text-slate-800">
-                    Bimbingan ramah anak & dewasa dengan evaluasi perkembangan berkala.
-                  </p>
-                </div>
-              </div>
-
-              {/* Bottom Feature Badges */}
-              <div className="grid grid-cols-2 gap-2 sm:gap-2.5 text-xs text-left">
-                <div className="bg-slate-50 p-2.5 sm:p-3 rounded-xl border border-slate-200">
-                  <span className="text-slate-600 text-[11px] font-semibold block uppercase font-mono">Pilihan Kelas:</span>
-                  <span className="font-extrabold text-slate-950 block mt-0.5 text-xs sm:text-sm">Privat & Reguler</span>
-                </div>
-
-                <div className="bg-slate-50 p-2.5 sm:p-3 rounded-xl border border-slate-200">
-                  <span className="text-slate-600 text-[11px] font-semibold block uppercase font-mono">Durasi 1 Sesi:</span>
-                  <span className="font-extrabold text-blue-700 block mt-0.5 text-xs sm:text-sm font-mono">1 Jam 15 Menit</span>
-                </div>
-              </div>
-
-            </div>
+            <Hero3DCardCarousel />
           </motion.div>
 
         </div>

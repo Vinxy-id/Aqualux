@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Users, ShieldAlert, Check, MessageCircle, ArrowRight, Flame } from 'lucide-react';
+import { Users, UserCheck, Check, MessageCircle, ArrowRight, Flame } from 'lucide-react';
 import { useAqualuxData } from '../context/AqualuxDataContext';
 import { fadeUp, staggerContainer, viewportOnce } from '../utils/motion';
 
@@ -175,7 +175,7 @@ export const ProgramsSection: React.FC = () => {
             </div>
           </motion.div>
 
-          {/* KOTAK 2: Persiapan Tes TNI / Polri (WARNA DISAMAKAN PERSIS DENGAN KOTAK KIRI) */}
+          {/* KOTAK 2: Persiapan Tes TNI / Polri & Kedinasan */}
           <motion.div
             variants={fadeUp}
             whileHover={{ y: -4 }}
@@ -190,7 +190,7 @@ export const ProgramsSection: React.FC = () => {
                 </span>
 
                 <div className="w-11 h-11 rounded-2xl bg-white/10 text-white border border-white/20 flex items-center justify-center shrink-0 shadow-xs group-hover:scale-105 transition-transform">
-                  <ShieldAlert className="w-5 h-5 text-amber-300" />
+                  <UserCheck className="w-5 h-5 text-white" />
                 </div>
               </div>
 
@@ -245,7 +245,7 @@ export const ProgramsSection: React.FC = () => {
                 className="w-full py-4 px-6 rounded-2xl bg-emerald-400 hover:bg-emerald-300 text-slate-950 font-black text-xs sm:text-sm flex items-center justify-center gap-2.5 shadow-lg transition-all btn-tactile"
               >
                 <MessageCircle className="w-5 h-5 fill-slate-950 shrink-0" />
-                <span>Daftar Persiapan Tes Kedinasan via WA</span>
+                <span>Daftar Tes TNI / Polri dan Kedinasan via WA</span>
                 <ArrowRight className="w-4 h-4 ml-1 shrink-0" />
               </button>
             </div>
