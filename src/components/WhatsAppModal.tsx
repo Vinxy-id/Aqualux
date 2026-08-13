@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, MessageCircle, ArrowRight } from 'lucide-react';
 import { useAqualuxData } from '../context/AqualuxDataContext';
@@ -6,6 +6,18 @@ import { buildWhatsAppUrlForPhone, sanitizePhone } from '../utils/whatsapp';
 
 export const WhatsAppModal: React.FC = () => {
   const { isWaModalOpen, waModalMessage, closeWaModal, adminContacts } = useAqualuxData();
+
+  // Lock body scroll when WhatsApp modal is open
+  useEffect(() => {
+    if (isWaModalOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [isWaModalOpen]);
 
   if (!isWaModalOpen) return null;
 
