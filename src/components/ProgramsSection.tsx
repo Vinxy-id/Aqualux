@@ -157,7 +157,7 @@ export const ProgramsSection: React.FC = () => {
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
                 {[
                   { label: 'Anak Mulai Usia 5 Tahun', msg: 'Halo Admin Aqualux, saya berminat mendaftar Program Anak (Mulai Usia 5 Tahun). Mohon info jadwal pelatih.' },
-                  { label: 'Pelajar (12-18)', msg: 'Halo Admin Aqualux, saya berminat mendaftar Program Pelajar & Remaja (12-18 tahun). Mohon info jadwal pelatih.' },
+                  { label: 'Pelajar Usia 12-18 Tahun', msg: 'Halo Admin Aqualux, saya berminat mendaftar Program Pelajar & Remaja (12-18 tahun). Mohon info jadwal pelatih.' },
                   { label: 'Dewasa Mulai Usia 19 Tahun', msg: 'Halo Admin Aqualux, saya berminat mendaftar Program Dewasa (Mulai Usia 19 Tahun). Mohon info jadwal pelatih.' },
                 ].map((btn, idx) => (
                   <motion.button
@@ -195,7 +195,7 @@ export const ProgramsSection: React.FC = () => {
                   <motion.div animate={{ scale: [1, 1.2, 1] }} transition={{ repeat: Infinity, duration: 1.8 }}>
                     <Flame className="w-3.5 h-3.5 text-amber-400 fill-amber-400 shrink-0" />
                   </motion.div>
-                  <span>PROGRAM KHUSUS • TNI / POLRI</span>
+                  <span>PROGRAM KHUSUS • TNI / POLRI • KEDINASAN</span>
                 </motion.span>
 
                 <motion.div 
