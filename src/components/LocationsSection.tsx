@@ -55,7 +55,7 @@ export const LocationsSection: React.FC = () => {
         </motion.div>
 
         {/* 3 Location Cards Grid */}
-        <motion.div variants={staggerContainer(0.12)} className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 mb-10 sm:mb-14">
+        <motion.div variants={staggerContainer(0.12)} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 mb-10 sm:mb-14">
           {Object.values(locations).map((loc) => {
             const isMapActive = activeMapKey === loc.key;
 

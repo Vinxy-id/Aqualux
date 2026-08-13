@@ -105,7 +105,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenAdmin }) => {
             </a>
 
             {/* Desktop Nav Pills */}
-            <nav className="hidden md:flex items-center gap-1.5 bg-slate-100 p-1.5 rounded-full border border-slate-300 text-xs font-bold text-slate-800">
+            <nav className="hidden lg:flex items-center gap-1.5 bg-slate-100 p-1.5 rounded-full border border-slate-300 text-xs font-bold text-slate-800">
               {navLinks.map((item) => (
                 <a
                   key={item.href}
@@ -119,7 +119,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenAdmin }) => {
             </nav>
 
             {/* Desktop CTA WhatsApp */}
-            <div className="hidden md:flex items-center gap-3">
+            <div className="hidden lg:flex items-center gap-3">
               <button
                 type="button"
                 onClick={() => openWaModal()}
@@ -134,7 +134,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenAdmin }) => {
             <motion.button
               whileTap={{ scale: 0.9 }}
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="md:hidden p-2.5 rounded-xl bg-slate-100 border border-slate-300 text-slate-900 font-bold flex items-center justify-center transition-colors hover:bg-slate-200 cursor-pointer"
+              className="lg:hidden p-2.5 rounded-xl bg-slate-100 border border-slate-300 text-slate-900 font-bold flex items-center justify-center transition-colors hover:bg-slate-200 cursor-pointer"
               aria-label="Toggle Navigation Menu"
             >
               <AnimatePresence mode="wait" initial={false}>
@@ -173,7 +173,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenAdmin }) => {
               animate={{ opacity: 1, height: 'auto' }}
               exit={{ opacity: 0, height: 0 }}
               transition={{ duration: 0.22, ease: 'easeInOut' }}
-              className="md:hidden overflow-hidden bg-white border-t border-slate-200 shadow-2xl"
+              className="lg:hidden overflow-hidden bg-white border-t border-slate-200 shadow-2xl"
             >
               <div className="px-4 py-4 space-y-2 text-slate-900 max-h-[80vh] overflow-y-auto">
                 
@@ -273,7 +273,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenAdmin }) => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={() => setMobileMenuOpen(false)}
-            className="fixed inset-0 bg-slate-950/40 backdrop-blur-xs z-40 md:hidden"
+            className="fixed inset-0 bg-slate-950/40 backdrop-blur-xs z-40 lg:hidden"
           />
         )}
       </AnimatePresence>
