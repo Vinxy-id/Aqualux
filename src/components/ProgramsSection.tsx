@@ -1,8 +1,25 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Users, UserCheck, Check, MessageCircle, ArrowRight, Flame } from 'lucide-react';
+import { Users, Check, MessageCircle, ArrowRight, Flame } from 'lucide-react';
 import { useAqualuxData } from '../context/AqualuxDataContext';
 import { fadeUp, staggerContainer, viewportOnce } from '../utils/motion';
+
+// Custom Officer Icon (Polisi / TNI Cap & Uniform Icon matching user reference)
+const OfficerIcon: React.FC<{ className?: string }> = ({ className = "w-6 h-6" }) => (
+  <svg viewBox="0 0 512 512" fill="currentColor" className={className}>
+    {/* Officer Hat Peak */}
+    <path d="M256 16c-70.6 0-134.4 24.8-176 64l-24 56c40 32 112 48 200 48s160-16 200-48l-24-56c-41.6-39.2-105.4-64-176-64z"/>
+    <circle cx="256" cy="72" r="18" fill="#fff" />
+    {/* Visor Arc */}
+    <path d="M72 160c40 32 112 48 184 48s144-16 184-48c-32 32-104 48-184 48S104 192 72 160z" opacity="0.9" />
+    {/* Face & Head Contour */}
+    <path d="M152 208v40c0 57.4 46.6 104 104 104s104-46.6 104-104v-40c-32 24-72 32-104 32s-72-8-104-32z"/>
+    {/* Uniform & Shoulders */}
+    <path d="M48 480c0-64 56-112 120-128l88 104 88-104c64 16 120 64 120 128v16H48v-16z"/>
+    {/* Chest Star Badge */}
+    <polygon points="384,400 394,420 416,423 400,439 404,461 384,450 364,461 368,439 352,423 374,420" fill="#fff" />
+  </svg>
+);
 
 export const ProgramsSection: React.FC = () => {
   const { openWaModal } = useAqualuxData();
@@ -190,7 +207,7 @@ export const ProgramsSection: React.FC = () => {
                 </span>
 
                 <div className="w-11 h-11 rounded-2xl bg-white/10 text-white border border-white/20 flex items-center justify-center shrink-0 shadow-xs group-hover:scale-105 transition-transform">
-                  <UserCheck className="w-5 h-5 text-white" />
+                  <OfficerIcon className="w-6 h-6 text-white" />
                 </div>
               </div>
 
@@ -245,7 +262,7 @@ export const ProgramsSection: React.FC = () => {
                 className="w-full py-4 px-6 rounded-2xl bg-emerald-400 hover:bg-emerald-300 text-slate-950 font-black text-xs sm:text-sm flex items-center justify-center gap-2.5 shadow-lg transition-all btn-tactile"
               >
                 <MessageCircle className="w-5 h-5 fill-slate-950 shrink-0" />
-                <span>Daftar Tes TNI / Polri dan Kedinasan via WA</span>
+                <span>Daftar Persiapan Tes TNI / Polri dan Kedinasan via WA</span>
                 <ArrowRight className="w-4 h-4 ml-1 shrink-0" />
               </button>
             </div>
