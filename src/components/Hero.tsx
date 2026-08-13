@@ -1,9 +1,7 @@
 import React from 'react';
-import { motion } from 'framer-motion';
 import { TrophyIcon } from '@heroicons/react/24/solid';
 import { MessageCircle, ArrowRight } from 'lucide-react';
 import { useAqualuxData } from '../context/AqualuxDataContext';
-import { fadeUp, staggerContainer } from '../utils/motion';
 import { Hero3DCardCarousel } from './Hero3DCardCarousel';
 
 export const Hero: React.FC = () => {
@@ -20,56 +18,38 @@ export const Hero: React.FC = () => {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-10 lg:gap-12 items-center">
           
           {/* Left Column - High Contrast Text & CTA */}
-          <motion.div
-            className="lg:col-span-7 space-y-5 sm:space-y-6 text-center lg:text-left"
-            variants={staggerContainer(0.12, 0.1)}
-            initial="hidden"
-            animate="visible"
-          >
+          <div className="lg:col-span-7 space-y-5 sm:space-y-6 text-center lg:text-left">
             {/* Top Pill Badge */}
-            <motion.div
-              variants={fadeUp}
-              className="inline-flex items-center gap-2 px-3.5 py-2 sm:px-4 sm:py-2 rounded-2xl sm:rounded-full bg-blue-950 border border-blue-900 text-white text-xs sm:text-sm font-bold shadow-md max-w-full text-left"
-            >
+            <div className="inline-flex items-center gap-2 px-3.5 py-2 sm:px-4 sm:py-2 rounded-2xl sm:rounded-full bg-blue-950 border border-blue-900 text-white text-xs sm:text-sm font-bold shadow-md max-w-full text-left">
               <TrophyIcon className="w-4 h-4 text-amber-400 shrink-0" />
               <span className="font-mono text-[11px] sm:text-xs tracking-wider leading-snug whitespace-normal">
                 PELATIH BERPENGALAMAN FINSWIMMING JATIM
               </span>
-            </motion.div>
+            </div>
 
             {/* Main Headline */}
-            <motion.h1
-              variants={fadeUp}
-              className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight text-slate-950 font-outfit leading-[1.12] text-balance"
-            >
+            <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight text-slate-950 font-outfit leading-[1.12] text-balance">
               Dari Takut Air Menjadi{' '}
               <span className="text-blue-600 block sm:inline mt-1 sm:mt-0 bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent">
                 Percaya Diri Berenang
               </span>
-            </motion.h1>
+            </h1>
 
             {/* Subheadline */}
-            <motion.p
-              variants={fadeUp}
-              className="text-sm sm:text-base lg:text-lg text-slate-700 font-medium max-w-2xl mx-auto lg:mx-0 leading-relaxed"
-            >
+            <p className="text-sm sm:text-base lg:text-lg text-slate-700 font-medium max-w-2xl mx-auto lg:mx-0 leading-relaxed">
               Program les renang privat 1-on-1 & reguler di kota Malang. Membantu anak mulai usia 5 tahun, pelajar, dewasa, hingga persiapan tes TNI, Polri dan kedinasan dengan metode yang aman, terstruktur, dan ramah.
-            </motion.p>
+            </p>
 
             {/* Stat & Feature Boxes - Tabular Figures */}
-            <motion.div
-              variants={staggerContainer(0.1)}
-              className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 sm:gap-3.5 pt-1 max-w-2xl mx-auto lg:mx-0"
-            >
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 sm:gap-3.5 pt-1 max-w-2xl mx-auto lg:mx-0">
               {[
                 { value: '1-on-1', label: 'Kelas Privat' },
                 { value: '3–4 Anak', label: 'Kelas Reguler' },
                 { value: '3 Hotel', label: 'Lokasi Malang' },
                 { value: 'Bertahap', label: 'Metode Belajar' },
               ].map((stat) => (
-                <motion.div
+                <div
                   key={stat.value}
-                  variants={fadeUp}
                   className="card-clean-elevated p-3 sm:p-3.5 rounded-2xl text-center lg:text-left min-w-0"
                 >
                   <span className="text-base sm:text-lg lg:text-xl font-black text-blue-700 font-mono block truncate leading-tight">
@@ -78,15 +58,12 @@ export const Hero: React.FC = () => {
                   <span className="text-[11px] sm:text-xs font-bold text-slate-800 block mt-1 truncate">
                     {stat.label}
                   </span>
-                </motion.div>
+                </div>
               ))}
-            </motion.div>
+            </div>
 
             {/* Action Buttons */}
-            <motion.div
-              variants={fadeUp}
-              className="pt-2 sm:pt-3 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3"
-            >
+            <div className="pt-2 sm:pt-3 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3">
               <button
                 type="button"
                 onClick={() => openWaModal()}
@@ -103,9 +80,9 @@ export const Hero: React.FC = () => {
                 <span>Lihat Kategori Program</span>
                 <ArrowRight className="w-4 h-4 text-white" />
               </a>
-            </motion.div>
+            </div>
 
-          </motion.div>
+          </div>
 
           {/* Right Column - 3D Card Stack Carousel */}
           <div className="lg:col-span-5 w-full overflow-visible">

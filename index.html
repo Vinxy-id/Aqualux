@@ -2,7 +2,7 @@
 <html lang="id" class="scroll-smooth">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/png" href="./aqualux-icon-small.png" />
+    <link rel="icon" type="image/webp" href="./aqualux-icon.webp" />
     <link rel="apple-touch-icon" href="./aqualux-icon-small.png" />
     <link rel="preload" as="image" href="./brosur-aqualux-1-thumb.webp" type="image/webp" fetchpriority="high" />
     <link rel="preload" as="image" href="./aqualux-logo.webp" type="image/webp" />
@@ -20,13 +20,11 @@
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     
-    <!-- Google Fonts: Preload critical Outfit font, lazy-load Inter -->
+    <!-- Google Fonts: Non-blocking async load with font-display: swap -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <!-- Preload the most critical Outfit woff2 subset for faster LCP -->
-    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Outfit:wght@700;800;900&family=Inter:wght@400;500;600;700&display=swap">
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
-    <noscript><link href="https://fonts.googleapis.com/css2?family=Outfit:wght@700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"></noscript>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@700;800;900&family=Inter:wght@400;500;600;700&display=swap" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@700;800;900&family=Inter:wght@400;500;600;700&display=swap"></noscript>
   </head>
   <body class="bg-slate-950 text-slate-100 font-sans antialiased selection:bg-cyan-500 selection:text-white overflow-x-hidden">
     <div id="root"></div>

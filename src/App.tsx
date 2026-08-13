@@ -12,11 +12,11 @@ import { TestimonialsSection } from './components/TestimonialsSection';
 import { UrgencyBanner } from './components/UrgencyBanner';
 import { FAQSection } from './components/FAQSection';
 import { Footer } from './components/Footer';
-import { LinkBioPage } from './components/LinkBioPage';
 import { WhatsAppModal } from './components/WhatsAppModal';
 
 const AdminLogin = lazy(() => import('./components/AdminLogin').then(m => ({ default: m.AdminLogin })));
 const AdminPage = lazy(() => import('./components/AdminPage').then(m => ({ default: m.AdminPage })));
+const LinkBioPage = lazy(() => import('./components/LinkBioPage').then(m => ({ default: m.LinkBioPage })));
 
 function AppContent() {
   const { isAuthenticated } = useAuth();
@@ -95,10 +95,10 @@ function AppContent() {
 
   if (route === 'links') {
     return (
-      <>
+      <Suspense fallback={<div className="min-h-screen bg-white flex items-center justify-center text-blue-900 font-mono text-xs">Memuat...</div>}>
         <LinkBioPage onBackToLanding={navigateToLanding} onOpenAdmin={navigateToAdmin} />
         <WhatsAppModal />
-      </>
+      </Suspense>
     );
   }
 

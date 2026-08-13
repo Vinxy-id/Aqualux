@@ -92,17 +92,17 @@ export const Hero3DCardCarousel: React.FC = () => {
   const [isPaused, setIsPaused] = useState<boolean>(false);
   const [zoomBrochure, setZoomBrochure] = useState<string | null>(null);
   const [zoomScale, setZoomScale] = useState<number>(1);
-  const [isMobile, setIsMobile] = useState<boolean>(false);
+  const [isMobile, setIsMobile] = useState<boolean>(() => typeof window !== 'undefined' ? window.innerWidth < 640 : false);
   const touchStartX = useRef<number | null>(null);
   const total = CAROUSEL_CARDS.length;
 
   // Track responsive viewport width
   useEffect(() => {
     const checkMobile = () => {
-      setIsMobile(window.innerWidth < 640);
+      const next = window.innerWidth < 640;
+      setIsMobile((prev) => (prev !== next ? next : prev));
     };
-    checkMobile();
-    window.addEventListener('resize', checkMobile);
+    window.addEventListener('resize', checkMobile, { passive: true });
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
@@ -339,7 +339,7 @@ export const Hero3DCardCarousel: React.FC = () => {
                   {/* Top Logo & Tag Overlay */}
                   <div className="absolute top-2.5 left-2.5 right-2.5 flex items-center justify-between pointer-events-none">
                     <div className="bg-white/95 backdrop-blur-md px-2 py-1 rounded-xl border border-slate-200 shadow-md">
-                      <img src="./aqualux-icon-small.png" alt="AQUALUX Logo" className="h-5 sm:h-6 w-auto object-contain" width="24" height="24" />
+                      <img src="./aqualux-icon.webp" alt="AQUALUX Logo" className="h-5 sm:h-6 w-auto object-contain" width="24" height="24" />
                     </div>
 
                     <span className={`px-2.5 py-0.5 rounded-full text-[10px] sm:text-xs font-mono font-bold border shadow-xs backdrop-blur-md ${card.tagColor}`}>
@@ -499,7 +499,7 @@ export const Hero3DCardCarousel: React.FC = () => {
                 <div className="flex flex-wrap items-center justify-between gap-2 pb-3 mb-1 border-b border-slate-800 shrink-0">
                   <div className="flex items-center gap-2.5">
                     <div className="p-1 bg-white rounded-xl">
-                      <img src="./aqualux-icon-small.png" alt="Aqualux Logo" className="h-5 sm:h-6 w-auto" width="24" height="24" />
+                      <img src="./aqualux-icon.webp" alt="Aqualux Logo" className="h-5 sm:h-6 w-auto" width="24" height="24" />
                     </div>
                     <div>
                       <span className="text-white font-extrabold text-sm sm:text-base font-outfit block leading-tight">
