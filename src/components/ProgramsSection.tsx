@@ -175,22 +175,22 @@ export const ProgramsSection: React.FC = () => {
             </div>
           </motion.div>
 
-          {/* KOTAK 2: Persiapan Tes TNI / Polri (TANDA KHUSUS KEDINASAN - WARNA HARMONIS) */}
+          {/* KOTAK 2: Persiapan Tes TNI / Polri (WARNA DISAMAKAN PERSIS DENGAN KOTAK KIRI) */}
           <motion.div
             variants={fadeUp}
             whileHover={{ y: -4 }}
             transition={{ duration: 0.25 }}
-            className="rounded-3xl p-5 sm:p-8 flex flex-col justify-between border-2 border-amber-400 bg-gradient-to-br from-blue-700 via-blue-800 to-blue-900 text-white shadow-2xl hover:shadow-blue-900/30 transition-all duration-300 relative group"
+            className="rounded-3xl p-5 sm:p-8 flex flex-col justify-between border-2 border-blue-400 bg-gradient-to-br from-blue-700 via-blue-800 to-blue-900 text-white shadow-2xl hover:shadow-blue-900/30 transition-all duration-300 relative group"
           >
             <div>
               <div className="flex items-start justify-between gap-3 mb-6">
-                <span className="text-[10px] sm:text-xs font-mono font-black uppercase tracking-wider text-slate-950 bg-gradient-to-r from-amber-400 via-yellow-300 to-amber-400 px-3.5 py-1.5 rounded-full border border-amber-200 shadow-md inline-flex items-center gap-1.5">
-                  <Flame className="w-3.5 h-3.5 fill-slate-950 shrink-0" />
+                <span className="text-[10px] sm:text-xs font-mono font-black uppercase tracking-wider text-blue-100 bg-blue-950/80 px-3.5 py-1.5 rounded-full border border-blue-300/40 shadow-sm inline-flex items-center gap-1.5">
+                  <Flame className="w-3.5 h-3.5 text-amber-400 fill-amber-400 shrink-0" />
                   <span>PROGRAM KHUSUS • TNI / POLRI</span>
                 </span>
 
-                <div className="w-11 h-11 rounded-2xl bg-amber-400/20 text-amber-300 border border-amber-400/40 flex items-center justify-center shrink-0 shadow-md group-hover:scale-105 transition-transform">
-                  <ShieldAlert className="w-5 h-5" />
+                <div className="w-11 h-11 rounded-2xl bg-white/10 text-white border border-white/20 flex items-center justify-center shrink-0 shadow-xs group-hover:scale-105 transition-transform">
+                  <ShieldAlert className="w-5 h-5 text-amber-300" />
                 </div>
               </div>
 
@@ -203,46 +203,46 @@ export const ProgramsSection: React.FC = () => {
               </p>
 
               {/* Checklist Features */}
-              <ul className="space-y-3.5 border-t border-amber-400/30 pt-5 mb-8">
+              <ul className="space-y-3.5 border-t border-blue-500/40 pt-5 mb-8">
                 <li className="flex items-center gap-3 text-xs sm:text-sm font-bold text-white">
-                  <div className="w-5 h-5 rounded-full bg-amber-400/20 border border-amber-400/50 flex items-center justify-center shrink-0">
-                    <Check className="w-3.5 h-3.5 text-amber-300 stroke-[3]" />
+                  <div className="w-5 h-5 rounded-full bg-emerald-400/20 border border-emerald-400/40 flex items-center justify-center shrink-0">
+                    <Check className="w-3.5 h-3.5 text-emerald-300 stroke-[3]" />
                   </div>
                   <span>Drill Teknik Gaya Dada dan Gaya Crawl Khusus Ujian</span>
                 </li>
                 <li className="flex items-center gap-3 text-xs sm:text-sm font-bold text-white">
-                  <div className="w-5 h-5 rounded-full bg-amber-400/20 border border-amber-400/50 flex items-center justify-center shrink-0">
-                    <Check className="w-3.5 h-3.5 text-amber-300 stroke-[3]" />
+                  <div className="w-5 h-5 rounded-full bg-emerald-400/20 border border-emerald-400/40 flex items-center justify-center shrink-0">
+                    <Check className="w-3.5 h-3.5 text-emerald-300 stroke-[3]" />
                   </div>
                   <span>Latihan Kecepatan 25 meter & 50 Meter gaya dada & gaya crawl</span>
                 </li>
                 <li className="flex items-center gap-3 text-xs sm:text-sm font-bold text-white">
-                  <div className="w-5 h-5 rounded-full bg-amber-400/20 border border-amber-400/50 flex items-center justify-center shrink-0">
-                    <Check className="w-3.5 h-3.5 text-amber-300 stroke-[3]" />
+                  <div className="w-5 h-5 rounded-full bg-emerald-400/20 border border-emerald-400/40 flex items-center justify-center shrink-0">
+                    <Check className="w-3.5 h-3.5 text-emerald-300 stroke-[3]" />
                   </div>
                   <span>Simulasi Tes & Time Trial Berkala</span>
                 </li>
                 <li className="flex items-center gap-3 text-xs sm:text-sm font-bold text-white">
-                  <div className="w-5 h-5 rounded-full bg-amber-400/20 border border-amber-400/50 flex items-center justify-center shrink-0">
-                    <Check className="w-3.5 h-3.5 text-amber-300 stroke-[3]" />
+                  <div className="w-5 h-5 rounded-full bg-emerald-400/20 border border-emerald-400/40 flex items-center justify-center shrink-0">
+                    <Check className="w-3.5 h-3.5 text-emerald-300 stroke-[3]" />
                   </div>
                   <span>Tips Penghematan Tenaga & Pernapasan</span>
                 </li>
                 <li className="flex items-center gap-3 text-xs sm:text-sm font-bold text-white">
-                  <div className="w-5 h-5 rounded-full bg-amber-400/20 border border-amber-400/50 flex items-center justify-center shrink-0">
-                    <Check className="w-3.5 h-3.5 text-amber-300 stroke-[3]" />
+                  <div className="w-5 h-5 rounded-full bg-emerald-400/20 border border-emerald-400/40 flex items-center justify-center shrink-0">
+                    <Check className="w-3.5 h-3.5 text-emerald-300 stroke-[3]" />
                   </div>
                   <span>Tips berenang gaya dada dan gaya bebas yang baik dan benar</span>
                 </li>
               </ul>
             </div>
 
-            {/* CTA Button Kedinasan (Special Amber Accent) */}
-            <div className="border-t border-amber-400/30 pt-5">
+            {/* CTA Button Kedinasan (Harmonized Emerald Green Accent) */}
+            <div className="border-t border-blue-500/40 pt-5">
               <button
                 type="button"
                 onClick={() => openWaModal("Halo Admin Aqualux, saya berminat mendaftar Program Persiapan Tes Renang TNI/Polri/Kedinasan. Mohon info jadwal pelatih.")}
-                className="w-full py-4 px-6 rounded-2xl bg-gradient-to-r from-amber-400 via-amber-300 to-yellow-400 hover:from-amber-300 hover:to-yellow-300 text-slate-950 font-black text-xs sm:text-sm flex items-center justify-center gap-2.5 shadow-xl hover:shadow-amber-400/30 transition-all btn-tactile"
+                className="w-full py-4 px-6 rounded-2xl bg-emerald-400 hover:bg-emerald-300 text-slate-950 font-black text-xs sm:text-sm flex items-center justify-center gap-2.5 shadow-lg transition-all btn-tactile"
               >
                 <MessageCircle className="w-5 h-5 fill-slate-950 shrink-0" />
                 <span>Daftar Persiapan Tes Kedinasan via WA</span>
