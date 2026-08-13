@@ -176,7 +176,7 @@ Landing Page didesain menggunakan skema **Single Page Scrolling** dengan susunan
 ### 7.1 Header & Sticky Navigation
 - **Requirement**: Bar navigasi atas yang tetap (*sticky*) saat scroll.
 - **Elemen UI**:
-  - Logo AQUALUX Private Swim.
+  - Logo AQUALUX Swimming Course.
   - Link Navigasi Desktop: Program, Lokasi, Harga, Testimoni, FAQ.
   - Button CTA: "Konsultasi WA" (Warna Hijau WhatsApp `#25D366` / Brand Accent).
 - **Logic**: Di tampilan mobile, navigasi disederhanakan menjadi Logo + Button WhatsApp Mini.
