@@ -22,25 +22,25 @@ export const Hero: React.FC = () => {
             {/* Top Pill Badge */}
             <div className="inline-flex items-center gap-2 px-3.5 py-2 sm:px-4 sm:py-2 rounded-2xl sm:rounded-full bg-blue-950 border border-blue-900 text-white text-xs sm:text-sm font-bold shadow-md max-w-full text-left">
               <TrophyIcon className="w-4 h-4 text-amber-400 shrink-0" />
-              <span className="font-mono text-[11px] sm:text-xs tracking-wider leading-snug whitespace-normal">
-                PELATIH BERPENGALAMAN FINSWIMMING JATIM
+              <span className="font-mono text-[11px] sm:text-xs tracking-wider leading-snug whitespace-normal text-amber-200 font-bold">
+                PELATIH RENANG BERLISENSI MALANG
               </span>
             </div>
 
             {/* Main Headline */}
             <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight text-slate-950 font-outfit leading-[1.12] text-balance">
               Dari Takut Air Menjadi{' '}
-              <span className="text-blue-600 block sm:inline mt-1 sm:mt-0 bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent">
+              <span className="text-sky-500 font-black block sm:inline mt-1 sm:mt-0 bg-gradient-to-r from-blue-600 via-sky-500 to-cyan-500 bg-clip-text text-transparent">
                 Percaya Diri Berenang
               </span>
             </h1>
 
             {/* Subheadline */}
-            <p className="text-sm sm:text-base lg:text-lg text-slate-700 font-medium max-w-2xl mx-auto lg:mx-0 leading-relaxed">
+            <p className="text-sm sm:text-base lg:text-lg text-slate-700 font-semibold max-w-2xl mx-auto lg:mx-0 leading-relaxed">
               Program les renang privat 1-on-1 & reguler di kota Malang. Membantu anak mulai usia 5 tahun, pelajar, dewasa, hingga persiapan tes TNI, Polri dan kedinasan dengan metode yang aman, terstruktur, dan ramah.
             </p>
 
-            {/* Stat & Feature Boxes - Tabular Figures */}
+            {/* Stat & Feature Boxes - High Contrast for Light & Dark Mode */}
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 sm:gap-3.5 pt-1 max-w-2xl mx-auto lg:mx-0">
               {[
                 { value: '1-on-1', label: 'Kelas Privat' },
@@ -50,9 +50,9 @@ export const Hero: React.FC = () => {
               ].map((stat) => (
                 <div
                   key={stat.value}
-                  className="card-clean-elevated p-3 sm:p-3.5 rounded-2xl text-center lg:text-left min-w-0"
+                  className="bg-white border-2 border-blue-200/80 shadow-md p-3 sm:p-3.5 rounded-2xl text-center lg:text-left min-w-0"
                 >
-                  <span className="text-base sm:text-lg lg:text-xl font-black text-blue-700 font-mono block truncate leading-tight">
+                  <span className="text-base sm:text-lg lg:text-xl font-black text-sky-400 font-mono block truncate leading-tight drop-shadow-xs">
                     {stat.value}
                   </span>
                   <span className="text-[11px] sm:text-xs font-bold text-slate-800 block mt-1 truncate">
@@ -67,15 +67,15 @@ export const Hero: React.FC = () => {
               <button
                 type="button"
                 onClick={() => openWaModal()}
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-6 sm:px-7 py-3.5 sm:py-4 rounded-full bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold text-sm sm:text-base shadow-lg shadow-emerald-600/25 transition-all btn-hover-effect btn-tactile min-h-[48px]"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-6 sm:px-7 py-3.5 sm:py-4 rounded-full bg-emerald-600 hover:bg-emerald-700 text-white font-black text-sm sm:text-base shadow-lg shadow-emerald-600/25 transition-all btn-hover-effect btn-tactile min-h-[48px]"
               >
-                <MessageCircle className="w-5 h-5 text-white" />
+                <MessageCircle className="w-5 h-5 text-white fill-white" />
                 <span>Daftar Kursus via WhatsApp</span>
               </button>
 
               <a
                 href="#program"
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 sm:py-4 rounded-full bg-slate-900 hover:bg-slate-800 text-white font-bold text-sm sm:text-base shadow-md transition-all btn-hover-effect btn-tactile min-h-[48px]"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 sm:py-4 rounded-full bg-slate-900 hover:bg-slate-800 text-white font-bold text-sm sm:text-base border border-slate-700 shadow-md transition-all btn-hover-effect btn-tactile min-h-[48px]"
               >
                 <span>Lihat Kategori Program</span>
                 <ArrowRight className="w-4 h-4 text-white" />
