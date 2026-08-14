@@ -99,7 +99,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenAdmin }) => {
             >
               <div className="bg-white/95 backdrop-blur-xs px-2.5 py-1 rounded-2xl border border-slate-200/80 shadow-xs transition-transform group-hover:scale-105">
                 <img 
-                  src="./aqualux-logo.png" 
+                  src="./aqualux-logo.webp" 
                   alt="AQUALUX Swimming Course" 
                   width="160"
                   height="54"
