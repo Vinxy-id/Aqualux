@@ -357,9 +357,9 @@ export const Hero3DCardCarousel: React.FC = () => {
 
                   {/* Bottom Text Overlay */}
                   <div className="absolute bottom-2.5 left-2.5 right-2.5 text-white">
-                    <h3 className="font-extrabold text-xs sm:text-base font-outfit text-white leading-snug drop-shadow-md">
+                    <h2 className="font-extrabold text-xs sm:text-base font-outfit text-white leading-snug drop-shadow-md">
                       {card.title}
-                    </h3>
+                    </h2>
                     <p className="text-[10px] sm:text-xs text-slate-200 font-medium line-clamp-2 mt-0.5 leading-snug">
                       {card.subtitle}
                     </p>

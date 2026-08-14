@@ -72,7 +72,7 @@ export const TestimonialsSection: React.FC = () => {
                   <User className="w-5 h-5 text-slate-700" />
                 </div>
                 <div>
-                  <h4 className="text-sm font-black text-slate-950 font-outfit">{item.name}</h4>
+                  <h3 className="text-sm font-black text-slate-950 font-outfit">{item.name}</h3>
                   <span className="text-xs font-bold text-slate-600 block">{item.role}</span>
                 </div>
               </div>

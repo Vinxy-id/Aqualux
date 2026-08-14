@@ -145,7 +145,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenAdmin }) => {
         </motion.div>
 
         {/* Bottom Note */}
-        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between text-[11px] text-slate-500 gap-4">
+        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-300 font-medium gap-4">
           <p>© {new Date().getFullYear()} AQUALUX Swimming Course. All rights reserved.</p>
           {onOpenAdmin && (
             <button
