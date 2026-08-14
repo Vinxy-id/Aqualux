@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://aqualux-delta.vercel.app/sitemap.xml
+Sitemap: https://aqualux.my.id/sitemap.xml

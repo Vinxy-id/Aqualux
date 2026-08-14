@@ -130,7 +130,7 @@ export const WhyChooseUs: React.FC = () => {
         {/* 4 Pillars Summary Grid */}
         <motion.div variants={fadeUp} className="card-clean-elevated p-6 sm:p-8 rounded-3xl text-left">
           <h3 className="text-xl font-black text-slate-950 font-outfit mb-6 text-center">
-            4 Prinsip Pengajaran Aqualux
+            4 Prinsip Latihan Aqualux
           </h3>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
