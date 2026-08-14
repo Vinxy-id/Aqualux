@@ -97,13 +97,15 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenAdmin }) => {
               onClick={(e) => handleNavClick(e, '#')}
               className="flex items-center group text-left cursor-pointer"
             >
-              <img 
-                src="./aqualux-logo.webp" 
-                alt="AQUALUX Swimming Course" 
-                width="160"
-                height="54"
-                className="h-12 sm:h-15 w-auto object-contain transition-transform group-hover:scale-105"
-              />
+              <div className="bg-white/95 backdrop-blur-xs px-2.5 py-1 rounded-2xl border border-slate-200/80 shadow-xs transition-transform group-hover:scale-105">
+                <img 
+                  src="./aqualux-logo.webp" 
+                  alt="AQUALUX Swimming Course" 
+                  width="160"
+                  height="54"
+                  className="h-10 sm:h-12 w-auto object-contain"
+                />
+              </div>
             </a>
 
             {/* Desktop Nav Pills */}
