@@ -436,19 +436,23 @@ export const Hero3DCardCarousel: React.FC = () => {
         </button>
 
         {/* Pagination Dots */}
-        <div className="flex items-center gap-1.5">
+        <div className="flex items-center gap-0.5">
           {CAROUSEL_CARDS.map((_, idx) => (
             <button
               key={idx}
               type="button"
               onClick={() => setActiveIndex(idx)}
               aria-label={`Go to slide ${idx + 1}`}
-              className={`transition-all duration-300 rounded-full cursor-pointer ${
-                idx === activeIndex
-                  ? 'w-6 h-2 bg-blue-600 shadow-sm shadow-blue-500/50'
-                  : 'w-2 h-2 bg-slate-300 hover:bg-slate-400'
-              }`}
-            />
+              className="p-2.5 flex items-center justify-center cursor-pointer min-w-[28px] min-h-[28px]"
+            >
+              <span
+                className={`transition-all duration-300 rounded-full block ${
+                  idx === activeIndex
+                    ? 'w-6 h-2 bg-blue-600 shadow-sm shadow-blue-500/50'
+                    : 'w-2 h-2 bg-slate-300 hover:bg-slate-400'
+                }`}
+              />
+            </button>
           ))}
         </div>
 

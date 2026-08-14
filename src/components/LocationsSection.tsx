@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { MapPin, Clock, Calendar, ExternalLink, Ticket, Utensils, Navigation } from 'lucide-react';
 import { useAqualuxData } from '../context/AqualuxDataContext';
@@ -9,8 +9,25 @@ import { fadeUp, staggerContainer, viewportOnce } from '../utils/motion';
 export const LocationsSection: React.FC = () => {
   const { locations } = useAqualuxData();
   const [activeMapKey, setActiveMapKey] = useState<LocationKey>('ubud');
+  const [mapLoaded, setMapLoaded] = useState<boolean>(false);
   const activeLocation = locations[activeMapKey] || locations.ubud;
   const waUrl = buildGeneralWhatsAppUrl();
+
+  // Defer Google Maps iframe rendering until section is near viewport to save 435KB JS & 555ms TBT
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setMapLoaded(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: '300px' }
+    );
+    const elem = document.getElementById('map-preview-container');
+    if (elem) observer.observe(elem);
+    return () => observer.disconnect();
+  }, []);
 
   /** Only allow Google Maps HTTPS embeds in the iframe. */
   const isValidMapEmbedUrl = (url: string): boolean => {
@@ -88,9 +105,9 @@ export const LocationsSection: React.FC = () => {
 
                     {/* Hotel Title */}
                     <div className="absolute bottom-3.5 left-4 right-4">
-                      <span className="text-xl sm:text-2xl font-black text-white font-outfit drop-shadow-md block">
+                      <h3 className="text-xl sm:text-2xl font-black text-white font-outfit drop-shadow-md block">
                         {loc.name}
-                      </span>
+                      </h3>
                     </div>
                   </div>
 
@@ -137,6 +154,7 @@ export const LocationsSection: React.FC = () => {
                     type="button"
                     onClick={() => {
                       setActiveMapKey(loc.key);
+                      setMapLoaded(true);
                       const mapElem = document.getElementById('map-preview-container');
                       if (mapElem) mapElem.scrollIntoView({ behavior: 'smooth' });
                     }}
@@ -154,9 +172,10 @@ export const LocationsSection: React.FC = () => {
                     href={loc.mapUrl}
                     target="_blank"
                     rel="noopener noreferrer"
+                    aria-label={`Petunjuk Arah Google Maps ke ${loc.name}`}
                     className="w-full inline-flex items-center justify-center gap-1.5 py-2 text-xs font-bold text-slate-600 hover:text-blue-700 transition-colors"
                   >
-                    <span>Petunjuk Arah Google Maps</span>
+                    <span>Petunjuk Arah {loc.name} di Google Maps</span>
                     <ExternalLink className="w-3.5 h-3.5 opacity-70" />
                   </a>
                 </div>
@@ -193,7 +212,10 @@ export const LocationsSection: React.FC = () => {
                 <button
                   key={loc.key}
                   type="button"
-                  onClick={() => setActiveMapKey(loc.key)}
+                  onClick={() => {
+                    setActiveMapKey(loc.key);
+                    setMapLoaded(true);
+                  }}
                   className={`px-3.5 py-2 rounded-full text-xs font-extrabold transition-all border flex-1 sm:flex-none text-center btn-tactile ${
                     activeMapKey === loc.key
                       ? 'bg-blue-600 text-white border-blue-700 shadow-sm'
@@ -208,7 +230,7 @@ export const LocationsSection: React.FC = () => {
 
           {/* Embedded Map iFrame */}
           <div className="relative w-full h-72 sm:h-96 rounded-2xl overflow-hidden border border-slate-300 shadow-inner bg-slate-200">
-            {activeLocation.embedMapUrl && isValidMapEmbedUrl(activeLocation.embedMapUrl) ? (
+            {mapLoaded && activeLocation.embedMapUrl && isValidMapEmbedUrl(activeLocation.embedMapUrl) ? (
               <iframe
                 title={`Google Map - ${activeLocation.name}`}
                 src={activeLocation.embedMapUrl}
@@ -221,8 +243,18 @@ export const LocationsSection: React.FC = () => {
                 className="w-full h-full"
               />
             ) : (
-              <div className="w-full h-full flex items-center justify-center text-slate-500 font-bold text-sm">
-                Peta Google Maps tidak dapat dimuat
+              <div className="w-full h-full flex flex-col items-center justify-center p-6 text-center bg-slate-100">
+                <MapPin className="w-8 h-8 text-blue-600 mb-2 animate-bounce" />
+                <span className="font-extrabold text-sm text-slate-900 mb-3">
+                  Peta Google Maps - {activeLocation.name}
+                </span>
+                <button
+                  type="button"
+                  onClick={() => setMapLoaded(true)}
+                  className="px-5 py-2.5 rounded-full bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs shadow-md transition-all btn-tactile"
+                >
+                  Tampilkan Peta Live Google Maps
+                </button>
               </div>
             )}
           </div>
@@ -238,6 +270,7 @@ export const LocationsSection: React.FC = () => {
               href={activeLocation.mapUrl}
               target="_blank"
               rel="noopener noreferrer"
+              aria-label={`Buka Petunjuk Arah ${activeLocation.name} di Google Maps App`}
               className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-slate-900 hover:bg-slate-800 text-white font-extrabold text-xs shadow-md transition-all w-full sm:w-auto shrink-0 min-h-[44px] btn-tactile"
             >
               <Navigation className="w-4 h-4 text-blue-400" />
