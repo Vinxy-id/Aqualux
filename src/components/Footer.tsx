@@ -52,7 +52,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenAdmin }) => {
               </a>
 
               <a
-                href="https://www.aqualux.my.id"
+                href="/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-9 h-9 rounded-xl bg-slate-800 border border-slate-700 flex items-center justify-center text-slate-300 hover:text-blue-400 hover:border-blue-500/40 transition-colors"

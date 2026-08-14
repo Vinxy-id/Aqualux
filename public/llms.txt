@@ -5,19 +5,19 @@
 Aqualux Swimming Course menyediakan program bimbingan les renang yang ramah, terstruktur, aman, dan bertahap di berbagai kolam renang hotel representatif di Kota Malang (Hotel Ubud, Hotel Tychi, Hotel Savana).
 
 ## Program Kursus
-- [Kelas Anak Usia 5+ Tahun](https://vinxy-id.github.io/Aqualux/#program): Metode ramah anak water familiarity untuk mengubah takut air menjadi berani dan mandiri mengapung.
-- [Kelas Pelajar & Remaja](https://vinxy-id.github.io/Aqualux/#program): Peningkatan stamina, koreksi teknik 4 gaya renang, dan persiapan ujian olahraga sekolah.
-- [Kelas Dewasa & Umum](https://vinxy-id.github.io/Aqualux/#program): Belajar renang dari nol, terapi kesehatan tulang belakang, dan kebugaran dengan privasi terjaga di kolam hotel.
-- [Persiapan Tes TNI & POLRI](https://vinxy-id.github.io/Aqualux/#program): Bimbingan intensif target waktu renang gaya dada 50 meter dan persiapan tes ketangkasan kedinasan.
+- [Kelas Anak Usia 5+ Tahun](https://aqualux-delta.vercel.app/#program): Metode ramah anak water familiarity untuk mengubah takut air menjadi berani dan mandiri mengapung.
+- [Kelas Pelajar & Remaja](https://aqualux-delta.vercel.app/#program): Peningkatan stamina, koreksi teknik 4 gaya renang, dan persiapan ujian olahraga sekolah.
+- [Kelas Dewasa & Umum](https://aqualux-delta.vercel.app/#program): Belajar renang dari nol, terapi kesehatan tulang belakang, dan kebugaran dengan privasi terjaga di kolam hotel.
+- [Persiapan Tes TNI & POLRI](https://aqualux-delta.vercel.app/#program): Bimbingan intensif target waktu renang gaya dada 50 meter dan persiapan tes ketangkasan kedinasan.
 
 ## Paket & Biaya
-- [Daftar Paket Harga](https://vinxy-id.github.io/Aqualux/#harga): Paket kelas reguler (3-4 anak) dan kelas privat 1-on-1 dengan pilihan 4x atau 8x pertemuan.
+- [Daftar Paket Harga](https://aqualux-delta.vercel.app/#harga): Paket kelas reguler (3-4 anak) dan kelas privat 1-on-1 dengan pilihan 4x atau 8x pertemuan.
 
 ## Lokasi Latihan
-- [Hotel Ubud Malang](https://vinxy-id.github.io/Aqualux/#lokasi): Jl. Bendungan Sigura-Gura No.6, Sukun, Kota Malang.
-- [Hotel Tychi Malang](https://vinxy-id.github.io/Aqualux/#lokasi): Jl. Jaksa Agung Suprapto No.17, Klojen, Kota Malang.
-- [Hotel Savana Malang](https://vinxy-id.github.io/Aqualux/#lokasi): Jl. Letjen Sutoyo No.32-34, Klojen, Kota Malang.
+- [Hotel Ubud Malang](https://aqualux-delta.vercel.app/#lokasi): Jl. Bendungan Sigura-Gura No.6, Sukun, Kota Malang.
+- [Hotel Tychi Malang](https://aqualux-delta.vercel.app/#lokasi): Jl. Jaksa Agung Suprapto No.17, Klojen, Kota Malang.
+- [Hotel Savana Malang](https://aqualux-delta.vercel.app/#lokasi): Jl. Letjen Sutoyo No.32-34, Klojen, Kota Malang.
 
 ## Informasi & Pendaftaran
 - [Pendaftaran Kursus via WhatsApp](https://wa.me/6282142698440?text=Halo%20Admin%20Aqualux): Konsultasi jadwal dan pendaftaran les renang Aqualux Malang.
-- [Profil Resmi Link in Bio](https://vinxy-id.github.io/Aqualux/links): Halaman tautan informasi resmi Aqualux Swimming Course.
+- [Profil Resmi Link in Bio](https://aqualux-delta.vercel.app/links): Halaman tautan informasi resmi Aqualux Swimming Course.

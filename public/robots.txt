@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://vinxy-id.github.io/Aqualux/sitemap.xml
+Sitemap: https://aqualux-delta.vercel.app/sitemap.xml
