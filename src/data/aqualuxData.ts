@@ -1,4 +1,4 @@
-import { LocationInfo, ClassType, SessionCount, LocationKey, CategoryProgram, CoachAchievement, Testimonial, FAQItem } from '../types';
+import { LocationInfo, ClassType, SessionCount, LocationKey, CategoryProgram, CoachAchievement, Testimonial, FAQItem, GalleryItem } from '../types';
 
 export const LOCATIONS_DATA: Record<LocationKey, LocationInfo> = {
   ubud: {
@@ -215,5 +215,76 @@ export const FAQ_DATA: FAQItem[] = [
     question: 'Apakah biaya kursus renang bisa dibayar per pertemuan?',
     answer: 'Mohon maaf, **pembayaran tidak bisa dilakukan per pertemuan**. Seluruh pembayaran biaya bimbingan di Aqualux dilakukan sekaligus di awal untuk **paket bulanan (4x atau 8x pertemuan)** sebelum program bimbingan dimulai.',
     category: 'harga'
+  }
+];
+
+export const INITIAL_GALLERY_DATA: GalleryItem[] = [
+  {
+    id: 'gal-1',
+    title: 'Sesi Latihan Adaptasi Air & Pengenalan Anak',
+    description: 'Dokumentasi anak usia 5 tahun belajar meluncur dan pernapasan mandiri di kolam Ubud Hotel Malang.',
+    type: 'photo',
+    category: 'anak',
+    thumbnailUrl: './images/carousel-kids.webp',
+    mediaUrl: './images/carousel-kids.webp',
+    locationBadge: 'Hotel Ubud Malang',
+    dateAdded: '2026-08-01'
+  },
+  {
+    id: 'gal-2',
+    title: 'Drill Kecepatan & Stamina Tes TNI/Polri',
+    description: 'Sesi time trial 50m gaya dada & gaya bebas khusus peserta persiapan seleksi fisik kedinasan.',
+    type: 'photo',
+    category: 'kedinasan',
+    thumbnailUrl: './images/carousel-tni.webp',
+    mediaUrl: './images/carousel-tni.webp',
+    locationBadge: 'Hotel Tychi Malang',
+    dateAdded: '2026-08-05'
+  },
+  {
+    id: 'gal-3',
+    title: 'Pendampingan Sesi Privat 1-on-1 Pelatih Berlisensi',
+    description: 'Coach memberikan evaluasi teknik dorongan kaki dan pernapasan secara intensif dan sabar.',
+    type: 'photo',
+    category: 'teknik',
+    thumbnailUrl: './images/carousel-coach.webp',
+    mediaUrl: './images/carousel-coach.webp',
+    locationBadge: 'Hotel Savana Malang',
+    dateAdded: '2026-08-08'
+  },
+  {
+    id: 'gal-4',
+    title: 'Video Highlight Sesi Latihan Anak & Pemula',
+    description: 'Tonton cuplikan keceriaan anak-anak belajar mengapung dan berenang dengan gembira.',
+    type: 'video',
+    category: 'anak',
+    thumbnailUrl: './images/carousel-kids.webp',
+    mediaUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
+    videoDuration: '00:45',
+    locationBadge: 'Hotel Ubud Malang',
+    dateAdded: '2026-08-10'
+  },
+  {
+    id: 'gal-5',
+    title: 'Suasana Nyaman & Clean di Kolam Hotel Tychi',
+    description: 'Fasilitas kolam renang outdoor yang bersih, ramah keluarga, dan terjaga privasinya.',
+    type: 'photo',
+    category: 'suasana',
+    thumbnailUrl: './images/hotel-tychi.webp',
+    mediaUrl: './images/hotel-tychi.webp',
+    locationBadge: 'Hotel Tychi Malang',
+    dateAdded: '2026-08-12'
+  },
+  {
+    id: 'gal-6',
+    title: 'Video Drill Teknik Streamline & Pernapasan',
+    description: 'Tutorial posisi tubuh meluncur lurus (streamline) untuk efisiensi kayuhan gaya dada.',
+    type: 'video',
+    category: 'teknik',
+    thumbnailUrl: './images/carousel-coach.webp',
+    mediaUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
+    videoDuration: '01:15',
+    locationBadge: 'Hotel Savana Malang',
+    dateAdded: '2026-08-13'
   }
 ];

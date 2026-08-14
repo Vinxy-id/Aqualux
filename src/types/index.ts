@@ -57,3 +57,19 @@ export interface FAQItem {
   answer: string;
   category: 'harga' | 'jadwal' | 'teknis' | 'garansi';
 }
+
+export type GalleryMediaType = 'photo' | 'video';
+export type GalleryCategory = 'semua' | 'anak' | 'teknik' | 'kedinasan' | 'suasana';
+
+export interface GalleryItem {
+  id: string;
+  title: string;
+  description: string;
+  type: GalleryMediaType;
+  category: Exclude<GalleryCategory, 'semua'>;
+  thumbnailUrl: string;
+  mediaUrl: string;
+  videoDuration?: string;
+  locationBadge?: string;
+  dateAdded?: string;
+}

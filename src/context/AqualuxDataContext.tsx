@@ -1,12 +1,13 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
-import { LocationInfo, ClassType, SessionCount, LocationKey } from '../types';
-import { LOCATIONS_DATA, COURSE_RATES } from '../data/aqualuxData';
+import { LocationInfo, ClassType, SessionCount, LocationKey, GalleryItem } from '../types';
+import { LOCATIONS_DATA, COURSE_RATES, INITIAL_GALLERY_DATA } from '../data/aqualuxData';
 
 const LOCAL_STORAGE_LOCATIONS_KEY = 'aqualux_locations_data_v2';
 const LOCAL_STORAGE_RATES_KEY = 'aqualux_course_rates_v2';
 const LOCAL_STORAGE_CONTACTS_KEY = 'aqualux_admin_contacts_v1';
 const LOCAL_STORAGE_LINKBIO_PROFILE_KEY = 'aqualux_linkbio_profile_v1';
 const LOCAL_STORAGE_LINKBIO_ITEMS_KEY = 'aqualux_linkbio_items_v2';
+const LOCAL_STORAGE_GALLERY_KEY = 'aqualux_gallery_items_v1';
 
 export interface AdminContacts {
   faqihPhone: string;
@@ -36,6 +37,7 @@ interface AqualuxDataContextType {
   adminContacts: AdminContacts;
   linkBioProfile: LinkBioProfile;
   linkBioItems: LinkBioItem[];
+  galleryItems: GalleryItem[];
   isAdminOpen: boolean;
   setIsAdminOpen: (open: boolean) => void;
   isWaModalOpen: boolean;
@@ -50,6 +52,8 @@ interface AqualuxDataContextType {
   updateLinkBioItem: (id: string, item: Partial<LinkBioItem>) => void;
   deleteLinkBioItem: (id: string) => void;
   toggleLinkBioItem: (id: string) => void;
+  addGalleryItem: (item: Omit<GalleryItem, 'id'>) => void;
+  deleteGalleryItem: (id: string) => void;
   resetToDefault: () => void;
 }
 
@@ -107,12 +111,108 @@ const DEFAULT_LINKBIO_ITEMS: LinkBioItem[] = [
 const AqualuxDataContext = createContext<AqualuxDataContextType | undefined>(undefined);
 
 export const AqualuxDataProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  const [locations, setLocations] = useState<Record<LocationKey, LocationInfo>>(() => {
+    const saved = localStorage.getItem(LOCAL_STORAGE_LOCATIONS_KEY);
+    if (saved) {
+      try {
+        return JSON.parse(saved);
+      } catch {
+        return LOCATIONS_DATA;
+      }
+    }
+    return LOCATIONS_DATA;
+  });
+
+  const [courseRates, setCourseRates] = useState<Record<ClassType, Record<SessionCount, { price: number; perSession: number; discount?: string }>>>(() => {
+    const saved = localStorage.getItem(LOCAL_STORAGE_RATES_KEY);
+    if (saved) {
+      try {
+        return JSON.parse(saved);
+      } catch {
+        return COURSE_RATES;
+      }
+    }
+    return COURSE_RATES;
+  });
+
+  const [adminContacts, setAdminContacts] = useState<AdminContacts>(() => {
+    const saved = localStorage.getItem(LOCAL_STORAGE_CONTACTS_KEY);
+    if (saved) {
+      try {
+        return JSON.parse(saved);
+      } catch {
+        return DEFAULT_CONTACTS;
+      }
+    }
+    return DEFAULT_CONTACTS;
+  });
+
+  const [linkBioProfile, setLinkBioProfile] = useState<LinkBioProfile>(() => {
+    const saved = localStorage.getItem(LOCAL_STORAGE_LINKBIO_PROFILE_KEY);
+    if (saved) {
+      try {
+        return JSON.parse(saved);
+      } catch {
+        return DEFAULT_LINKBIO_PROFILE;
+      }
+    }
+    return DEFAULT_LINKBIO_PROFILE;
+  });
+
+  const [linkBioItems, setLinkBioItems] = useState<LinkBioItem[]>(() => {
+    const saved = localStorage.getItem(LOCAL_STORAGE_LINKBIO_ITEMS_KEY);
+    if (saved) {
+      try {
+        return JSON.parse(saved);
+      } catch {
+        return DEFAULT_LINKBIO_ITEMS;
+      }
+    }
+    return DEFAULT_LINKBIO_ITEMS;
+  });
+
+  const [galleryItems, setGalleryItems] = useState<GalleryItem[]>(() => {
+    const saved = localStorage.getItem(LOCAL_STORAGE_GALLERY_KEY);
+    if (saved) {
+      try {
+        return JSON.parse(saved);
+      } catch {
+        return INITIAL_GALLERY_DATA;
+      }
+    }
+    return INITIAL_GALLERY_DATA;
+  });
+
   const [isAdminOpen, setIsAdminOpen] = useState(false);
   const [isWaModalOpen, setIsWaModalOpen] = useState(false);
   const [waModalMessage, setWaModalMessage] = useState('');
 
+  useEffect(() => {
+    localStorage.setItem(LOCAL_STORAGE_LOCATIONS_KEY, JSON.stringify(locations));
+  }, [locations]);
+
+  useEffect(() => {
+    localStorage.setItem(LOCAL_STORAGE_RATES_KEY, JSON.stringify(courseRates));
+  }, [courseRates]);
+
+  useEffect(() => {
+    localStorage.setItem(LOCAL_STORAGE_CONTACTS_KEY, JSON.stringify(adminContacts));
+  }, [adminContacts]);
+
+  useEffect(() => {
+    localStorage.setItem(LOCAL_STORAGE_LINKBIO_PROFILE_KEY, JSON.stringify(linkBioProfile));
+  }, [linkBioProfile]);
+
+  useEffect(() => {
+    localStorage.setItem(LOCAL_STORAGE_LINKBIO_ITEMS_KEY, JSON.stringify(linkBioItems));
+  }, [linkBioItems]);
+
+  useEffect(() => {
+    localStorage.setItem(LOCAL_STORAGE_GALLERY_KEY, JSON.stringify(galleryItems));
+  }, [galleryItems]);
+
   const openWaModal = (message?: string) => {
-    setWaModalMessage(message || 'Halo Admin Aqualux, saya mau tanya-tanya informasi kursus renang privat/reguler di Kota Malang.');
+    setWaModalMessage(message || '');
     setIsWaModalOpen(true);
   };
 
@@ -120,153 +220,39 @@ export const AqualuxDataProvider: React.FC<{ children: React.ReactNode }> = ({ c
     setIsWaModalOpen(false);
   };
 
-  // Locations state
-  const [locations, setLocations] = useState<Record<LocationKey, LocationInfo>>(() => {
-    try {
-      const saved = localStorage.getItem(LOCAL_STORAGE_LOCATIONS_KEY);
-      return saved ? JSON.parse(saved) : LOCATIONS_DATA;
-    } catch {
-      return LOCATIONS_DATA;
-    }
-  });
-
-  // Rates state
-  const [courseRates, setCourseRates] = useState<Record<ClassType, Record<SessionCount, { price: number; perSession: number; discount?: string }>>>(() => {
-    try {
-      const saved = localStorage.getItem(LOCAL_STORAGE_RATES_KEY);
-      return saved ? JSON.parse(saved) : COURSE_RATES;
-    } catch {
-      return COURSE_RATES;
-    }
-  });
-
-  // Admin contacts state
-  const [adminContacts, setAdminContacts] = useState<AdminContacts>(() => {
-    try {
-      const saved = localStorage.getItem(LOCAL_STORAGE_CONTACTS_KEY);
-      return saved ? JSON.parse(saved) : DEFAULT_CONTACTS;
-    } catch {
-      return DEFAULT_CONTACTS;
-    }
-  });
-
-  // LinkBio Profile state
-  const [linkBioProfile, setLinkBioProfile] = useState<LinkBioProfile>(() => {
-    try {
-      const saved = localStorage.getItem(LOCAL_STORAGE_LINKBIO_PROFILE_KEY);
-      if (saved) {
-        const parsed = JSON.parse(saved);
-        parsed.title = 'Aqualux Swimming Course';
-        parsed.handle = '@aqualux.swimcourse';
-        parsed.bioText = 'Kursus Renang Privat 1-on-1 & Reguler di Malang, dibimbing oleh pelatih berlisensi.';
-        parsed.instagramUrl = 'https://www.instagram.com/aqualux.swimcourse/';
-        return parsed;
-      }
-      return DEFAULT_LINKBIO_PROFILE;
-    } catch {
-      return DEFAULT_LINKBIO_PROFILE;
-    }
-  });
-
-  // LinkBio Items state
-  const [linkBioItems, setLinkBioItems] = useState<LinkBioItem[]>(() => {
-    try {
-      const saved = localStorage.getItem(LOCAL_STORAGE_LINKBIO_ITEMS_KEY);
-      if (saved) {
-        const parsed: LinkBioItem[] = JSON.parse(saved);
-        parsed.forEach(item => {
-          if (item.url === 'wa_admin1' || item.url === 'wa_admin2') {
-            item.subtitle = 'Konsultasi Program & Pendaftaran';
-          }
-          if (item.iconName === 'Instagram' || item.url.includes('instagram.com')) {
-            item.title = 'Instagram Resmi @aqualux.swimcourse';
-            item.subtitle = 'Galeri Foto, Video Sesi & Info Terbaru';
-            item.url = 'https://www.instagram.com/aqualux.swimcourse/';
-          }
-        });
-        const hasIg = parsed.some(item => item.iconName === 'Instagram' || item.url.includes('instagram.com'));
-        if (!hasIg) {
-          parsed.push(DEFAULT_LINKBIO_ITEMS[3]);
-        }
-        return parsed;
-      }
-      return DEFAULT_LINKBIO_ITEMS;
-    } catch {
-      return DEFAULT_LINKBIO_ITEMS;
-    }
-  });
-
-  // Sync to localStorage
-  useEffect(() => {
-    try {
-      localStorage.setItem(LOCAL_STORAGE_LOCATIONS_KEY, JSON.stringify(locations));
-    } catch (e) {
-      console.error('Failed to save locations', e);
-    }
-  }, [locations]);
-
-  useEffect(() => {
-    try {
-      localStorage.setItem(LOCAL_STORAGE_RATES_KEY, JSON.stringify(courseRates));
-    } catch (e) {
-      console.error('Failed to save rates', e);
-    }
-  }, [courseRates]);
-
-  useEffect(() => {
-    try {
-      localStorage.setItem(LOCAL_STORAGE_CONTACTS_KEY, JSON.stringify(adminContacts));
-    } catch (e) {
-      console.error('Failed to save contacts', e);
-    }
-  }, [adminContacts]);
-
-  useEffect(() => {
-    try {
-      localStorage.setItem(LOCAL_STORAGE_LINKBIO_PROFILE_KEY, JSON.stringify(linkBioProfile));
-    } catch (e) {
-      console.error('Failed to save linkBioProfile', e);
-    }
-  }, [linkBioProfile]);
-
-  useEffect(() => {
-    try {
-      localStorage.setItem(LOCAL_STORAGE_LINKBIO_ITEMS_KEY, JSON.stringify(linkBioItems));
-    } catch (e) {
-      console.error('Failed to save linkBioItems', e);
-    }
-  }, [linkBioItems]);
-
   const updateLocation = (key: LocationKey, updated: Partial<LocationInfo>) => {
     setLocations(prev => ({
       ...prev,
-      [key]: {
-        ...prev[key],
-        ...updated
-      }
+      [key]: { ...prev[key], ...updated }
     }));
   };
 
   const updateCourseRate = (classType: ClassType, sessions: SessionCount, price: number, discount?: string) => {
-    setCourseRates(prev => ({
-      ...prev,
-      [classType]: {
-        ...prev[classType],
-        [sessions]: {
-          price,
-          perSession: Math.round(price / sessions),
-          discount: discount || undefined
-        }
-      }
-    }));
+    setCourseRates(prev => {
+      const updatedClass = { ...prev[classType] };
+      const currentObj = updatedClass[sessions];
+      const perSession = Math.round(price / sessions);
+
+      updatedClass[sessions] = {
+        ...currentObj,
+        price,
+        perSession,
+        discount
+      };
+
+      return {
+        ...prev,
+        [classType]: updatedClass
+      };
+    });
   };
 
-  const updateAdminContacts = (contacts: Partial<AdminContacts>) => {
-    setAdminContacts(prev => ({ ...prev, ...contacts }));
+  const updateAdminContacts = (updated: Partial<AdminContacts>) => {
+    setAdminContacts(prev => ({ ...prev, ...updated }));
   };
 
-  const updateLinkBioProfile = (profile: Partial<LinkBioProfile>) => {
-    setLinkBioProfile(prev => ({ ...prev, ...profile }));
+  const updateLinkBioProfile = (updated: Partial<LinkBioProfile>) => {
+    setLinkBioProfile(prev => ({ ...prev, ...updated }));
   };
 
   const addLinkBioItem = (item: Omit<LinkBioItem, 'id'>) => {
@@ -289,17 +275,31 @@ export const AqualuxDataProvider: React.FC<{ children: React.ReactNode }> = ({ c
     setLinkBioItems(prev => prev.map(item => item.id === id ? { ...item, enabled: !item.enabled } : item));
   };
 
+  const addGalleryItem = (item: Omit<GalleryItem, 'id'>) => {
+    const newItem: GalleryItem = {
+      ...item,
+      id: 'gal-' + Date.now().toString()
+    };
+    setGalleryItems(prev => [newItem, ...prev]);
+  };
+
+  const deleteGalleryItem = (id: string) => {
+    setGalleryItems(prev => prev.filter(item => item.id !== id));
+  };
+
   const resetToDefault = () => {
     setLocations(LOCATIONS_DATA);
     setCourseRates(COURSE_RATES);
     setAdminContacts(DEFAULT_CONTACTS);
     setLinkBioProfile(DEFAULT_LINKBIO_PROFILE);
     setLinkBioItems(DEFAULT_LINKBIO_ITEMS);
+    setGalleryItems(INITIAL_GALLERY_DATA);
     localStorage.removeItem(LOCAL_STORAGE_LOCATIONS_KEY);
     localStorage.removeItem(LOCAL_STORAGE_RATES_KEY);
     localStorage.removeItem(LOCAL_STORAGE_CONTACTS_KEY);
     localStorage.removeItem(LOCAL_STORAGE_LINKBIO_PROFILE_KEY);
     localStorage.removeItem(LOCAL_STORAGE_LINKBIO_ITEMS_KEY);
+    localStorage.removeItem(LOCAL_STORAGE_GALLERY_KEY);
   };
 
   return (
@@ -310,6 +310,7 @@ export const AqualuxDataProvider: React.FC<{ children: React.ReactNode }> = ({ c
         adminContacts,
         linkBioProfile,
         linkBioItems,
+        galleryItems,
         isAdminOpen,
         setIsAdminOpen,
         isWaModalOpen,
@@ -324,6 +325,8 @@ export const AqualuxDataProvider: React.FC<{ children: React.ReactNode }> = ({ c
         updateLinkBioItem,
         deleteLinkBioItem,
         toggleLinkBioItem,
+        addGalleryItem,
+        deleteGalleryItem,
         resetToDefault
       }}
     >
