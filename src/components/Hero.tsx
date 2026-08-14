@@ -30,13 +30,13 @@ export const Hero: React.FC = () => {
             {/* Main Headline */}
             <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight text-slate-950 font-outfit leading-[1.12] text-balance">
               Dari Takut Air Menjadi{' '}
-              <span className="text-sky-500 font-black block sm:inline mt-1 sm:mt-0 bg-gradient-to-r from-blue-600 via-sky-500 to-cyan-500 bg-clip-text text-transparent">
+              <span className="text-blue-700 font-black block sm:inline mt-1 sm:mt-0 bg-gradient-to-r from-blue-700 via-blue-600 to-cyan-600 bg-clip-text text-transparent">
                 Percaya Diri Berenang
               </span>
             </h1>
 
             {/* Subheadline */}
-            <p className="text-sm sm:text-base lg:text-lg text-slate-700 font-semibold max-w-2xl mx-auto lg:mx-0 leading-relaxed">
+            <p className="text-sm sm:text-base lg:text-lg text-slate-800 font-semibold max-w-2xl mx-auto lg:mx-0 leading-relaxed">
               Program les renang privat 1-on-1 & reguler di kota Malang. Membantu anak mulai usia 5 tahun, pelajar, dewasa, hingga persiapan tes TNI, Polri dan kedinasan dengan metode yang aman, terstruktur, dan ramah.
             </p>
 
@@ -52,7 +52,7 @@ export const Hero: React.FC = () => {
                   key={stat.value}
                   className="bg-white border-2 border-blue-200/80 shadow-md p-3 sm:p-3.5 rounded-2xl text-center lg:text-left min-w-0"
                 >
-                  <span className="text-base sm:text-lg lg:text-xl font-black text-sky-400 font-mono block truncate leading-tight drop-shadow-xs">
+                  <span className="text-base sm:text-lg lg:text-xl font-black text-blue-700 font-mono block truncate leading-tight">
                     {stat.value}
                   </span>
                   <span className="text-[11px] sm:text-xs font-bold text-slate-800 block mt-1 truncate">
