@@ -78,7 +78,7 @@ export const PricingSection: React.FC = () => {
             Daftar Paket Harga Les Renang
           </h2>
           <p className="mt-3 text-base font-medium text-slate-700">
-            Pilihan paket bimbingan privat 1-on-1 & reguler kelompok kecil.
+            Pilihan paket bimbingan privat 1-on-1 & reguler kelompok kecil 3-4 anak.
           </p>
         </motion.div>
 
