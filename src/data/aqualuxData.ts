@@ -1,4 +1,4 @@
-import { LocationInfo, ClassType, SessionCount, LocationKey, CategoryProgram, CoachAchievement, Testimonial, FAQItem } from '../types';
+import { LocationInfo, ClassType, SessionCount, LocationKey, CategoryProgram, CoachAchievement, Testimonial, FAQItem, GalleryItem } from '../types';
 
 export const LOCATIONS_DATA: Record<LocationKey, LocationInfo> = {
   ubud: {
@@ -215,5 +215,44 @@ export const FAQ_DATA: FAQItem[] = [
     question: 'Apakah biaya kursus renang bisa dibayar per pertemuan?',
     answer: 'Mohon maaf, **pembayaran tidak bisa dilakukan per pertemuan**. Seluruh pembayaran biaya bimbingan di Aqualux dilakukan sekaligus di awal untuk **paket bulanan (4x atau 8x pertemuan)** sebelum program bimbingan dimulai.',
     category: 'harga'
+  }
+];
+
+export const INITIAL_GALLERY_DATA: GalleryItem[] = [
+  {
+    id: 'gal-vid-1',
+    title: 'Latihan Meluncur & Kayuhan Kaki dengan Kickboard',
+    description: 'Anak-anak berlatih teknik dorongan kaki menggunakan pelampung papan (kickboard). Orang tua dapat duduk santai mendampingi di pinggir kolam.',
+    type: 'video',
+    category: 'anak',
+    thumbnailUrl: './videos/IMG_3311-thumb.webp',
+    mediaUrl: './videos/IMG_3311.mp4',
+    videoDuration: '00:19',
+    locationBadge: 'Kolam Hotel Malang',
+    dateAdded: '2026-08-14'
+  },
+  {
+    id: 'gal-vid-2',
+    title: 'Suasana Kolam Outdoor Terbuka, Bersih & Asri',
+    description: 'Keseruan anak-anak berlatih kelompok kecil dalam suasana kolam outdoor yang sejuk, bersih, dan nyaman bagi keluarga.',
+    type: 'video',
+    category: 'suasana',
+    thumbnailUrl: './videos/IMG_3312-thumb.webp',
+    mediaUrl: './videos/IMG_3312.mp4',
+    videoDuration: '00:20',
+    locationBadge: 'Kolam Hotel Malang',
+    dateAdded: '2026-08-14'
+  },
+  {
+    id: 'gal-vid-3',
+    title: 'Bukti Hasil: Berenang Mandiri & Mengapung Percaya Diri',
+    description: 'Hasil bimbingan bertahap: anak berani meluncur mulus mandiri melintasi kolam tanpa panik dan tanpa rasa takut air.',
+    type: 'video',
+    category: 'teknik',
+    thumbnailUrl: './videos/IMG_3313-thumb.webp',
+    mediaUrl: './videos/IMG_3313.mp4',
+    videoDuration: '00:25',
+    locationBadge: 'Kolam Hotel Malang',
+    dateAdded: '2026-08-14'
   }
 ];

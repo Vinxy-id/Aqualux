@@ -25,16 +25,20 @@ import {
   GraduationCap,
   Instagram,
   Lock,
-  Sparkles
+  Sparkles,
+  Camera,
+  Film
 } from 'lucide-react';
 import { useAqualuxData, LinkBioItem } from '../context/AqualuxDataContext';
 import { useAuth } from '../context/AuthContext';
-import { LocationKey } from '../types';
+import { LocationKey, GalleryCategory } from '../types';
 import { isSafeExternalUrl } from '../utils/urlSafety';
 
 interface AdminPageProps {
   onBackToLanding: () => void;
 }
+
+export type AdminTab = 'lokasi' | 'harga' | 'kontak' | 'linkbio' | 'galeri' | 'password';
 
 export const AdminPage: React.FC<AdminPageProps> = ({ onBackToLanding }) => {
   const {
@@ -43,6 +47,7 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onBackToLanding }) => {
     adminContacts,
     linkBioProfile,
     linkBioItems,
+    galleryItems,
     updateLocation,
     updateCourseRate,
     updateAdminContacts,
@@ -51,14 +56,46 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onBackToLanding }) => {
     updateLinkBioItem,
     deleteLinkBioItem,
     toggleLinkBioItem,
+    addGalleryItem,
+    deleteGalleryItem,
     resetToDefault
   } = useAqualuxData();
 
   const { logout, changePassword } = useAuth();
 
-  const [activeTab, setActiveTab] = useState<'lokasi' | 'harga' | 'kontak' | 'linkbio' | 'password'>('lokasi');
+  const [activeTab, setActiveTab] = useState<AdminTab>('lokasi');
   const [saveToast, setSaveToast] = useState(false);
   const [mobileSidebarOpen, setMobileSidebarOpen] = useState(false);
+
+  // Gallery New Item Form States
+  const [newGalTitle, setNewGalTitle] = useState('');
+  const [newGalDesc, setNewGalDesc] = useState('');
+  const [newGalType, setNewGalType] = useState<'photo' | 'video'>('photo');
+  const [newGalCat, setNewGalCat] = useState<Exclude<GalleryCategory, 'semua'>>('anak');
+  const [newGalThumb, setNewGalThumb] = useState('./images/carousel-kids.webp');
+  const [newGalMedia, setNewGalMedia] = useState('./images/carousel-kids.webp');
+  const [newGalLoc, setNewGalLoc] = useState('Hotel Ubud Malang');
+  const [newGalDuration, setNewGalDuration] = useState('');
+
+  const handleAddGalleryItem = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!newGalTitle.trim() || !newGalMedia.trim()) return;
+    addGalleryItem({
+      title: newGalTitle,
+      description: newGalDesc,
+      type: newGalType,
+      category: newGalCat,
+      thumbnailUrl: newGalThumb || newGalMedia,
+      mediaUrl: newGalMedia,
+      locationBadge: newGalLoc,
+      videoDuration: newGalType === 'video' ? newGalDuration : undefined,
+      dateAdded: new Date().toISOString().split('T')[0]
+    });
+    setNewGalTitle('');
+    setNewGalDesc('');
+    setNewGalDuration('');
+    triggerSaveNotification();
+  };
 
   // Password change states
   const [oldPassword, setOldPassword] = useState('');
@@ -833,13 +870,189 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onBackToLanding }) => {
                 </button>
               </form>
             </div>
+          )}          {/* TAB 5: KELOLA GALERI & DOKUMENTASI */}
+          {activeTab === 'galeri' && (
+            <div className="space-y-6">
+              <div className="border-b border-slate-200 pb-4">
+                <span className="text-xs font-mono font-bold uppercase tracking-wider text-blue-900 bg-blue-100 px-3 py-1 rounded-full mb-2 inline-block border border-blue-300">
+                  GALERI DOKUMENTASI LIVE
+                </span>
+                <h3 className="text-xl font-black text-slate-950 font-outfit">5. Kelola Galeri Foto & Video</h3>
+                <p className="text-xs font-semibold text-slate-600 mt-1">
+                  Tambah, hapus, atau atur dokumentasi kegiatan latihan peserta yang tampil di website.
+                </p>
+              </div>
+
+              {/* Form Tambah Item Galeri Baru */}
+              <div className="bg-slate-50 p-5 rounded-2xl border border-slate-300 space-y-4 text-left">
+                <h4 className="text-sm font-black text-slate-950 font-outfit flex items-center gap-2">
+                  <Plus className="w-4 h-4 text-blue-600" />
+                  <span>Tambah Dokumentasi Foto / Video Baru</span>
+                </h4>
+
+                <form onSubmit={handleAddGalleryItem} className="space-y-4 text-xs">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                      <label className="block font-bold text-slate-900 mb-1">Judul Dokumentasi:</label>
+                      <input
+                        type="text"
+                        value={newGalTitle}
+                        onChange={(e) => setNewGalTitle(e.target.value)}
+                        placeholder="Contoh: Sesi Latihan Anak Mengapung..."
+                        className="w-full px-3.5 py-2.5 bg-white border border-slate-300 rounded-xl font-bold text-slate-950 focus:outline-none focus:border-blue-600"
+                        required
+                      />
+                    </div>
+
+                    <div>
+                      <label className="block font-bold text-slate-900 mb-1">Lokasi Kolam:</label>
+                      <select
+                        value={newGalLoc}
+                        onChange={(e) => setNewGalLoc(e.target.value)}
+                        className="w-full px-3.5 py-2.5 bg-white border border-slate-300 rounded-xl font-bold text-slate-950 focus:outline-none focus:border-blue-600"
+                      >
+                        <option value="Hotel Ubud Malang">Hotel Ubud Malang</option>
+                        <option value="Hotel Tychi Malang">Hotel Tychi Malang</option>
+                        <option value="Hotel Savana Malang">Hotel Savana Malang</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div>
+                    <label className="block font-bold text-slate-900 mb-1">Deskripsi Singkat:</label>
+                    <textarea
+                      value={newGalDesc}
+                      onChange={(e) => setNewGalDesc(e.target.value)}
+                      placeholder="Jelaskan secara singkat kegiatan di dalam foto/video ini..."
+                      rows={2}
+                      className="w-full px-3.5 py-2.5 bg-white border border-slate-300 rounded-xl font-bold text-slate-950 focus:outline-none focus:border-blue-600"
+                    />
+                  </div>
+
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                    <div>
+                      <label className="block font-bold text-slate-900 mb-1">Tipe Media:</label>
+                      <select
+                        value={newGalType}
+                        onChange={(e) => setNewGalType(e.target.value as 'photo' | 'video')}
+                        className="w-full px-3.5 py-2.5 bg-white border border-slate-300 rounded-xl font-bold text-slate-950 focus:outline-none focus:border-blue-600"
+                      >
+                        <option value="photo">Foto (Photo)</option>
+                        <option value="video">Video Sesi</option>
+                      </select>
+                    </div>
+
+                    <div>
+                      <label className="block font-bold text-slate-900 mb-1">Kategori Filter:</label>
+                      <select
+                        value={newGalCat}
+                        onChange={(e) => setNewGalCat(e.target.value as any)}
+                        className="w-full px-3.5 py-2.5 bg-white border border-slate-300 rounded-xl font-bold text-slate-950 focus:outline-none focus:border-blue-600"
+                      >
+                        <option value="anak">Anak & Pemula</option>
+                        <option value="teknik">Teknik Renang</option>
+                        <option value="kedinasan">Persiapan TNI/Polri</option>
+                        <option value="suasana">Suasana Kolam</option>
+                      </select>
+                    </div>
+
+                    {newGalType === 'video' && (
+                      <div>
+                        <label className="block font-bold text-slate-900 mb-1">Durasi Video (opsional):</label>
+                        <input
+                          type="text"
+                          value={newGalDuration}
+                          onChange={(e) => setNewGalDuration(e.target.value)}
+                          placeholder="Misal: 00:45"
+                          className="w-full px-3.5 py-2.5 bg-white border border-slate-300 rounded-xl font-bold text-slate-950 focus:outline-none focus:border-blue-600"
+                        />
+                      </div>
+                    )}
+                  </div>
+
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                      <label className="block font-bold text-slate-900 mb-1">URL File Media (Foto/Embed Video):</label>
+                      <input
+                        type="text"
+                        value={newGalMedia}
+                        onChange={(e) => setNewGalMedia(e.target.value)}
+                        placeholder="Contoh: ./images/carousel-kids.webp atau URL Embed"
+                        className="w-full px-3.5 py-2.5 bg-white border border-slate-300 rounded-xl font-bold text-slate-950 focus:outline-none focus:border-blue-600 font-mono"
+                        required
+                      />
+                    </div>
+
+                    <div>
+                      <label className="block font-bold text-slate-900 mb-1">URL Thumbnail Gambar Preview:</label>
+                      <input
+                        type="text"
+                        value={newGalThumb}
+                        onChange={(e) => setNewGalThumb(e.target.value)}
+                        placeholder="Default sama dengan URL media"
+                        className="w-full px-3.5 py-2.5 bg-white border border-slate-300 rounded-xl font-bold text-slate-950 focus:outline-none focus:border-blue-600 font-mono"
+                      />
+                    </div>
+                  </div>
+
+                  <button
+                    type="submit"
+                    className="w-full py-3 px-4 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-extrabold text-xs shadow-md transition-all flex items-center justify-center gap-2 cursor-pointer btn-tactile"
+                  >
+                    <Plus className="w-4 h-4" />
+                    <span>Tambah ke Galeri Website</span>
+                  </button>
+                </form>
+              </div>
+
+              {/* List Item Galeri */}
+              <div className="space-y-3 text-left">
+                <h4 className="text-sm font-black text-slate-950 font-outfit">Daftar Galeri Aktif ({galleryItems.length})</h4>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  {galleryItems.map((item) => (
+                    <div key={item.id} className="bg-white p-4 rounded-2xl border border-slate-300 flex items-start justify-between gap-3 shadow-xs">
+                      <div className="flex items-start gap-3 min-w-0">
+                        <img
+                          src={item.thumbnailUrl}
+                          alt={item.title}
+                          className="w-16 h-16 rounded-xl object-cover border border-slate-200 shrink-0 bg-slate-100"
+                        />
+                        <div className="min-w-0 text-left">
+                          <span className="text-[10px] font-mono font-bold uppercase text-blue-700 bg-blue-50 px-2 py-0.5 rounded-md inline-block mb-1 border border-blue-200">
+                            {item.type === 'video' ? '🎬 Video' : '📷 Foto'} • {item.category}
+                          </span>
+                          <h5 className="text-xs font-black text-slate-950 font-outfit truncate">{item.title}</h5>
+                          <p className="text-[11px] font-medium text-slate-600 line-clamp-1">{item.description}</p>
+                          <span className="text-[10px] text-slate-400 font-mono block mt-1">{item.locationBadge}</span>
+                        </div>
+                      </div>
+
+                      <button
+                        type="button"
+                        onClick={() => {
+                          deleteGalleryItem(item.id);
+                          triggerSaveNotification();
+                        }}
+                        className="p-2 rounded-xl bg-rose-50 text-rose-600 hover:bg-rose-100 hover:text-rose-700 transition-colors shrink-0 btn-tactile cursor-pointer"
+                        title="Hapus Item Galeri"
+                      >
+                        <Trash2 className="w-4 h-4" />
+                      </button>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
           )}
 
-          {/* TAB 5: PASSWORD CHANGE */}
+          {/* TAB 6: GANTI PASSWORD */}
           {activeTab === 'password' && (
-            <div className="bg-white p-6 sm:p-8 rounded-3xl border border-slate-300 shadow-md space-y-6 max-w-md">
-              <div>
-                <h3 className="text-xl font-black text-slate-950 font-outfit">5. Ganti Password</h3>
+            <div className="space-y-6 text-left">
+              <div className="border-b border-slate-200 pb-4">
+                <span className="text-xs font-mono font-bold uppercase tracking-wider text-blue-900 bg-blue-100 px-3 py-1 rounded-full mb-2 inline-block border border-blue-300">
+                  KEAMANAN AKUN
+                </span>
+                <h3 className="text-xl font-black text-slate-950 font-outfit">6. Ganti Password</h3>
                 <p className="text-xs font-semibold text-slate-600 mt-1">
                   Perbarui password untuk masuk ke Portal Admin Aqualux.
                 </p>
@@ -901,8 +1114,8 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onBackToLanding }) => {
 
 /* Inner Sidebar Component */
 interface SidebarContentProps {
-  activeTab: 'lokasi' | 'harga' | 'kontak' | 'linkbio' | 'password';
-  setActiveTab: (tab: 'lokasi' | 'harga' | 'kontak' | 'linkbio' | 'password') => void;
+  activeTab: AdminTab;
+  setActiveTab: (tab: AdminTab) => void;
   onBackToLanding: () => void;
   logout: () => void;
   resetToDefault: () => void;
@@ -997,6 +1210,19 @@ const SidebarContent: React.FC<SidebarContentProps> = ({
 
             <button
               type="button"
+              onClick={() => setActiveTab('galeri')}
+              className={`w-full px-3.5 py-2.5 rounded-xl text-xs font-extrabold flex items-center gap-2.5 transition-all text-left ${
+                activeTab === 'galeri'
+                  ? 'bg-blue-600 text-white shadow-md'
+                  : 'text-slate-300 hover:bg-slate-800 hover:text-white'
+              }`}
+            >
+              <Camera className="w-4 h-4 shrink-0 text-amber-400" />
+              <span>5. Kelola Galeri Live</span>
+            </button>
+
+            <button
+              type="button"
               onClick={() => setActiveTab('password')}
               className={`w-full px-3.5 py-2.5 rounded-xl text-xs font-extrabold flex items-center gap-2.5 transition-all text-left ${
                 activeTab === 'password'
@@ -1005,7 +1231,7 @@ const SidebarContent: React.FC<SidebarContentProps> = ({
               }`}
             >
               <KeyRound className="w-4 h-4 shrink-0" />
-              <span>5. Ganti Password</span>
+              <span>6. Ganti Password</span>
             </button>
           </nav>
         </div>

@@ -68,11 +68,12 @@ export const Footer: React.FC<FooterProps> = ({ onOpenAdmin }) => {
             <h2 className="text-xs font-bold text-white font-outfit uppercase tracking-wider">Navigasi Cepat</h2>
             <ul className="space-y-2.5 text-xs font-medium">
               <li><a href="#program" className="hover:text-blue-400 transition-colors">Program Kursus</a></li>
-              <li><a href="#harga" className="hover:text-blue-400 transition-colors">Paket Harga</a></li>
-              <li><a href="#lokasi" className="hover:text-blue-400 transition-colors">Lokasi Kolam</a></li>
               <li><a href="#keunggulan" className="hover:text-blue-400 transition-colors">Keunggulan Pelatih</a></li>
-              <li><a href="#testimoni" className="hover:text-blue-400 transition-colors">Testimoni</a></li>
-              <li><a href="#faq" className="hover:text-blue-400 transition-colors">FAQ (Pertanyaan Umum)</a></li>
+              <li><a href="#harga" className="hover:text-blue-400 transition-colors">Paket Harga</a></li>
+              <li><a href="#lokasi" className="hover:text-blue-400 transition-colors">Lokasi Hotel Bimbingan</a></li>
+              <li><a href="#galeri" className="hover:text-blue-400 transition-colors">Dokumentasi Galeri</a></li>
+              <li><a href="#testimoni" className="hover:text-blue-400 transition-colors">Testimoni Alumni</a></li>
+              <li><a href="#faq" className="hover:text-blue-400 transition-colors">Pertanyaan Umum (FAQ)</a></li>
               <li><a href="#links" className="hover:text-blue-400 transition-colors flex items-center gap-1"><span className="text-cyan-400 font-bold">●</span> Link in Bio (/links)</a></li>
               {onOpenAdmin && (
                 <li className="pt-2">
@@ -117,9 +118,9 @@ export const Footer: React.FC<FooterProps> = ({ onOpenAdmin }) => {
                   <div className="flex items-start gap-2.5 overflow-hidden">
                     <MapPin className="w-4 h-4 text-blue-400 shrink-0 mt-0.5" />
                     <div className="overflow-hidden">
-                      <h5 className="text-xs font-bold text-white group-hover:text-blue-300 transition-colors truncate">
+                      <p className="text-xs font-bold text-white group-hover:text-blue-300 transition-colors truncate">
                         {loc.name}
-                      </h5>
+                      </p>
                       <p className="text-[11px] text-slate-400 truncate mt-0.5">
                         {loc.address ? loc.address.split(',')[0] : 'Kota Malang'} (HTM Rp{loc.htm.toLocaleString('id-ID')})
                       </p>

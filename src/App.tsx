@@ -5,16 +5,17 @@ import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
 import { AchievementsBar } from './components/AchievementsBar';
 import { ProgramsSection } from './components/ProgramsSection';
-import { PricingSection } from './components/PricingSection';
-import { LocationsSection } from './components/LocationsSection';
 import { WhyChooseUs } from './components/WhyChooseUs';
-import { TestimonialsSection } from './components/TestimonialsSection';
-import { UrgencyBanner } from './components/UrgencyBanner';
-import { FAQSection } from './components/FAQSection';
+import { PricingSection } from './components/PricingSection';
 import { Footer } from './components/Footer';
-import { WhatsAppModal } from './components/WhatsAppModal';
 import { SpeedInsights } from '@vercel/speed-insights/react';
 
+const LocationsSection = lazy(() => import('./components/LocationsSection').then(m => ({ default: m.LocationsSection })));
+const GallerySection = lazy(() => import('./components/GallerySection').then(m => ({ default: m.GallerySection })));
+const TestimonialsSection = lazy(() => import('./components/TestimonialsSection').then(m => ({ default: m.TestimonialsSection })));
+const FAQSection = lazy(() => import('./components/FAQSection').then(m => ({ default: m.FAQSection })));
+const UrgencyBanner = lazy(() => import('./components/UrgencyBanner').then(m => ({ default: m.UrgencyBanner })));
+const WhatsAppModal = lazy(() => import('./components/WhatsAppModal').then(m => ({ default: m.WhatsAppModal })));
 const AdminLogin = lazy(() => import('./components/AdminLogin').then(m => ({ default: m.AdminLogin })));
 const AdminPage = lazy(() => import('./components/AdminPage').then(m => ({ default: m.AdminPage })));
 const LinkBioPage = lazy(() => import('./components/LinkBioPage').then(m => ({ default: m.LinkBioPage })));
@@ -70,12 +71,6 @@ function AppContent() {
     window.scrollTo(0, 0);
   };
 
-  const navigateToLinks = () => {
-    window.history.pushState({}, '', 'links');
-    setRoute('links');
-    window.scrollTo(0, 0);
-  };
-
   const navigateToLanding = () => {
     window.history.pushState({}, '', './');
     setRoute('landing');
@@ -110,25 +105,32 @@ function AppContent() {
         <Hero />
         <AchievementsBar />
         <ProgramsSection />
-        <PricingSection />
-        <LocationsSection />
         <WhyChooseUs />
-        <TestimonialsSection />
-        <UrgencyBanner />
-        <FAQSection />
+        <PricingSection />
+        <Suspense fallback={null}>
+          <LocationsSection />
+          <GallerySection />
+          <TestimonialsSection />
+          <FAQSection />
+          <UrgencyBanner />
+        </Suspense>
       </main>
       <Footer onOpenAdmin={navigateToAdmin} />
-      <WhatsAppModal />
+      <Suspense fallback={null}>
+        <WhatsAppModal />
+      </Suspense>
     </div>
   );
 }
 
 export function App() {
+  const isVercel = typeof window !== 'undefined' && !window.location.hostname.includes('localhost') && !window.location.hostname.includes('127.0.0.1');
+
   return (
     <AuthProvider>
       <AqualuxDataProvider>
         <AppContent />
-        <SpeedInsights />
+        {isVercel && <SpeedInsights />}
       </AqualuxDataProvider>
     </AuthProvider>
   );

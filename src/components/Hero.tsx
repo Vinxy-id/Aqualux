@@ -18,7 +18,6 @@ export const Hero: React.FC = () => {
           
           {/* Left Column - High Contrast Text & CTA */}
           <div className="lg:col-span-7 space-y-5 sm:space-y-6 text-center lg:text-left">
-
             {/* Main Headline */}
             <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight text-slate-950 font-outfit leading-[1.12] text-balance">
               Dari Takut Air Menjadi{' '}
@@ -59,7 +58,7 @@ export const Hero: React.FC = () => {
               <button
                 type="button"
                 onClick={() => openWaModal()}
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-6 sm:px-7 py-3.5 sm:py-4 rounded-full bg-emerald-600 hover:bg-emerald-700 text-white font-black text-sm sm:text-base shadow-lg shadow-emerald-600/25 transition-all btn-hover-effect btn-tactile min-h-[48px]"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-6 sm:px-7 py-3.5 sm:py-4 rounded-full bg-emerald-700 hover:bg-emerald-800 text-white font-black text-sm sm:text-base shadow-lg shadow-emerald-700/25 transition-all btn-hover-effect btn-tactile min-h-[48px] cursor-pointer"
               >
                 <MessageCircle className="w-5 h-5 text-white fill-white" />
                 <span>Daftar Kursus via WhatsApp</span>
@@ -67,7 +66,7 @@ export const Hero: React.FC = () => {
 
               <a
                 href="#program"
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 sm:py-4 rounded-full bg-slate-900 hover:bg-slate-800 text-white font-bold text-sm sm:text-base border border-slate-700 shadow-md transition-all btn-hover-effect btn-tactile min-h-[48px]"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 sm:py-4 rounded-full bg-slate-900 hover:bg-slate-800 text-white font-bold text-sm sm:text-base border border-slate-700 shadow-md transition-all btn-hover-effect btn-tactile min-h-[48px] cursor-pointer"
               >
                 <span>Lihat Kategori Program</span>
                 <ArrowRight className="w-4 h-4 text-white" />
