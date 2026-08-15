@@ -129,7 +129,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenAdmin }) => {
               <button
                 type="button"
                 onClick={() => openWaModal()}
-                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-emerald-600 hover:bg-emerald-700 active:bg-emerald-800 text-white font-extrabold text-xs shadow-md shadow-emerald-600/20 transition-all btn-hover-effect btn-tactile cursor-pointer whitespace-nowrap"
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-emerald-700 hover:bg-emerald-800 active:bg-emerald-900 text-white font-extrabold text-xs shadow-md shadow-emerald-700/20 transition-all btn-hover-effect btn-tactile cursor-pointer whitespace-nowrap"
               >
                 <PhoneIcon className="w-4 h-4 text-white" />
                 <span>Chat Admin WA</span>

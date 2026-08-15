@@ -427,6 +427,7 @@ export const Hero3DCardCarousel: React.FC = () => {
                         } transition-transform duration-700 group-hover:scale-105`}
                         loading={index === 0 ? 'eager' : 'lazy'}
                         fetchPriority={index === 0 ? 'high' : 'auto'}
+                        decoding={index === 0 ? 'sync' : 'async'}
                         width="440"
                         height="280"
                       />
@@ -593,6 +594,7 @@ export const Hero3DCardCarousel: React.FC = () => {
             type="button"
             onClick={() => setIsPaused(!isPaused)}
             title={isPaused ? 'Mulai Otomatis' : 'Jeda Otomatis'}
+            aria-label={isPaused ? 'Mulai putar otomatis' : 'Jeda putar otomatis'}
             className="p-1.5 sm:p-2 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-600 transition-colors cursor-pointer"
           >
             {isPaused ? <Play className="w-3.5 h-3.5" /> : <Pause className="w-3.5 h-3.5 text-blue-600" />}

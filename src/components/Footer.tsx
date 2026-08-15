@@ -118,9 +118,9 @@ export const Footer: React.FC<FooterProps> = ({ onOpenAdmin }) => {
                   <div className="flex items-start gap-2.5 overflow-hidden">
                     <MapPin className="w-4 h-4 text-blue-400 shrink-0 mt-0.5" />
                     <div className="overflow-hidden">
-                      <h5 className="text-xs font-bold text-white group-hover:text-blue-300 transition-colors truncate">
+                      <p className="text-xs font-bold text-white group-hover:text-blue-300 transition-colors truncate">
                         {loc.name}
-                      </h5>
+                      </p>
                       <p className="text-[11px] text-slate-400 truncate mt-0.5">
                         {loc.address ? loc.address.split(',')[0] : 'Kota Malang'} (HTM Rp{loc.htm.toLocaleString('id-ID')})
                       </p>

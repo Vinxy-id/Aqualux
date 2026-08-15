@@ -58,7 +58,7 @@ export const Hero: React.FC = () => {
               <button
                 type="button"
                 onClick={() => openWaModal()}
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-6 sm:px-7 py-3.5 sm:py-4 rounded-full bg-emerald-600 hover:bg-emerald-700 text-white font-black text-sm sm:text-base shadow-lg shadow-emerald-600/25 transition-all btn-hover-effect btn-tactile min-h-[48px] cursor-pointer"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-6 sm:px-7 py-3.5 sm:py-4 rounded-full bg-emerald-700 hover:bg-emerald-800 text-white font-black text-sm sm:text-base shadow-lg shadow-emerald-700/25 transition-all btn-hover-effect btn-tactile min-h-[48px] cursor-pointer"
               >
                 <MessageCircle className="w-5 h-5 text-white fill-white" />
                 <span>Daftar Kursus via WhatsApp</span>
