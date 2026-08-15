@@ -296,20 +296,10 @@ const PhotoCard: React.FC<{
 
 export const GallerySection: React.FC = () => {
   const { galleryItems } = useAqualuxData();
-  const [activeCategory, setActiveCategory] = useState<GalleryCategory>('semua');
   const [selectedMedia, setSelectedMedia] = useState<GalleryItem | null>(null);
 
-  const categories: { key: GalleryCategory; label: string }[] = [
-    { key: 'semua', label: 'Semua Media' },
-    { key: 'anak', label: 'Anak & Pemula' },
-    { key: 'teknik', label: 'Teknik Renang' },
-    { key: 'kedinasan', label: 'Persiapan TNI/Polri' },
-    { key: 'suasana', label: 'Suasana Kolam' },
-  ];
-
-  const filteredItems = activeCategory === 'semua'
-    ? galleryItems
-    : galleryItems.filter(item => item.category === activeCategory);
+  // Focus only on the 3 authentic video footages
+  const videoItems = galleryItems.filter(item => item.type === 'video').slice(0, 3);
 
   return (
     <section id="galeri" className="py-16 sm:py-24 bg-gradient-to-b from-slate-100 via-white to-blue-50/40 text-slate-900 border-t border-slate-300 relative overflow-hidden">
@@ -327,61 +317,35 @@ export const GallerySection: React.FC = () => {
         {/* Section Header */}
         <motion.div variants={fadeUp} className="text-center max-w-3xl mx-auto mb-8 sm:mb-10">
           <span className="text-xs font-mono font-bold uppercase tracking-wider text-blue-900 bg-blue-100 px-3.5 py-1.5 rounded-full mb-3 inline-block border border-blue-300 shadow-xs">
-            DOKUMENTASI & VIDEO SUASANA
+            DOKUMENTASI FOOTAGE ASLI
           </span>
           <h2 className="text-3xl sm:text-4xl font-black text-slate-950 font-outfit tracking-tight text-balance">
-            Dokumentasi Nyata Sesi Latihan Aqualux
+            Rekaman Langsung Sesi Latihan Aqualux
           </h2>
           <p className="mt-3 text-sm sm:text-base font-medium text-slate-700">
-            Rekaman langsung keceriaan dan perkembangan peserta renang anak-anak, remaja, dewasa, hingga persiapan fisik tes TNI/Polri di kolam hotel Malang.
+            Cuplikan video asli keceriaan, proses belajar meluncur, dan suasana tenang kolam renang hotel di Malang. Arahkan mouse atau sentuh video untuk memutar langsung.
           </p>
         </motion.div>
 
         {/* Parent Reassurance Trust Banner */}
-        <motion.div variants={fadeUp} className="max-w-4xl mx-auto mb-8 p-4 sm:p-5 rounded-2xl bg-blue-50/80 border border-blue-200/90 flex flex-col sm:flex-row items-center gap-3.5 text-center sm:text-left shadow-xs">
+        <motion.div variants={fadeUp} className="max-w-4xl mx-auto mb-10 p-4 sm:p-5 rounded-2xl bg-blue-50/80 border border-blue-200/90 flex flex-col sm:flex-row items-center gap-3.5 text-center sm:text-left shadow-xs">
           <div className="w-10 h-10 rounded-xl bg-blue-600 text-white flex items-center justify-center shrink-0 shadow-xs">
             <Sparkles className="w-5 h-5 text-amber-300" />
           </div>
           <div className="text-xs sm:text-sm text-slate-700">
             <span className="font-extrabold text-blue-950 block sm:inline mr-1.5">Kenyamanan Bagi Orang Tua:</span>
-            <span>Kolam hotel memiliki area tribun & kursi santai di tepi kolam. Ayah & Bunda dapat duduk tenang mengawasi langsung putra-putri saat sesi bimbingan berlangsung.</span>
+            <span>Kolam hotel menyediakan area tribun dan tempat duduk nyaman di tepi kolam. Ayah & Bunda dapat duduk tenang mengawasi langsung perkembangan buah hati.</span>
           </div>
         </motion.div>
 
-        {/* Category Tabs */}
-        <motion.div variants={fadeUp} className="flex flex-wrap items-center justify-center gap-2 mb-10 sm:mb-12">
-          {categories.map((cat) => (
-            <button
-              key={cat.key}
-              type="button"
-              onClick={() => setActiveCategory(cat.key)}
-              className={`px-4 py-2 sm:px-5 sm:py-2.5 rounded-full text-xs font-extrabold transition-all border shadow-xs cursor-pointer btn-tactile ${
-                activeCategory === cat.key
-                  ? 'bg-blue-600 text-white border-blue-700 shadow-md shadow-blue-600/20'
-                  : 'bg-white text-slate-800 border-slate-300 hover:border-blue-400 hover:text-blue-700'
-              }`}
-            >
-              {cat.label}
-            </button>
-          ))}
-        </motion.div>
-
-        {/* Gallery Cards Grid with Direct Inline Video Playback */}
-        <motion.div variants={staggerContainer(0.12)} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 text-left">
-          {filteredItems.map((item) => (
-            item.type === 'video' ? (
-              <InlineVideoCard
-                key={item.id}
-                item={item}
-                onOpenLightbox={(selected) => setSelectedMedia(selected)}
-              />
-            ) : (
-              <PhotoCard
-                key={item.id}
-                item={item}
-                onOpenLightbox={(selected) => setSelectedMedia(selected)}
-              />
-            )
+        {/* Gallery Cards Grid with Direct Inline Video Playback (3 Columns) */}
+        <motion.div variants={staggerContainer(0.12)} className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 text-left">
+          {videoItems.map((item) => (
+            <InlineVideoCard
+              key={item.id}
+              item={item}
+              onOpenLightbox={(selected) => setSelectedMedia(selected)}
+            />
           ))}
         </motion.div>
 

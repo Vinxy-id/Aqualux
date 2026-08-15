@@ -254,49 +254,5 @@ export const INITIAL_GALLERY_DATA: GalleryItem[] = [
     videoDuration: '00:25',
     locationBadge: 'Kolam Hotel Malang',
     dateAdded: '2026-08-14'
-  },
-  {
-    id: 'gal-4',
-    title: 'Adaptasi Air & Pengenalan Anak Pemula Usia 5+',
-    description: 'Metode pendekatan ramah anak mulai usia 5 tahun untuk mengubah rasa takut air menjadi senang dan percaya diri.',
-    type: 'photo',
-    category: 'anak',
-    thumbnailUrl: './images/carousel-kids.webp',
-    mediaUrl: './images/carousel-kids.webp',
-    locationBadge: 'Hotel Ubud Malang',
-    dateAdded: '2026-08-01'
-  },
-  {
-    id: 'gal-5',
-    title: 'Pendampingan Sesi Privat 1-on-1 Pelatih Berlisensi',
-    description: 'Coach berlatar belakang atlet renang membimbing teknik pernapasan dan koreksi gerakan secara personal dan sabar.',
-    type: 'photo',
-    category: 'teknik',
-    thumbnailUrl: './images/carousel-coach.webp',
-    mediaUrl: './images/carousel-coach.webp',
-    locationBadge: 'Hotel Savana Malang',
-    dateAdded: '2026-08-08'
-  },
-  {
-    id: 'gal-6',
-    title: 'Fasilitas Kolam Bersih & Area Tunggu Orang Tua',
-    description: 'Area kolam renang hotel berbintang dengan fasilitas lengkap, kamar ganti bersih, dan area tribun santai.',
-    type: 'photo',
-    category: 'suasana',
-    thumbnailUrl: './images/hotel-tychi.webp',
-    mediaUrl: './images/hotel-tychi.webp',
-    locationBadge: 'Hotel Tychi Malang',
-    dateAdded: '2026-08-12'
-  },
-  {
-    id: 'gal-7',
-    title: 'Simulasi Drill Kecepatan Tes Fisik TNI / Polri',
-    description: 'Latihan intensif ketangkasan renang 50 meter gaya dada dengan target waktu kelulusan ujian fisik kedinasan.',
-    type: 'photo',
-    category: 'kedinasan',
-    thumbnailUrl: './images/carousel-tni.webp',
-    mediaUrl: './images/carousel-tni.webp',
-    locationBadge: 'Hotel Tychi Malang',
-    dateAdded: '2026-08-05'
   }
 ];

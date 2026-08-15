@@ -1,6 +1,6 @@
 import React from 'react';
 import { TrophyIcon } from '@heroicons/react/24/solid';
-import { MessageCircle, ArrowRight } from 'lucide-react';
+import { MessageCircle, ArrowRight, Play } from 'lucide-react';
 import { useAqualuxData } from '../context/AqualuxDataContext';
 import { Hero3DCardCarousel } from './Hero3DCardCarousel';
 
@@ -67,7 +67,7 @@ export const Hero: React.FC = () => {
               <button
                 type="button"
                 onClick={() => openWaModal()}
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-6 sm:px-7 py-3.5 sm:py-4 rounded-full bg-emerald-600 hover:bg-emerald-700 text-white font-black text-sm sm:text-base shadow-lg shadow-emerald-600/25 transition-all btn-hover-effect btn-tactile min-h-[48px]"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-6 sm:px-7 py-3.5 sm:py-4 rounded-full bg-emerald-600 hover:bg-emerald-700 text-white font-black text-sm sm:text-base shadow-lg shadow-emerald-600/25 transition-all btn-hover-effect btn-tactile min-h-[48px] cursor-pointer"
               >
                 <MessageCircle className="w-5 h-5 text-white fill-white" />
                 <span>Daftar Kursus via WhatsApp</span>
@@ -75,10 +75,45 @@ export const Hero: React.FC = () => {
 
               <a
                 href="#program"
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 sm:py-4 rounded-full bg-slate-900 hover:bg-slate-800 text-white font-bold text-sm sm:text-base border border-slate-700 shadow-md transition-all btn-hover-effect btn-tactile min-h-[48px]"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 sm:py-4 rounded-full bg-slate-900 hover:bg-slate-800 text-white font-bold text-sm sm:text-base border border-slate-700 shadow-md transition-all btn-hover-effect btn-tactile min-h-[48px] cursor-pointer"
               >
                 <span>Lihat Kategori Program</span>
                 <ArrowRight className="w-4 h-4 text-white" />
+              </a>
+            </div>
+
+            {/* Real Video Footage Highlight for Parents */}
+            <div className="pt-2">
+              <a
+                href="#galeri"
+                className="inline-flex items-center gap-3.5 p-2.5 sm:p-3 pr-4 sm:pr-5 rounded-2xl bg-white/95 border-2 border-blue-200/90 shadow-md hover:border-blue-500 hover:shadow-lg transition-all group max-w-full text-left cursor-pointer"
+              >
+                <div className="relative w-12 h-12 rounded-xl overflow-hidden bg-slate-950 shrink-0 border border-blue-300 shadow-xs">
+                  <img
+                    src="./videos/IMG_3311-thumb.webp"
+                    alt="Cuplikan Video Aqualux"
+                    width="48"
+                    height="48"
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300 opacity-90"
+                  />
+                  <div className="absolute inset-0 bg-slate-950/40 flex items-center justify-center">
+                    <div className="w-5 h-5 rounded-full bg-blue-600 flex items-center justify-center text-white shadow-xs">
+                      <Play className="w-2.5 h-2.5 fill-white ml-0.5" />
+                    </div>
+                  </div>
+                </div>
+
+                <div>
+                  <div className="flex items-center gap-1.5">
+                    <span className="inline-block w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                    <span className="text-[10px] font-mono font-bold text-blue-700 uppercase tracking-wider">
+                      DOKUMENTASI FOOTAGE ASLI
+                    </span>
+                  </div>
+                  <span className="text-xs sm:text-sm font-black text-slate-950 group-hover:text-blue-700 transition-colors block">
+                    Tonton 3 Video Suasana Latihan Anak & Pemula →
+                  </span>
+                </div>
               </a>
             </div>
 
