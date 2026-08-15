@@ -220,9 +220,45 @@ export const FAQ_DATA: FAQItem[] = [
 
 export const INITIAL_GALLERY_DATA: GalleryItem[] = [
   {
-    id: 'gal-1',
-    title: 'Sesi Latihan Adaptasi Air & Pengenalan Anak',
-    description: 'Dokumentasi anak usia 5 tahun belajar meluncur dan pernapasan mandiri di kolam Ubud Hotel Malang.',
+    id: 'gal-vid-1',
+    title: 'Latihan Meluncur & Kayuhan Kaki dengan Kickboard',
+    description: 'Anak-anak berlatih teknik dorongan kaki menggunakan pelampung papan (kickboard). Orang tua dapat duduk santai mendampingi di pinggir kolam.',
+    type: 'video',
+    category: 'anak',
+    thumbnailUrl: './videos/IMG_3311-thumb.webp',
+    mediaUrl: './videos/IMG_3311.mp4',
+    videoDuration: '00:19',
+    locationBadge: 'Kolam Hotel Malang',
+    dateAdded: '2026-08-14'
+  },
+  {
+    id: 'gal-vid-2',
+    title: 'Suasana Kolam Outdoor Terbuka, Bersih & Asri',
+    description: 'Keseruan anak-anak berlatih kelompok kecil dalam suasana kolam outdoor yang sejuk, bersih, dan nyaman bagi keluarga.',
+    type: 'video',
+    category: 'suasana',
+    thumbnailUrl: './videos/IMG_3312-thumb.webp',
+    mediaUrl: './videos/IMG_3312.mp4',
+    videoDuration: '00:20',
+    locationBadge: 'Kolam Hotel Malang',
+    dateAdded: '2026-08-14'
+  },
+  {
+    id: 'gal-vid-3',
+    title: 'Bukti Hasil: Berenang Mandiri & Mengapung Percaya Diri',
+    description: 'Hasil bimbingan bertahap: anak berani meluncur mulus mandiri melintasi kolam tanpa panik dan tanpa rasa takut air.',
+    type: 'video',
+    category: 'teknik',
+    thumbnailUrl: './videos/IMG_3313-thumb.webp',
+    mediaUrl: './videos/IMG_3313.mp4',
+    videoDuration: '00:25',
+    locationBadge: 'Kolam Hotel Malang',
+    dateAdded: '2026-08-14'
+  },
+  {
+    id: 'gal-4',
+    title: 'Adaptasi Air & Pengenalan Anak Pemula Usia 5+',
+    description: 'Metode pendekatan ramah anak mulai usia 5 tahun untuk mengubah rasa takut air menjadi senang dan percaya diri.',
     type: 'photo',
     category: 'anak',
     thumbnailUrl: './images/carousel-kids.webp',
@@ -231,20 +267,9 @@ export const INITIAL_GALLERY_DATA: GalleryItem[] = [
     dateAdded: '2026-08-01'
   },
   {
-    id: 'gal-2',
-    title: 'Drill Kecepatan & Stamina Tes TNI/Polri',
-    description: 'Sesi time trial 50m gaya dada & gaya bebas khusus peserta persiapan seleksi fisik kedinasan.',
-    type: 'photo',
-    category: 'kedinasan',
-    thumbnailUrl: './images/carousel-tni.webp',
-    mediaUrl: './images/carousel-tni.webp',
-    locationBadge: 'Hotel Tychi Malang',
-    dateAdded: '2026-08-05'
-  },
-  {
-    id: 'gal-3',
+    id: 'gal-5',
     title: 'Pendampingan Sesi Privat 1-on-1 Pelatih Berlisensi',
-    description: 'Coach memberikan evaluasi teknik dorongan kaki dan pernapasan secara intensif dan sabar.',
+    description: 'Coach berlatar belakang atlet renang membimbing teknik pernapasan dan koreksi gerakan secara personal dan sabar.',
     type: 'photo',
     category: 'teknik',
     thumbnailUrl: './images/carousel-coach.webp',
@@ -253,21 +278,9 @@ export const INITIAL_GALLERY_DATA: GalleryItem[] = [
     dateAdded: '2026-08-08'
   },
   {
-    id: 'gal-4',
-    title: 'Video Highlight Sesi Latihan Anak & Pemula',
-    description: 'Tonton cuplikan keceriaan anak-anak belajar mengapung dan berenang dengan gembira.',
-    type: 'video',
-    category: 'anak',
-    thumbnailUrl: './images/carousel-kids.webp',
-    mediaUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
-    videoDuration: '00:45',
-    locationBadge: 'Hotel Ubud Malang',
-    dateAdded: '2026-08-10'
-  },
-  {
-    id: 'gal-5',
-    title: 'Suasana Nyaman & Clean di Kolam Hotel Tychi',
-    description: 'Fasilitas kolam renang outdoor yang bersih, ramah keluarga, dan terjaga privasinya.',
+    id: 'gal-6',
+    title: 'Fasilitas Kolam Bersih & Area Tunggu Orang Tua',
+    description: 'Area kolam renang hotel berbintang dengan fasilitas lengkap, kamar ganti bersih, dan area tribun santai.',
     type: 'photo',
     category: 'suasana',
     thumbnailUrl: './images/hotel-tychi.webp',
@@ -276,15 +289,14 @@ export const INITIAL_GALLERY_DATA: GalleryItem[] = [
     dateAdded: '2026-08-12'
   },
   {
-    id: 'gal-6',
-    title: 'Video Drill Teknik Streamline & Pernapasan',
-    description: 'Tutorial posisi tubuh meluncur lurus (streamline) untuk efisiensi kayuhan gaya dada.',
-    type: 'video',
-    category: 'teknik',
-    thumbnailUrl: './images/carousel-coach.webp',
-    mediaUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
-    videoDuration: '01:15',
-    locationBadge: 'Hotel Savana Malang',
-    dateAdded: '2026-08-13'
+    id: 'gal-7',
+    title: 'Simulasi Drill Kecepatan Tes Fisik TNI / Polri',
+    description: 'Latihan intensif ketangkasan renang 50 meter gaya dada dengan target waktu kelulusan ujian fisik kedinasan.',
+    type: 'photo',
+    category: 'kedinasan',
+    thumbnailUrl: './images/carousel-tni.webp',
+    mediaUrl: './images/carousel-tni.webp',
+    locationBadge: 'Hotel Tychi Malang',
+    dateAdded: '2026-08-05'
   }
 ];

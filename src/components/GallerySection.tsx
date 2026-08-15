@@ -37,16 +37,27 @@ export const GallerySection: React.FC = () => {
         viewport={viewportOnce}
       >
         {/* Section Header */}
-        <motion.div variants={fadeUp} className="text-center max-w-3xl mx-auto mb-10 sm:mb-14">
+        <motion.div variants={fadeUp} className="text-center max-w-3xl mx-auto mb-8 sm:mb-10">
           <span className="text-xs font-mono font-bold uppercase tracking-wider text-blue-900 bg-blue-100 px-3.5 py-1.5 rounded-full mb-3 inline-block border border-blue-300 shadow-xs">
-            DOKUMENTASI & GALERI KURSUS
+            DOKUMENTASI & VIDEO SUASANA
           </span>
           <h2 className="text-3xl sm:text-4xl font-black text-slate-950 font-outfit tracking-tight text-balance">
             Dokumentasi Nyata Sesi Latihan Aqualux
           </h2>
           <p className="mt-3 text-sm sm:text-base font-medium text-slate-700">
-            Lihat keseruan dan perkembangan peserta anak-anak, remaja, dewasa, serta persiapan fisik tes TNI/Polri di lokasi kolam hotel Malang.
+            Rekaman langsung keceriaan dan perkembangan peserta renang anak-anak, remaja, dewasa, hingga persiapan fisik tes TNI/Polri di kolam hotel Malang.
           </p>
+        </motion.div>
+
+        {/* Parent Reassurance Trust Banner */}
+        <motion.div variants={fadeUp} className="max-w-4xl mx-auto mb-8 p-4 sm:p-5 rounded-2xl bg-blue-50/80 border border-blue-200/90 flex flex-col sm:flex-row items-center gap-3.5 text-center sm:text-left shadow-xs">
+          <div className="w-10 h-10 rounded-xl bg-blue-600 text-white flex items-center justify-center shrink-0 shadow-xs">
+            <Sparkles className="w-5 h-5 text-amber-300" />
+          </div>
+          <div className="text-xs sm:text-sm text-slate-700">
+            <span className="font-extrabold text-blue-950 block sm:inline mr-1.5">Kenyamanan Bagi Orang Tua:</span>
+            <span>Kolam hotel memiliki area tribun & kursi santai di tepi kolam. Ayah & Bunda dapat duduk tenang mengawasi langsung putra-putri saat sesi bimbingan berlangsung.</span>
+          </div>
         </motion.div>
 
         {/* Category Tabs */}

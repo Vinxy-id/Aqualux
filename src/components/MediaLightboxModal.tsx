@@ -86,9 +86,12 @@ export const MediaLightboxModal: React.FC<MediaLightboxModalProps> = ({ item, on
                   ) : (
                     <video
                       src={item.mediaUrl}
+                      poster={item.thumbnailUrl}
                       controls
                       autoPlay
-                      className="w-full max-h-[55vh] object-contain"
+                      playsInline
+                      preload="metadata"
+                      className="w-full max-h-[58vh] object-contain rounded-lg shadow-inner bg-black"
                     />
                   )
                 ) : (
