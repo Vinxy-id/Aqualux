@@ -1,5 +1,4 @@
 import React from 'react';
-import { TrophyIcon } from '@heroicons/react/24/solid';
 import { MessageCircle, ArrowRight } from 'lucide-react';
 import { useAqualuxData } from '../context/AqualuxDataContext';
 import { Hero3DCardCarousel } from './Hero3DCardCarousel';
@@ -19,13 +18,6 @@ export const Hero: React.FC = () => {
           
           {/* Left Column - High Contrast Text & CTA */}
           <div className="lg:col-span-7 space-y-5 sm:space-y-6 text-center lg:text-left">
-            {/* Top Pill Badge */}
-            <div className="inline-flex items-center gap-2 px-3.5 py-2 sm:px-4 sm:py-2 rounded-2xl sm:rounded-full bg-blue-950 border border-blue-900 text-white text-xs sm:text-sm font-bold shadow-md max-w-full text-left">
-              <TrophyIcon className="w-4 h-4 text-amber-400 shrink-0" />
-              <span className="font-mono text-[11px] sm:text-xs tracking-wider leading-snug whitespace-normal text-amber-200 font-bold">
-                PELATIH RENANG BERLISENSI MALANG
-              </span>
-            </div>
 
             {/* Main Headline */}
             <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight text-slate-950 font-outfit leading-[1.12] text-balance">

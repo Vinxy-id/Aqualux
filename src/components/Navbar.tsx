@@ -37,10 +37,10 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenAdmin }) => {
   const navLinks = [
     { href: '#program', label: 'Program Kursus', icon: BookOpen, color: 'text-blue-600 bg-blue-50' },
     { href: '#harga', label: 'Paket Harga', icon: Tag, color: 'text-emerald-600 bg-emerald-50' },
-    { href: '#lokasi', label: 'Lokasi & HTM', icon: MapPin, color: 'text-cyan-600 bg-cyan-50' },
+    { href: '#lokasi', label: 'Lokasi Kolam', icon: MapPin, color: 'text-cyan-600 bg-cyan-50' },
     { href: '#keunggulan', label: 'Keunggulan Pelatih', icon: Award, color: 'text-amber-600 bg-amber-50' },
-    { href: '#testimoni', label: 'Testimoni Alumni', icon: MessageSquareQuote, color: 'text-purple-600 bg-purple-50' },
-    { href: '#faq', label: 'FAQ (Pertanyaan Umum)', icon: HelpCircle, color: 'text-teal-600 bg-teal-50' },
+    { href: '#testimoni', label: 'Testimoni', icon: MessageSquareQuote, color: 'text-purple-600 bg-purple-50' },
+    { href: '#faq', label: 'FAQ', icon: HelpCircle, color: 'text-teal-600 bg-teal-50' },
   ];
 
   // Instant single-tap navigation scroll handler
@@ -115,9 +115,9 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenAdmin }) => {
                   key={item.href}
                   href={item.href}
                   onClick={(e) => handleNavClick(e, item.href)}
-                  className="px-4 py-2 rounded-full hover:bg-white hover:text-blue-700 hover:shadow-xs transition-all cursor-pointer"
+                  className="px-4 py-2 rounded-full hover:bg-white hover:text-blue-700 hover:shadow-xs transition-all cursor-pointer whitespace-nowrap"
                 >
-                  {item.label.split(' ')[0]} {item.label.split(' ')[1] || ''}
+                  {item.label}
                 </a>
               ))}
             </nav>
