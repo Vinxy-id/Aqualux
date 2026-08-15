@@ -8,7 +8,6 @@ import { ProgramsSection } from './components/ProgramsSection';
 import { WhyChooseUs } from './components/WhyChooseUs';
 import { PricingSection } from './components/PricingSection';
 import { LocationsSection } from './components/LocationsSection';
-import { GallerySection } from './components/GallerySection';
 import { TestimonialsSection } from './components/TestimonialsSection';
 import { FAQSection } from './components/FAQSection';
 import { UrgencyBanner } from './components/UrgencyBanner';
@@ -108,7 +107,6 @@ function AppContent() {
         <WhyChooseUs />
         <PricingSection />
         <LocationsSection />
-        <GallerySection />
         <TestimonialsSection />
         <FAQSection />
         <UrgencyBanner />

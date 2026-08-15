@@ -5,7 +5,6 @@ import {
   Tag, 
   MapPin, 
   Award, 
-  Camera,
   MessageSquareQuote, 
   HelpCircle, 
   Link as LinkIcon, 
@@ -40,7 +39,6 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenAdmin }) => {
     { href: '#keunggulan', label: 'Keunggulan Pelatih', shortLabel: 'Keunggulan', icon: Award, color: 'text-amber-600 bg-amber-50' },
     { href: '#harga', label: 'Paket Harga', shortLabel: 'Harga', icon: Tag, color: 'text-emerald-600 bg-emerald-50' },
     { href: '#lokasi', label: 'Lokasi & HTM', shortLabel: 'Lokasi', icon: MapPin, color: 'text-cyan-600 bg-cyan-50' },
-    { href: '#galeri', label: 'Dokumentasi Video', shortLabel: 'Galeri Video', icon: Camera, color: 'text-indigo-600 bg-indigo-50' },
     { href: '#testimoni', label: 'Testimoni Alumni', shortLabel: 'Testimoni', icon: MessageSquareQuote, color: 'text-purple-600 bg-purple-50' },
     { href: '#faq', label: 'FAQ (Tanya Jawab)', shortLabel: 'FAQ', icon: HelpCircle, color: 'text-teal-600 bg-teal-50' },
   ];

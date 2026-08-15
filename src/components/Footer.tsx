@@ -71,7 +71,6 @@ export const Footer: React.FC<FooterProps> = ({ onOpenAdmin }) => {
               <li><a href="#keunggulan" className="hover:text-blue-400 transition-colors">Keunggulan Pelatih</a></li>
               <li><a href="#harga" className="hover:text-blue-400 transition-colors">Paket Harga</a></li>
               <li><a href="#lokasi" className="hover:text-blue-400 transition-colors">Lokasi Hotel Bimbingan</a></li>
-              <li><a href="#galeri" className="hover:text-blue-400 transition-colors">Dokumentasi Galeri</a></li>
               <li><a href="#testimoni" className="hover:text-blue-400 transition-colors">Testimoni Alumni</a></li>
               <li><a href="#faq" className="hover:text-blue-400 transition-colors">Pertanyaan Umum (FAQ)</a></li>
               <li><a href="#links" className="hover:text-blue-400 transition-colors flex items-center gap-1"><span className="text-cyan-400 font-bold">●</span> Link in Bio (/links)</a></li>

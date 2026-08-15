@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { createPortal } from 'react-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronLeft, ChevronRight, Pause, Play, ZoomIn, ZoomOut, RotateCcw, X, MessageCircle, ExternalLink, Volume2, VolumeX } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Pause, Play, ZoomIn, ZoomOut, RotateCcw, X, MessageCircle, ExternalLink } from 'lucide-react';
 import { useAqualuxData } from '../context/AqualuxDataContext';
 
 export interface CardData {
@@ -17,9 +17,6 @@ export interface CardData {
   highlight2Val: string;
   tagColor: string;
   isBrochure?: boolean;
-  isVideo?: boolean;
-  videoUrl?: string;
-  videoDuration?: string;
 }
 
 const CAROUSEL_CARDS: CardData[] = [
@@ -39,17 +36,14 @@ const CAROUSEL_CARDS: CardData[] = [
   },
   {
     id: 2,
-    title: 'Video Suasana Latihan Kolam Asli',
-    subtitle: 'Rekaman nyata bimbingan ramah anak & pemula memakai kickboard di kolam hotel Malang.',
-    badge: '🎥 Footage Video Asli',
-    image: './videos/IMG_3311-thumb.webp',
-    isVideo: true,
-    videoUrl: './videos/IMG_3311.mp4',
-    videoDuration: '00:19',
-    highlight1Label: 'Metode Bimbingan:',
-    highlight1Val: 'Sabar & Ramah',
-    highlight2Label: 'Lokasi Kolam:',
-    highlight2Val: 'Hotel Malang',
+    title: 'Bimbingan Ramah Anak & Pemula',
+    subtitle: 'Metode fun learning tanpa paksaan, membantu anak 5+ tahun berani dan percaya diri di air.',
+    badge: 'Ramah Anak-Anak',
+    image: './images/carousel-kids.webp',
+    highlight1Label: 'Peralatan:',
+    highlight1Val: 'Gratis Dipinjamkan',
+    highlight2Label: 'Adaptasi Air:',
+    highlight2Val: '4x Pertemuan',
     tagColor: 'bg-cyan-100 text-cyan-900 border-cyan-300',
   },
   {
@@ -98,9 +92,6 @@ export const Hero3DCardCarousel: React.FC = () => {
   const [isPaused, setIsPaused] = useState<boolean>(false);
   const [zoomBrochure, setZoomBrochure] = useState<string | null>(null);
   const [zoomScale, setZoomScale] = useState<number>(1);
-  const [isHeroVideoMuted, setIsHeroVideoMuted] = useState<boolean>(true);
-  const [isHeroVideoPlaying, setIsHeroVideoPlaying] = useState<boolean>(false);
-  const heroVideoRef = useRef<HTMLVideoElement | null>(null);
   const [isMobile, setIsMobile] = useState<boolean>(() => typeof window !== 'undefined' ? window.innerWidth < 640 : false);
   const touchStartX = useRef<number | null>(null);
   const total = CAROUSEL_CARDS.length;
@@ -138,29 +129,13 @@ export const Hero3DCardCarousel: React.FC = () => {
   }, [total]);
 
   useEffect(() => {
-    if (isPaused || zoomBrochure || isHeroVideoPlaying) return;
+    if (isPaused || zoomBrochure) return;
     const interval = setInterval(() => {
       handleNext();
     }, 4200);
 
     return () => clearInterval(interval);
-  }, [isPaused, zoomBrochure, isHeroVideoPlaying, handleNext]);
-
-  useEffect(() => {
-    if (heroVideoRef.current) {
-      const currentCard = CAROUSEL_CARDS[activeIndex];
-      if (currentCard.isVideo) {
-        heroVideoRef.current.play().then(() => {
-          setIsHeroVideoPlaying(true);
-        }).catch(() => {
-          setIsHeroVideoPlaying(false);
-        });
-      } else {
-        heroVideoRef.current.pause();
-        setIsHeroVideoPlaying(false);
-      }
-    }
-  }, [activeIndex]);
+  }, [isPaused, zoomBrochure, handleNext]);
 
   const handleTouchStart = (e: React.TouchEvent) => {
     touchStartX.current = e.touches[0].clientX;
@@ -296,26 +271,6 @@ export const Hero3DCardCarousel: React.FC = () => {
     };
   };
 
-  const toggleHeroVideoPlay = (e: React.MouseEvent) => {
-    e.stopPropagation();
-    if (!heroVideoRef.current) return;
-    if (isHeroVideoPlaying) {
-      heroVideoRef.current.pause();
-      setIsHeroVideoPlaying(false);
-    } else {
-      heroVideoRef.current.play().then(() => {
-        setIsHeroVideoPlaying(true);
-      }).catch(() => {});
-    }
-  };
-
-  const toggleHeroVideoMute = (e: React.MouseEvent) => {
-    e.stopPropagation();
-    if (!heroVideoRef.current) return;
-    heroVideoRef.current.muted = !isHeroVideoMuted;
-    setIsHeroVideoMuted(!isHeroVideoMuted);
-  };
-
   return (
     <div 
       className="w-full relative py-2 max-w-md mx-auto lg:max-w-none"
@@ -373,73 +328,24 @@ export const Hero3DCardCarousel: React.FC = () => {
                     if (card.isBrochure && isCenter) {
                       e.stopPropagation();
                       setZoomBrochure(card.fullImage || card.image);
-                    } else if (card.isVideo && isCenter) {
-                      toggleHeroVideoPlay(e);
                     }
                   }}
                   className={`relative h-46 sm:h-56 rounded-2xl overflow-hidden mb-3 border border-slate-200/80 shadow-inner bg-slate-950 group/img ${
-                    (card.isBrochure || card.isVideo) && isCenter ? 'cursor-pointer' : ''
+                    card.isBrochure && isCenter ? 'cursor-pointer' : ''
                   }`}
                 >
-                  {card.isVideo && isCenter ? (
-                    <div className="relative w-full h-full">
-                      <video
-                        ref={heroVideoRef}
-                        src={card.videoUrl}
-                        poster={card.image}
-                        playsInline
-                        loop
-                        muted={isHeroVideoMuted}
-                        preload="none"
-                        className="w-full h-full object-cover"
-                        onPlay={() => setIsHeroVideoPlaying(true)}
-                        onPause={() => setIsHeroVideoPlaying(false)}
-                      />
-
-                      <button
-                        type="button"
-                        onClick={toggleHeroVideoMute}
-                        aria-label={isHeroVideoMuted ? 'Aktifkan Suara' : 'Matikan Suara'}
-                        className="absolute bottom-2.5 left-2.5 z-20 w-8 h-8 rounded-full bg-slate-950/80 hover:bg-slate-900 text-white backdrop-blur-md flex items-center justify-center border border-white/20 shadow-md transition-transform active:scale-95 cursor-pointer"
-                      >
-                        {isHeroVideoMuted ? (
-                          <VolumeX className="w-4 h-4 text-slate-300" />
-                        ) : (
-                          <Volume2 className="w-4 h-4 text-emerald-400" />
-                        )}
-                      </button>
-
-                      {!isHeroVideoPlaying && (
-                        <div className="absolute inset-0 z-10 flex items-center justify-center bg-slate-950/30">
-                          <div className="w-12 h-12 rounded-full bg-blue-600/90 text-white flex items-center justify-center shadow-lg">
-                            <Play className="w-5 h-5 fill-white ml-0.5" />
-                          </div>
-                        </div>
-                      )}
-                    </div>
-                  ) : (
-                    <>
-                      <img
-                        src={card.image}
-                        alt={card.title}
-                        className={`w-full h-full ${
-                          card.isBrochure ? 'object-cover object-top' : 'object-cover'
-                        } transition-transform duration-700 group-hover:scale-105`}
-                        loading={index === 0 ? 'eager' : 'lazy'}
-                        fetchPriority={index === 0 ? 'high' : 'auto'}
-                        decoding={index === 0 ? 'sync' : 'async'}
-                        width="440"
-                        height="280"
-                      />
-                      {card.isVideo && (
-                        <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-                          <div className="w-10 h-10 rounded-full bg-blue-600/80 text-white flex items-center justify-center shadow-md">
-                            <Play className="w-4 h-4 fill-white ml-0.5" />
-                          </div>
-                        </div>
-                      )}
-                    </>
-                  )}
+                  <img
+                    src={card.image}
+                    alt={card.title}
+                    className={`w-full h-full ${
+                      card.isBrochure ? 'object-cover object-top' : 'object-cover'
+                    } transition-transform duration-700 group-hover:scale-105`}
+                    loading={index === 0 ? 'eager' : 'lazy'}
+                    fetchPriority={index === 0 ? 'high' : 'auto'}
+                    decoding={index === 0 ? 'sync' : 'async'}
+                    width="440"
+                    height="280"
+                  />
 
                   <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/25 to-transparent pointer-events-none" />
 
@@ -457,12 +363,6 @@ export const Hero3DCardCarousel: React.FC = () => {
                     <div className="absolute top-12 right-2.5 bg-blue-950/90 hover:bg-blue-600 text-white backdrop-blur-md px-2 py-1 rounded-lg border border-blue-400/50 text-[10px] font-mono font-bold flex items-center gap-1 shadow-md transition-all z-10">
                       <ZoomIn className="w-3 h-3 text-cyan-300" />
                       <span>Lihat Brosur</span>
-                    </div>
-                  )}
-
-                  {card.isVideo && card.videoDuration && (
-                    <div className="absolute top-12 right-2.5 bg-slate-950/80 text-white backdrop-blur-md px-2 py-0.5 rounded-md border border-white/20 text-[10px] font-mono font-bold z-10">
-                      {card.videoDuration}
                     </div>
                   )}
 
@@ -510,32 +410,6 @@ export const Hero3DCardCarousel: React.FC = () => {
                         <ZoomIn className="w-4 h-4 text-cyan-200" />
                         <span>Buka Brosur Lengkap (HD)</span>
                       </button>
-                    ) : card.isVideo ? (
-                      <div className="grid grid-cols-2 gap-2">
-                        <button
-                          type="button"
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            openWaModal('Halo Admin Aqualux, saya tertarik dengan kursus renang setelah melihat video dokumentasi latihan. Boleh minta info jadwal?');
-                          }}
-                          className="w-full py-2.5 px-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 active:scale-[0.98] text-white text-[11px] sm:text-xs font-extrabold flex items-center justify-center gap-1 transition-all shadow-md shadow-emerald-600/25 cursor-pointer truncate"
-                        >
-                          <MessageCircle className="w-3.5 h-3.5 shrink-0" />
-                          <span>Chat WA</span>
-                        </button>
-                        <a
-                          href="#galeri"
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            const el = document.getElementById('galeri');
-                            if (el) el.scrollIntoView({ behavior: 'smooth' });
-                          }}
-                          className="w-full py-2.5 px-2 rounded-xl bg-blue-600 hover:bg-blue-700 active:scale-[0.98] text-white text-[11px] sm:text-xs font-extrabold flex items-center justify-center gap-1 transition-all shadow-md shadow-blue-600/25 cursor-pointer truncate"
-                        >
-                          <Play className="w-3.5 h-3.5 fill-white shrink-0" />
-                          <span>3 Video Asli</span>
-                        </a>
-                      </div>
                     ) : (
                       <button
                         type="button"
