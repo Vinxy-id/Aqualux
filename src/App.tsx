@@ -111,13 +111,13 @@ function AppContent() {
         <Hero />
         <AchievementsBar />
         <ProgramsSection />
+        <WhyChooseUs />
         <PricingSection />
         <LocationsSection />
-        <WhyChooseUs />
         <GallerySection />
         <TestimonialsSection />
-        <UrgencyBanner />
         <FAQSection />
+        <UrgencyBanner />
       </main>
       <Footer onOpenAdmin={navigateToAdmin} />
       <WhatsAppModal />

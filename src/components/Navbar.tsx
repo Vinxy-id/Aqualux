@@ -37,9 +37,9 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenAdmin }) => {
 
   const navLinks = [
     { href: '#program', label: 'Program Kursus', icon: BookOpen, color: 'text-blue-600 bg-blue-50' },
+    { href: '#keunggulan', label: 'Keunggulan Pelatih', icon: Award, color: 'text-amber-600 bg-amber-50' },
     { href: '#harga', label: 'Paket Harga', icon: Tag, color: 'text-emerald-600 bg-emerald-50' },
     { href: '#lokasi', label: 'Lokasi & HTM', icon: MapPin, color: 'text-cyan-600 bg-cyan-50' },
-    { href: '#keunggulan', label: 'Keunggulan Pelatih', icon: Award, color: 'text-amber-600 bg-amber-50' },
     { href: '#galeri', label: 'Dokumentasi Galeri', icon: Camera, color: 'text-indigo-600 bg-indigo-50' },
     { href: '#testimoni', label: 'Testimoni Alumni', icon: MessageSquareQuote, color: 'text-purple-600 bg-purple-50' },
     { href: '#faq', label: 'FAQ (Pertanyaan Umum)', icon: HelpCircle, color: 'text-teal-600 bg-teal-50' },
