@@ -10,7 +10,6 @@ import {
   Maximize2, 
   ZoomIn, 
   MapPin, 
-  Sparkles, 
   MessageCircle 
 } from 'lucide-react';
 import { useAqualuxData } from '../context/AqualuxDataContext';
@@ -206,8 +205,20 @@ const InlineVideoCard: React.FC<{
       {/* Card Footer Quick Action */}
       <div className="px-5 sm:px-6 pb-5 pt-0 flex items-center justify-between border-t border-slate-100 mt-2 pt-3.5">
         <span className="inline-flex items-center gap-1.5 text-xs font-bold text-blue-700">
-          <Sparkles className="w-3.5 h-3.5 text-amber-500" />
-          <span>{isPlaying ? 'Sedang Diputar Inline' : 'Arahkan kursor / Tap untuk putar'}</span>
+          {isPlaying ? (
+            <>
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
+              </span>
+              <span className="text-emerald-700">Sedang Diputar</span>
+            </>
+          ) : (
+            <>
+              <Play className="w-3 h-3 text-blue-600 fill-blue-600" />
+              <span>Hover / Tap untuk putar</span>
+            </>
+          )}
         </span>
 
         <button
@@ -286,7 +297,7 @@ const PhotoCard: React.FC<{
       {/* Card Footer Link */}
       <div className="px-5 sm:px-6 pb-5 pt-0">
         <span className="inline-flex items-center gap-1.5 text-xs font-bold text-blue-700 group-hover:translate-x-1 transition-transform">
-          <Sparkles className="w-3.5 h-3.5 text-amber-500" />
+          <Camera className="w-3.5 h-3.5 text-blue-600" />
           <span>Lihat Foto Dokumentasi</span>
         </span>
       </div>
