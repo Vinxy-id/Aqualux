@@ -36,13 +36,13 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenAdmin }) => {
   }, []);
 
   const navLinks = [
-    { href: '#program', label: 'Program Kursus', icon: BookOpen, color: 'text-blue-600 bg-blue-50' },
-    { href: '#keunggulan', label: 'Keunggulan Pelatih', icon: Award, color: 'text-amber-600 bg-amber-50' },
-    { href: '#harga', label: 'Paket Harga', icon: Tag, color: 'text-emerald-600 bg-emerald-50' },
-    { href: '#lokasi', label: 'Lokasi & HTM', icon: MapPin, color: 'text-cyan-600 bg-cyan-50' },
-    { href: '#galeri', label: 'Dokumentasi Galeri', icon: Camera, color: 'text-indigo-600 bg-indigo-50' },
-    { href: '#testimoni', label: 'Testimoni Alumni', icon: MessageSquareQuote, color: 'text-purple-600 bg-purple-50' },
-    { href: '#faq', label: 'FAQ (Pertanyaan Umum)', icon: HelpCircle, color: 'text-teal-600 bg-teal-50' },
+    { href: '#program', label: 'Program Kursus', shortLabel: 'Program', icon: BookOpen, color: 'text-blue-600 bg-blue-50' },
+    { href: '#keunggulan', label: 'Keunggulan Pelatih', shortLabel: 'Keunggulan', icon: Award, color: 'text-amber-600 bg-amber-50' },
+    { href: '#harga', label: 'Paket Harga', shortLabel: 'Harga', icon: Tag, color: 'text-emerald-600 bg-emerald-50' },
+    { href: '#lokasi', label: 'Lokasi & HTM', shortLabel: 'Lokasi', icon: MapPin, color: 'text-cyan-600 bg-cyan-50' },
+    { href: '#galeri', label: 'Dokumentasi Video', shortLabel: 'Galeri Video', icon: Camera, color: 'text-indigo-600 bg-indigo-50' },
+    { href: '#testimoni', label: 'Testimoni Alumni', shortLabel: 'Testimoni', icon: MessageSquareQuote, color: 'text-purple-600 bg-purple-50' },
+    { href: '#faq', label: 'FAQ (Tanya Jawab)', shortLabel: 'FAQ', icon: HelpCircle, color: 'text-teal-600 bg-teal-50' },
   ];
 
   // Instant single-tap navigation scroll handler
@@ -91,13 +91,13 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenAdmin }) => {
           : 'border-slate-200 py-3'
       }`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between">
+          <div className="flex items-center justify-between gap-4">
             
             {/* Official Full Logo Brand Image (Icon + Text Combined) */}
             <a 
               href="#" 
               onClick={(e) => handleNavClick(e, '#')}
-              className="flex items-center group text-left cursor-pointer"
+              className="flex items-center group text-left cursor-pointer shrink-0"
             >
               <div className="bg-white/95 backdrop-blur-xs px-2.5 py-1 rounded-2xl border border-slate-200/80 shadow-xs transition-transform group-hover:scale-105">
                 <img 
@@ -105,31 +105,31 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenAdmin }) => {
                   alt="AQUALUX Swimming Course" 
                   width="160"
                   height="54"
-                  className="h-10 sm:h-12 w-auto object-contain"
+                  className="h-9 sm:h-11 w-auto object-contain"
                 />
               </div>
             </a>
 
             {/* Desktop Nav Pills */}
-            <nav className="hidden lg:flex items-center gap-1.5 bg-slate-100 p-1.5 rounded-full border border-slate-300 text-xs font-bold text-slate-800">
+            <nav className="hidden lg:flex items-center gap-1 bg-slate-100/90 p-1.5 rounded-full border border-slate-200/90 text-xs font-bold text-slate-700 shadow-inner">
               {navLinks.map((item) => (
                 <a
                   key={item.href}
                   href={item.href}
                   onClick={(e) => handleNavClick(e, item.href)}
-                  className="px-4 py-2 rounded-full hover:bg-white hover:text-blue-700 hover:shadow-xs transition-all cursor-pointer"
+                  className="px-3.5 py-1.5 rounded-full hover:bg-white hover:text-blue-700 hover:shadow-xs transition-all whitespace-nowrap cursor-pointer text-xs font-bold"
                 >
-                  {item.label.split(' ')[0]} {item.label.split(' ')[1] || ''}
+                  {item.shortLabel}
                 </a>
               ))}
             </nav>
 
             {/* Desktop CTA WhatsApp */}
-            <div className="hidden lg:flex items-center gap-3">
+            <div className="hidden lg:flex items-center gap-3 shrink-0">
               <button
                 type="button"
                 onClick={() => openWaModal()}
-                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold text-xs shadow-md transition-all btn-hover-effect btn-tactile cursor-pointer"
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-emerald-600 hover:bg-emerald-700 active:bg-emerald-800 text-white font-extrabold text-xs shadow-md shadow-emerald-600/20 transition-all btn-hover-effect btn-tactile cursor-pointer whitespace-nowrap"
               >
                 <PhoneIcon className="w-4 h-4 text-white" />
                 <span>Chat Admin WA</span>
