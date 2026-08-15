@@ -390,7 +390,7 @@ export const Hero3DCardCarousel: React.FC = () => {
                         playsInline
                         loop
                         muted={isHeroVideoMuted}
-                        preload="metadata"
+                        preload="none"
                         className="w-full h-full object-cover"
                         onPlay={() => setIsHeroVideoPlaying(true)}
                         onPause={() => setIsHeroVideoPlaying(false)}

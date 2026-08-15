@@ -101,7 +101,7 @@ const InlineVideoCard: React.FC<{
             loop
             muted={isMuted}
             playsInline
-            preload={hasInteracted ? 'auto' : 'metadata'}
+            preload={hasInteracted ? 'auto' : 'none'}
             onTimeUpdate={handleTimeUpdate}
             className="w-full h-full object-cover"
           />

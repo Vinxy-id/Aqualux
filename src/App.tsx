@@ -7,14 +7,14 @@ import { AchievementsBar } from './components/AchievementsBar';
 import { ProgramsSection } from './components/ProgramsSection';
 import { WhyChooseUs } from './components/WhyChooseUs';
 import { PricingSection } from './components/PricingSection';
+import { LocationsSection } from './components/LocationsSection';
+import { GallerySection } from './components/GallerySection';
+import { TestimonialsSection } from './components/TestimonialsSection';
+import { FAQSection } from './components/FAQSection';
+import { UrgencyBanner } from './components/UrgencyBanner';
 import { Footer } from './components/Footer';
 import { SpeedInsights } from '@vercel/speed-insights/react';
 
-const LocationsSection = lazy(() => import('./components/LocationsSection').then(m => ({ default: m.LocationsSection })));
-const GallerySection = lazy(() => import('./components/GallerySection').then(m => ({ default: m.GallerySection })));
-const TestimonialsSection = lazy(() => import('./components/TestimonialsSection').then(m => ({ default: m.TestimonialsSection })));
-const FAQSection = lazy(() => import('./components/FAQSection').then(m => ({ default: m.FAQSection })));
-const UrgencyBanner = lazy(() => import('./components/UrgencyBanner').then(m => ({ default: m.UrgencyBanner })));
 const WhatsAppModal = lazy(() => import('./components/WhatsAppModal').then(m => ({ default: m.WhatsAppModal })));
 const AdminLogin = lazy(() => import('./components/AdminLogin').then(m => ({ default: m.AdminLogin })));
 const AdminPage = lazy(() => import('./components/AdminPage').then(m => ({ default: m.AdminPage })));
@@ -107,13 +107,11 @@ function AppContent() {
         <ProgramsSection />
         <WhyChooseUs />
         <PricingSection />
-        <Suspense fallback={null}>
-          <LocationsSection />
-          <GallerySection />
-          <TestimonialsSection />
-          <FAQSection />
-          <UrgencyBanner />
-        </Suspense>
+        <LocationsSection />
+        <GallerySection />
+        <TestimonialsSection />
+        <FAQSection />
+        <UrgencyBanner />
       </main>
       <Footer onOpenAdmin={navigateToAdmin} />
       <Suspense fallback={null}>
