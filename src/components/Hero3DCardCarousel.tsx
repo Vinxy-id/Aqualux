@@ -67,7 +67,7 @@ const CAROUSEL_CARDS: CardData[] = [
     badge: 'Pelatih Berpengalaman',
     image: './images/carousel-coach.webp',
     highlight1Label: 'Kualifikasi:',
-    highlight1Val: 'Eks-Atlet Jatim',
+    highlight1Val: 'Eks-Atlet',
     highlight2Label: 'Pendekatan:',
     highlight2Val: 'Sabar & Telaten',
     tagColor: 'bg-amber-100 text-amber-900 border-amber-300',
